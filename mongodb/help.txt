@@ -1,2 +1,3 @@
+docker-compose up -d
 docker exec -it mongodb bash
 mongodb://root:root123@localhost:27015/?authSource=admin
