@@ -22,12 +22,15 @@ function splitToString(arr, splitPoint){
     return {first: firstArr.join(""), second: secArr.join("")};
 }
 async function cookieAuthorization(req, res, dbClient){
+    let validation = 'no authorization data';
     let cookieCheck = req.signedCookies.user;
     if(!cookieCheck){
         let authIntel = req.headers.authorization;
         if(!authIntel){
             res.setHeader("WWW-Authenticate", "Basic");
-            res.sendStatus(401);
+            res.status(401).send(validation);
+
+
         }
         else{
             let decodedUsrPass = base64.decode(splitToString(authIntel, ' ').second);
@@ -35,11 +38,23 @@ async function cookieAuthorization(req, res, dbClient){
             const username = usrCredentials.first;
             const password = usrCredentials.second;
             console.log(username + ' $ ' + password);
-            console.log(await validateUser(username, password, dbClient));
+            validation = await validateUser(username, password, dbClient);
+            console.log(validation);
+            if(validation === 'success'){
+
+               res.cookie('user', username, {signed: true});
+               res.send('Signed In !');
+            }
+            else{
+
+                res.setHeader("WWW-Authenticate", "Basic");
+                res.status(401).send(validation);
+
+            }
 
         }
-
     }
+    res.end();
 }
 
 export {cookieAuthorization};

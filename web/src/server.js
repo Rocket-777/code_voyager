@@ -31,7 +31,7 @@ app.get('/login', (req, res, next) => {
     console.log('got a auth req');
     cookieAuthorization(req, res, dbClient).catch(e => console.log(e));
 
-    res.end();
+
 });
 
 app.listen(port, () => {
