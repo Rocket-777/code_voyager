@@ -16,7 +16,7 @@ const StyledForm = styled.div`
 `;
 const StyledTextInp = styled.div`
   display: flex;
-  width: 55%;
+  width: 40%;
   margin-top: 15px;
   justify-content: space-between;
 `;

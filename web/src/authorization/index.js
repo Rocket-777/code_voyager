@@ -27,7 +27,7 @@ async function cookieAuthorization(req, res, dbClient){
     if(!cookieCheck){
         let authIntel = req.headers.authorization;
         if(!authIntel){
-            res.setHeader("WWW-Authenticate", "Basic");
+            res.setHeader("WWW-Authenticate", "xBasic");
             res.status(401).send(validation);
 
 
@@ -41,13 +41,12 @@ async function cookieAuthorization(req, res, dbClient){
             validation = await validateUser(username, password, dbClient);
             console.log(validation);
             if(validation === 'success'){
-
-               res.cookie('user', username, {signed: true});
-               res.send('Signed In !');
+                res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+                res.cookie('user', username, { signed: true}); //TODO ENV COOKIE PATH
+                res.send('Signed In !');
             }
             else{
-
-                res.setHeader("WWW-Authenticate", "Basic");
+                res.setHeader("WWW-Authenticate", "xBasic");
                 res.status(401).send(validation);
 
             }

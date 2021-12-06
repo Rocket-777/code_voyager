@@ -16,8 +16,12 @@ const {MongoClient} = Mongo;
 const dbClient = new MongoClient(mongoUri);
 
 app.use(cookie_parser('ass'));
-app.use(cors());
+app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 app.use(express.json());
+
+
+
+
 
 Utils.tryConnection(dbClient).catch(e => console.log(e));
 
@@ -28,6 +32,7 @@ app.post('/users', (req, res, next) => {
 });
 
 app.get('/login', (req, res, next) => {
+
     console.log('got a auth req');
     cookieAuthorization(req, res, dbClient).catch(e => console.log(e));
 
