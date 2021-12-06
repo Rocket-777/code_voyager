@@ -9,9 +9,10 @@ const StyledForm = styled.div`
   align-items: center;
   margin-top: 20px;
   padding: 5px;
-  padding-bottom: 20px;
-  border: 3px solid #e3dacf;
+  padding-bottom: 30px;
+  border: 3px solid lightgray;
   border-radius: 10px;
+  background-color: lightsteelblue;
 `;
 const StyledTextInp = styled.div`
   display: flex;
