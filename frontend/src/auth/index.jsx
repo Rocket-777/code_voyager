@@ -1,15 +1,15 @@
-import {StyledForm, StyledTextInp, StyledButton, StyledButtonContainer, StyledSignTest} from './styles'
-import {useState} from 'react';
-import {submitNewUser} from "./scripts/newUserRequest.jsx";
+import {StyledForm, StyledTextInp, StyledButton, StyledButtonContainer, StyledSignTest} from '../signUp/styles'
+import {useState} from "react";
+import {loginReq} from "./scripts/loginRequest";
 
-const SignUpReq = () =>{
+const SignIn = () =>{
     const [userName, setUserName] = useState('');
     const [userPassword, setUserPassword] = useState('');
-    const [doneStatus, setDoneStatus] = useState(false);
+
 
     return(
         <StyledForm>
-            <h1>Sign Up</h1>
+            <h1>Sign In</h1>
             <StyledTextInp>
                 <a>User name</a>
                 <input type="text" onChange={e => setUserName(e.target.value)} value={userName}/>
@@ -19,11 +19,11 @@ const SignUpReq = () =>{
                 <input type="password" onChange={e => setUserPassword(e.target.value)} value = {userPassword}/>
             </StyledTextInp>
             <StyledButtonContainer>
-                <StyledButton onClick={e => submitNewUser(userName, userPassword, setDoneStatus, setUserName, setUserPassword)}>Submit</StyledButton>
+                <StyledButton onClick={e => loginReq(userName, userPassword)}>Sign In</StyledButton>
             </StyledButtonContainer>
-            {doneStatus ? <StyledSignTest>Done!</StyledSignTest> : null}
+
         </StyledForm>
     );
 };
 
-export default SignUpReq;
+export default SignIn;

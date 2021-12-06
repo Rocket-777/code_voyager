@@ -32,4 +32,10 @@ const StyledButtonContainer = styled.div`
   margin-top: 15px;
   width: 40%;
 `;
-export {StyledForm, StyledTextInp, StyledButton, StyledButtonContainer}
+
+const StyledSignTest = styled.a`
+  margin-top: 20px;
+  font-size: 20px;
+  color: white;
+`;
+export {StyledForm, StyledTextInp, StyledButton, StyledButtonContainer, StyledSignTest}
