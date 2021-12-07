@@ -1,11 +1,31 @@
 import {authRequest} from "../../httpUtils/wwwAuth.js";
+import {getCookie} from "../../cookieScr/cookieUtils.js";
 
+function timeout(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-function loginReq(username, password){
+async function loginReq(username, password,authTrigger,setError){
     const uri = 'http://localhost:3003/login';
     const body = {username: username, password: password};
 
-    authRequest(uri, body).catch(e => console.log(e));
+    const message = await authRequest(uri, body).then(response =>{
+        console.log(response)
+        if(response.ok){
+            if(getCookie('user')){
+                authTrigger(true);
+            }
+        }
+        else {
+            return response.text();
+        }
+    });
+    if(message){
+        setError(message);
+        await timeout(5000);
+        setError('');
+    }
+    console.log(message);
 }
 
 export {loginReq};

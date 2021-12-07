@@ -11,7 +11,7 @@ async function findUsr(dbclient, username){
     let searchRes;
     await dbclient.db('proj').collection('users').findOne({username: username}).then(res => {
         if(res != null){
-            searchRes = {username: res.username, password: res.password};
+            searchRes = {username: res.username, password: res.password, _id: res._id};
         }
         else searchRes = null;
     })
