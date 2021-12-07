@@ -6,6 +6,7 @@ const SignUpReq = () =>{
     const [userName, setUserName] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [doneStatus, setDoneStatus] = useState(false);
+    const [error, setError] = useState(false);
 
     return(
         <StyledForm>
@@ -19,7 +20,7 @@ const SignUpReq = () =>{
                 <input type="password" onChange={e => setUserPassword(e.target.value)} value = {userPassword}/>
             </StyledTextInp>
             <StyledButtonContainer>
-                <StyledButton onClick={e => submitNewUser(userName, userPassword, setDoneStatus, setUserName, setUserPassword)}>Submit</StyledButton>
+                <StyledButton onClick={e => submitNewUser(userName, userPassword, setDoneStatus, setUserName, setUserPassword, setError)}>Submit</StyledButton>
             </StyledButtonContainer>
             {doneStatus ? <StyledSignTest>Done!</StyledSignTest> : null}
         </StyledForm>

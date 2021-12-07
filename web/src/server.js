@@ -19,9 +19,9 @@ const dbClient = new MongoClient(mongoUri);
 app.use(cookie_parser('ass'));
 app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 app.use(express.json());
-
+//TODO MAKE SINGLE CONNECTION INSTANCE TO PREVENT SESSION ERROR
 async function sendUsers(req ,res ){
-    let users = [];
+
     await getAllUsers(dbClient, req).then(response => res.send(JSON.stringify(response)));
 
     res.end();

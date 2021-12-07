@@ -1,7 +1,7 @@
 import {StyledForm, StyledTextInp, StyledButton, StyledButtonContainer, StyledSignTest} from './styles'
 import {deleteCookie} from "../cookieScr/cookieUtils.js";
 import {useEffect} from "react";
-//import {getCookie} from "../cookieScr/cookieUtils.js";
+
 import {useState} from "react";
 import {usrInit} from './scripts/usrInit'
 
