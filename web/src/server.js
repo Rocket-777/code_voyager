@@ -7,6 +7,7 @@ import {submitNewuser} from "./submitNewUser/submitNewUser.js";
 import cookie_parser from 'cookie-parser';
 import base64 from 'base-64';
 import {cookieAuthorization} from "./authorization/index.js";
+import {sendUserData} from "./usrData/getUsrData.js";
 
 const app = express();
 const port = 3003; // TODO ENV VARIABLES
@@ -18,9 +19,6 @@ const dbClient = new MongoClient(mongoUri);
 app.use(cookie_parser('ass'));
 app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 app.use(express.json());
-
-
-
 
 
 Utils.tryConnection(dbClient).catch(e => console.log(e));
@@ -38,7 +36,10 @@ app.get('/login', (req, res, next) => {
 
 
 });
+app.get('/home', (req, res, next) => {
+    sendUserData(req, res, dbClient).catch(e => console.log(e));
 
+});
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}`);
 });
