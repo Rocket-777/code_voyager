@@ -33,8 +33,24 @@ async function findUsrFromKey(dbclient, id){
         else searchRes = null;
     })
 
-    dbclient.close();
+    //dbclient.close();
     //console.log(searchRes);
     return await searchRes;
 }
-export {tryConnection,findUsr, findUsrFromKey};
+async function getAllUsers(dbclient, req){
+    let usersAll = [];
+
+    await dbclient.connect();
+
+    await dbclient.db('proj').collection('users').find().forEach(resp => {
+
+        if(ObjectId(resp._id).toString() !== req.signedCookies.user){
+            usersAll.push(resp);
+        }
+
+    }).then(res => res);
+    //await dbclient.close();
+    return usersAll;
+
+}
+export {tryConnection,findUsr, findUsrFromKey, getAllUsers};

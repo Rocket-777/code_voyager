@@ -5,7 +5,7 @@ import * as Utils from './dbUtils/mongoUtils.js'
 import {ObjectId} from "mongodb";
 import {submitNewuser} from "./submitNewUser/submitNewUser.js";
 import cookie_parser from 'cookie-parser';
-import base64 from 'base-64';
+import {getAllUsers} from "./dbUtils/mongoUtils.js";
 import {cookieAuthorization} from "./authorization/index.js";
 import {sendUserData} from "./usrData/getUsrData.js";
 
@@ -20,19 +20,10 @@ app.use(cookie_parser('ass'));
 app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 app.use(express.json());
 
-async function sendUsers(req ,res , dbClient){
+async function sendUsers(req ,res ){
     let users = [];
-    await dbClient.connect();
-    await dbClient.db('proj').command({ ping: 1 });
-    await dbClient.db('proj').collection('users').find().forEach(resp => {
+    await getAllUsers(dbClient, req).then(response => res.send(JSON.stringify(response)));
 
-        if(ObjectId(resp._id).toString() !== req.signedCookies.user){
-            users.push(resp);
-        }
-
-    });
-    await dbClient.close();
-    res.send(JSON.stringify(users));
     res.end();
 
 }
