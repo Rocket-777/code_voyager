@@ -38,7 +38,7 @@ async function cookieAuthorization(req, res, dbClient) {
             const password = usrCredentials.second;
             console.log(username + ' $ ' + password);
             validation = await validateUser(username, password, dbClient);
-            console.log(validation);
+            //console.log(validation);
             if (validation._id != null) {
                 res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
                 res.cookie('user', ObjectId(validation._id), {signed: true}); //TODO ENV COOKIE PATH

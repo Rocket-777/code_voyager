@@ -20,6 +20,23 @@ app.use(cookie_parser('ass'));
 app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 app.use(express.json());
 
+async function sendUsers(req ,res , dbClient){
+    let users = [];
+    await dbClient.connect();
+    await dbClient.db('proj').command({ ping: 1 });
+    await dbClient.db('proj').collection('users').find().forEach(resp => {
+
+        if(ObjectId(resp._id).toString() !== req.signedCookies.user){
+            users.push(resp);
+        }
+
+    });
+    await dbClient.close();
+    res.send(JSON.stringify(users));
+    res.end();
+
+}
+
 
 Utils.tryConnection(dbClient).catch(e => console.log(e));
 
@@ -35,6 +52,9 @@ app.get('/login', (req, res, next) => {
     cookieAuthorization(req, res, dbClient).catch(e => console.log(e));
 
 
+});
+app.get('/users', (req, res, next) => {
+    sendUsers(req, res, dbClient).catch(e => console.log(e));
 });
 app.get('/home', (req, res, next) => {
     sendUserData(req, res, dbClient).catch(e => console.log(e));
