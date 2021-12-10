@@ -40,9 +40,20 @@ async function cookieAuthorization(req, res, dbClient) {
             validation = await validateUser(username, password, dbClient);
             //console.log(validation);
             if (validation._id != null) {
-                res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-                res.cookie('user', ObjectId(validation._id), {signed: true}); //TODO ENV COOKIE PATH
-                res.send('Signed In !');
+                if(validation.status === 0){
+                    res.cookie('user', ObjectId(validation._id),  {signed: true});
+                    res.send('Signed In !');
+                }
+                else if(validation.status === 1){
+                    res.cookie('moderator', ObjectId(validation._id), {signed: true});
+                    res.send('Signed In !');
+                }
+                else if(validation.status === 2){
+                    res.cookie('admin', ObjectId(validation._id), {signed: true});
+                    res.send('Signed In !');
+                }
+                //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+
             } else {
                 res.setHeader("WWW-Authenticate", "xBasic");
                 res.status(401).send(validation);

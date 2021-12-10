@@ -8,7 +8,7 @@ async function findUsr(dbclient, username){
     await dbclient.collection('users').findOne({username: username}).then(res => {
 
         if(res != null){
-            searchRes = {username: res.username, password: res.password, _id: res._id};
+            searchRes = {username: res.username, password: res.password, _id: res._id, status: res.status};
         }
         else searchRes = null;
     })
@@ -17,7 +17,6 @@ async function findUsr(dbclient, username){
 }
 
 async function findUsrFromKey(dbclient, id){
-
 
     let searchRes;
     await dbclient.collection('users').findOne({_id: ObjectId(id)}).then(res => {

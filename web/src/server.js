@@ -8,6 +8,8 @@ import cookie_parser from 'cookie-parser';
 import {getAllUsers} from "./dbUtils/mongoUtils.js";
 import {cookieAuthorization} from "./authorization/index.js";
 import {sendUserData} from "./usrData/getUsrData.js";
+import {cookieDenie} from "./authorization/cookieUtils.js";
+
 
 const app = express();
 const port = 3003; // TODO ENV VARIABLES
@@ -52,6 +54,10 @@ app.get('/login', (req, res, next) => {
 
     console.log('got a auth req');
     cookieAuthorization(req, res, db).catch(e => console.log(e));
+});
+app.get('/logout', (req, res, next) => {
+
+    cookieDenie(req, res, db).catch(e => console.log(e));
 
 
 });
@@ -60,7 +66,6 @@ app.get('/users', (req, res, next) => {
 });
 app.get('/home', (req, res, next) => {
     sendUserData(req, res, db).catch(e => console.log(e));
-
 });
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}`);

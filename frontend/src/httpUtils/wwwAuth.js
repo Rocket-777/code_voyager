@@ -19,4 +19,19 @@ async function authRequest(uri, body){
 
 }
 
-export {authRequest}
+async function logOutRequest(uri){
+    return await fetch(uri, {
+        method: 'GET',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+
+        },
+
+        referrerPolicy: 'no-referrer',
+
+    }).then(res => res).catch(e => console.log(e));
+}
+
+export {authRequest, logOutRequest}

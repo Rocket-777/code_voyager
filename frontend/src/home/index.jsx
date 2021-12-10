@@ -1,12 +1,13 @@
 import {StyledForm, StyledTextInp, StyledButton, StyledButtonContainer, StyledSignTest} from './styles'
 import {deleteCookie} from "../cookieScr/cookieUtils.js";
 import {useEffect} from "react";
-
+import {logOutRequest} from "../httpUtils/wwwAuth.js";
 import {useState} from "react";
 import {usrInit} from './scripts/usrInit'
 
-function handleLogOut(authTrigger){
-    deleteCookie('user');
+async function handleLogOut(authTrigger){
+    //deleteCookie('user');
+    await logOutRequest('http://localhost:3003/logout');
     authTrigger(false);
 
 }
