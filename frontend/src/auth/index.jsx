@@ -1,6 +1,6 @@
 import {StyledForm, StyledTextInp, StyledButton, StyledButtonContainer, StyledSignTest} from '../signUp/styles'
 import {useState} from "react";
-import {loginReq} from "./scripts/loginRequest";
+import {loginReq} from "../logIn/scripts/loginRequest";
 
 
 

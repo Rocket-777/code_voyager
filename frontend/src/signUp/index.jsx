@@ -1,6 +1,6 @@
 import {StyledForm, StyledTextInp, StyledButton, StyledButtonContainer, StyledSignTest} from './styles'
 import {useState} from 'react';
-import {submitNewUser} from "./scripts/newUserRequest.jsx";
+import {submitNewUser} from "../logIn/signUp/scripts/newUserRequest.jsx";
 
 const SignUpReq = () =>{
     const [userName, setUserName] = useState('');

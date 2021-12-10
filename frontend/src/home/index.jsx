@@ -3,7 +3,7 @@ import {deleteCookie} from "../cookieScr/cookieUtils.js";
 import {useEffect} from "react";
 import {logOutRequest} from "../httpUtils/wwwAuth.js";
 import {useState} from "react";
-import {usrInit} from './scripts/usrInit'
+import {usrInit} from '../userProfile/scripts/usrInit'
 
 async function handleLogOut(authTrigger){
     //deleteCookie('user');

@@ -1,5 +1,5 @@
 
-async function usrInit(uri, setUsr){
+async function usrInit(uri, setUsrData){
     const user =  await fetch(uri, {
         method: 'GET',
         mode: "cors",
@@ -13,7 +13,15 @@ async function usrInit(uri, setUsr){
 
     }).then(res => res.json()).then(res => res).catch(e => console.log(e)); //EXAMPLE OF RETRIVING TEXT DATA
 
-    setUsr(user.username);
+
+    if(user.status === 0){
+        setUsrData({username: user.username, status: 'Рядовой пользователь'});
+    }else if(user.status === 1){
+        setUsrData({username: user.username, status: 'Модератор'});
+    }else if(user.status === 2){
+        setUsrData({username: user.username, status: 'Администратор'});
+    }
+    console.log(user.status);
 
 }
 export {usrInit}

@@ -1,10 +1,10 @@
-import {postRequest} from "../../httpUtils/httpPost.js";
+import {postRequest} from "../../../httpUtils/httpPost.js";
 
 function timeout(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function submitNewUser(username, password, setDoneState, setUserName, setUserPassword, setError){
+async function submitNewUser(username, password, setDoneState, setUserName, setUserPassword, setAuthCont, setError){
     const body = {username: username, password: password};
     const uri = 'http://localhost:3003/users';
 
@@ -14,6 +14,7 @@ async function submitNewUser(username, password, setDoneState, setUserName, setU
     setUserPassword('');
     await timeout(3000);
     setDoneState(false);
+    setAuthCont(true);
 }
 
 export {submitNewUser}
