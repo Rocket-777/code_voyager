@@ -24,8 +24,13 @@ const Main = () => {
     const [usrAuthorized, setAuthorized] = useState(false);
     useEffect(() => {
         if(getCookie('user') || getCookie('admin') || getCookie('moderator')){
-            setAuthorized(true);
-            usrInit('http://localhost:3003/home', setUsrData);
+            if(!usrAuthorized){
+                setAuthorized(true);
+            }else{
+                usrInit('http://localhost:3003/home', setUsrData);
+            }
+
+
         }
     }, [usrAuthorized]);
 
@@ -37,7 +42,7 @@ const Main = () => {
             <Routes>
                 <Route exact path="/" element={<PlacesTape/>}/>
                 <Route exact path="/news" element={<Aaaa/>}/>
-                <Route exact path="/profile" element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} usrData={usrData}  />}/>
+                <Route exact path="/profile" element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} usrData={usrData} />}/>
                 <Route exact path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
             </Routes>
 
