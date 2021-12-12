@@ -36,8 +36,8 @@ const Container = styled("div")`
   height: 100%;
   width: 100%;
   margin: 0;
-  padding: 0;
-  padding-top: 2rem;
+  padding: 2rem 0 0 0;
+  //padding-top: 2rem;
 `;
 
 const StyledTextInp = styled(TextField)`
@@ -50,10 +50,7 @@ const StyledTextInp = styled(TextField)`
 
 const StyledSignStatus = styled(Typography)`
   display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  margin-bottom: 1.2rem;
+  margin: 0 auto 1.2rem auto;
   font-weight: bold;
   font-size: 1.2rem;
   color: white;
