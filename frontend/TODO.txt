@@ -1,4 +1,2 @@
-Material UI implementation
-react-router dom implementation
-Logut cookie proper removal
+
 webpack

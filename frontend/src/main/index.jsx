@@ -7,6 +7,8 @@ import {useState} from "react";
 import {useEffect} from "react";
 import {getCookie} from "../cookieScr/cookieUtils";
 import {usrInit} from "../userProfile/scripts/usrInit";
+import {PlacesTape} from "../placesTape";
+
 
 const Aaaa = () => {
     return(
@@ -14,11 +16,6 @@ const Aaaa = () => {
     );
 }
 
-const Zxcv = () => {
-    return(
-        <a>xcvbxcvbxcvb</a>
-    );
-}
 
 
 
@@ -38,14 +35,10 @@ const Main = () => {
         <MainLayout>
             <Header isAuth={usrAuthorized} usrData={usrData}/>
             <Routes>
-                <Route exact path="/" element={<Zxcv/>}/>
-
-
+                <Route exact path="/" element={<PlacesTape/>}/>
                 <Route exact path="/news" element={<Aaaa/>}/>
-
-                 <Route exact path="/profile" element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} usrData={usrData}  />}/>
-                 <Route exact path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
-
+                <Route exact path="/profile" element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} usrData={usrData}  />}/>
+                <Route exact path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
             </Routes>
 
         </MainLayout>

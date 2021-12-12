@@ -9,19 +9,18 @@ const StyledHeader = styled(Typography)`
   
   
   width: 100%;
-  border-bottom: solid #d9deff;
+  border-bottom: solid #e8ebff;
 `;
-
-
 
 
 const StyledCard = styled(Card)`
   align-items: center;
   display: flex;
   flex-direction: column;
+     
   width: 40%;
   height: 50%;
-  margin-top: 6rem;
+  margin-top: 12rem;
   margin-right: auto;
   margin-left: auto;
   background-color: #bec9eb;
@@ -37,7 +36,8 @@ const StyledBookmark1 = styled(Button)`
   background-color: #8e99f3;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  border-right: solid 2px #d9deff;
+  border-bottom-left-radius: 0;
+  border-right: solid 2px #e8ebff;
   
   
 `;
@@ -52,7 +52,8 @@ const StyledBookmark2 = styled(Button)`
   background-color: #8e99f3;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  border-left: solid 2px #d9deff;
+  border-bottom-right-radius: 0;
+  border-left: solid 2px #e8ebff;
   
 `;
 const StyledButton = styled(Button)`
@@ -92,12 +93,14 @@ const Container = styled("div")`
   width: 100%;
   margin: 0;
   padding: 0;
-  padding-top: 8rem;
+  padding-top: 2rem;
 `;
 
 const StyledTextInp = styled(TextField)`
   margin-left: 10px;
   width: 60%;
+  background-color: #e8ebff;
+  border-radius: 4px;   
   
   
 `;

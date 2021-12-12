@@ -1,2 +1,2 @@
-MAKE SINGLE DB CONNECTION INSTANCE
+unique username validation on submit new user
 
