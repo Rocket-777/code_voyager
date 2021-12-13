@@ -1,5 +1,5 @@
 import {styled} from "@mui/material/styles";
-import {Card, Typography} from "@mui/material";
+import {Card, Typography, Button} from "@mui/material";
 
 const StyledCard = styled(Card)`
   display: flex;
@@ -30,7 +30,7 @@ const ImageContainer = styled('div')`
 
 const StyledDescription = styled(Typography)`
   display: block;
-  margin: 1rem auto 3rem auto;
+  margin: 1rem auto 1rem auto;
   width: 82%;
   background-color: #ededed;
   flex-basis: 10rem;
@@ -57,6 +57,17 @@ const NoImage = styled(Typography)`
   font-weight: bolder;
   border: solid 2px #d4d4d4;
   
+`;
+
+const ButtonBlock = styled('div')`
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 1rem 2rem;
 
 `;
-export {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage}
+const BlockButton = styled(Button)`
+  margin-left: 2rem;
+  width: 20%;
+  justify-content: space-evenly;
+`;
+export {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage, ButtonBlock, BlockButton}

@@ -1,5 +1,8 @@
-import {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage} from "./styles";
+import {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage, ButtonBlock, BlockButton} from "./styles";
 import {useState} from "react";
+import FavoriteBorderIcon  from '@mui/icons-material/FavoriteBorder';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 
 const PlaceCard = (props) => {
 
@@ -14,6 +17,20 @@ const PlaceCard = (props) => {
             <StyledDescription >
                 {props.cardData.place_description}
             </StyledDescription>
+            <ButtonBlock>
+                <BlockButton color='secondary' variant='contained'>
+                    <FavoriteBorderIcon/>
+                    Нравится
+                </BlockButton>
+                <BlockButton variant='contained'>
+                    <CommentOutlinedIcon/>
+                    Комментарии
+                </BlockButton>
+                <BlockButton variant='contained'>
+                    <StarBorderIcon/>
+                    В избранное
+                </BlockButton>
+            </ButtonBlock>
         </StyledCard>
     );
 }
