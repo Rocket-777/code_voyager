@@ -1,4 +1,4 @@
-import {postRequest} from "../../../httpUtils/httpPost.js";
+import {postRequest} from "../../../httpUtils/httpRequests.js";
 
 function timeout(ms){
     return new Promise(resolve => setTimeout(resolve, ms));

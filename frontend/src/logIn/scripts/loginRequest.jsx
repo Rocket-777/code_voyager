@@ -12,24 +12,32 @@ async function loginReq(username, password,authTrigger,setError, navigate){
 
     const message = await authRequest(uri, body).then(response =>{
         console.log(response)
-        if(response.ok){
+        if(response){
+            if(response.ok){
 
-            if(getCookie('user') || getCookie('admin') || getCookie('moderator')){
-
-                authTrigger(true);
+                if(getCookie('user') || getCookie('admin') || getCookie('moderator')){
+                    console.log('Cookie there');
+                    authTrigger(true);
+                }
+            }
+            else {
+                return response.text();
             }
         }
-        else {
-            return response.text();
-        }
+        else return ('connection error');
+
     });
     if(message){
         setError(message);
         await timeout(5000);
         setError('');
     }
+    else{
+        navigate("/profile");
+    }
+
     console.log(message);
-    navigate("/profile");
+
 }
 
 export {loginReq};
