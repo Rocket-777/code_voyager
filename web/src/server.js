@@ -64,9 +64,7 @@ app.get('/login', (req, res, next) => {
     cookieAuthorization(req, res, db).catch(e => console.log(e));
 });
 app.get('/logout', (req, res, next) => {
-
     cookieDenie(req, res, db).catch(e => console.log(e));
-
 });
 
 app.post('/places/new', upload.single('image') , (req, res, next) => {

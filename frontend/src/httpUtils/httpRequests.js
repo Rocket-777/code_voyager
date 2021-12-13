@@ -16,7 +16,7 @@ async function postRequest(uri, body){
 
 async function postRequestWithFile(uri, body){
 
-    fetch(uri, {
+    await fetch(uri, {
         method: 'POST',
         mode: "cors",
         cache: 'no-cache',
@@ -27,7 +27,7 @@ async function postRequestWithFile(uri, body){
 
         referrerPolicy: 'no-referrer',
         body: body
-    }).then(res => console.log(res)).catch(e => console.log(e));
+    }).then(res => res).catch(e => console.log(e));
 }
 async function getPlacesRequest(uri){
     return await fetch(uri, {

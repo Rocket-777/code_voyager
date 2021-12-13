@@ -28,7 +28,9 @@ const Main = () => {
                 setAuthorized(true);
             }else{
                 usrInit('http://localhost:3003/home', setUsrData);
+                console.log(usrData.username);
             }
+
         }
     }, [usrAuthorized]);
 
@@ -38,7 +40,7 @@ const Main = () => {
         <MainLayout>
             <Header isAuth={usrAuthorized} usrData={usrData}/>
             <Routes>
-                <Route exact path="/" element={<PlacesTape isAuth={usrAuthorized}/>}/>
+                <Route exact path="/" element={<PlacesTape usrData={usrData}/>}/>
                 <Route exact path="/news" element={<Aaaa/>}/>
                 <Route exact path="/profile" element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} usrData={usrData} />}/>
                 <Route exact path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>

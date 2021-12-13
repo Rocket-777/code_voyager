@@ -27,7 +27,7 @@ const PlaceCreator = (props) => {
         setImage(null);
     }
 
-    function handleSubmit(){
+    async function handleSubmit(){
 
         const reqData = new FormData();
         reqData.append('placeName', placeName);
@@ -35,7 +35,7 @@ const PlaceCreator = (props) => {
         reqData.append('image', image)
 
 
-        postRequestWithFile('http://localhost:3003/places/new', reqData).catch(e => console.log(e));
+        await postRequestWithFile('http://localhost:3003/places/new', reqData).catch(e => console.log(e));
         handleFileRemove();
         setPlaceName('');
         setPlaceDesc('');
@@ -54,7 +54,7 @@ const PlaceCreator = (props) => {
                 <StyledSemiRow variant='h5'>
                     Описание:
                 </StyledSemiRow>
-                <StyledTextInpDescription size='small' multiline='true' minRows='10' placeholder='Описание'
+                <StyledTextInpDescription size='small' multiline={true} minRows='10' placeholder='Описание'
                 onChange={e => setPlaceDesc(e.target.value)} value={placeDesc}/>
             </StyledColumn>
 

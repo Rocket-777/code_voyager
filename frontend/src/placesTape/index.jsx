@@ -19,9 +19,9 @@ const PlacesTape = (props) => {
     return(
 
         <PlacesTapeContainer>
-            { props.isAuth ? <PlaceCreator setPlaces={setPlaces}/> : null}
+            { props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ? <PlaceCreator setPlaces={setPlaces}/> : null}
             { places ? places.map(item =>
-                <PlaceCard cardData={item}/>
+                <PlaceCard key={item._id} cardData={item}/>
             ) : null}
 
 
