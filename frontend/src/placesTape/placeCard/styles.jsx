@@ -47,8 +47,9 @@ const NoImage = styled(Typography)`
   flex-direction: column;
   background-color: #ededed;
   color: #d4d4d4;
-  flex-basis: 25rem;
-  width: 48rem;
+  height: 50vh;
+  width: 40vw;
+  
   margin-right: auto;
   margin-left: auto;
   align-items: center;
@@ -67,7 +68,8 @@ const ButtonBlock = styled('div')`
 `;
 const BlockButton = styled(Button)`
   margin-left: 2rem;
-  width: 20%;
+  
+  width: auto;
   justify-content: space-evenly;
 `;
 export {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage, ButtonBlock, BlockButton}

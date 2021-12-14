@@ -26,6 +26,7 @@ const Main = () => {
         if(getCookie('user') || getCookie('admin') || getCookie('moderator')){
             if(!usrAuthorized){
                 setAuthorized(true);
+
             }else{
                 usrInit('http://localhost:3003/home', setUsrData);
                 console.log(usrData.username);
