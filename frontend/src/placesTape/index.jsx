@@ -20,7 +20,7 @@ const PlacesTape = (props) => {
 
         <PlacesTapeContainer>
             { props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ? <PlaceCreator setPlaces={setPlaces}/> : null}
-            { places ? places.map(item =>
+            { places ? places.reverse().map(item =>
                 <PlaceCard key={item._id} cardData={item}/>
             ) : null}
 
