@@ -10,13 +10,14 @@ import {cookieAuthorization} from "./authorization/index.js";
 import {sendUserData} from "./usrData/getUsrData.js";
 import {cookieDenie} from "./authorization/cookieUtils.js";
 import {addNewPlace, sendPlaces} from "./places/placesScripts.js";
-
 import multer from 'multer';
 
-const app = express();
-const port = 3003; // TODO ENV VARIABLES
+const app = express(); // Application variable
+const port = 3003; // Server listening port
+
 const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
+
 const mongoUri = "mongodb://root:root123@localhost:27015/?authSource=admin";
 const {MongoClient} = Mongo;
 const dbClient = new MongoClient(mongoUri);
@@ -59,7 +60,6 @@ app.post('/users', (req, res, next) => {
 });
 
 app.get('/login', (req, res, next) => {
-
     console.log('got a auth req');
     cookieAuthorization(req, res, db).catch(e => console.log(e));
 });

@@ -24,8 +24,6 @@ const SignUpCon = (props) => {
                 Зарегистрироваться
             </StyledButton>
         </Container>
-
-
     );
 }
 export {SignUpCon}
