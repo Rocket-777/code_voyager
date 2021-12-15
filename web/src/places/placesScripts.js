@@ -1,3 +1,5 @@
+import {ObjectId} from "mongodb";
+import * as fs from "fs";
 
 async function addNewPlace (req, res, db){
     await db.collection('places').insertOne({place_name: req.body.placeName, place_description: req.body.placeDescription,
@@ -12,4 +14,21 @@ async function sendPlaces (req, res, db){
     res.end;
 
 }
-export {addNewPlace, sendPlaces}
+
+async function removePlace(req, res, db){
+
+    const place = await db.collection('places').findOne({_id: ObjectId(req.body.key)}).catch(e => console.log(e));
+    if(place){
+
+        const imagePath = place.image.split('/').pop();
+        console.log(imagePath);
+        await db.collection('places').deleteOne({_id: ObjectId(req.body.key)}).catch(e => console.log(e));
+        fs.unlink('C:/Users/kirik/WebstormProjects/code_voyager/web/uploads/' + imagePath, (err) => {
+            if(err){
+                console.log(err)
+            }
+        });
+    }
+    res.end();
+}
+export {addNewPlace, sendPlaces, removePlace}

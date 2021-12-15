@@ -63,11 +63,12 @@ const NoImage = styled(Typography)`
 const ButtonBlock = styled('div')`
   display: flex;
   flex-direction: row;
-  margin: 0 0 1rem 2rem;
-
+  margin: 0 auto 1rem auto;
+  width: 80%;
+  justify-content: space-between;
 `;
 const BlockButton = styled(Button)`
-  margin-left: 2rem;
+  //margin-left: 2rem;
   
   width: auto;
   justify-content: space-evenly;

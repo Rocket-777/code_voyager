@@ -44,4 +44,19 @@ async function getPlacesRequest(uri){
     }).then(res => res.json()).catch(e => console.log(e)); //EXAMPLE OF RETRIVING TEXT DATA
 
 }
-export {postRequest, postRequestWithFile, getPlacesRequest}
+
+async function deleteReq(uri, id){
+    return await fetch(uri, {
+        method: 'DELETE',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+            // 'Authorization' : 'Basic ' + base64.encode(body.username + ':' + body.password),
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({key: id})
+    }).then(res => res.json()).catch(e => console.log(e));
+}
+export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq}

@@ -3,6 +3,8 @@ import {useState} from "react";
 import FavoriteBorderIcon  from '@mui/icons-material/FavoriteBorder';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import {removePlace} from "./scripst/placeRemoval";
 
 const PlaceCard = (props) => {
 
@@ -30,6 +32,11 @@ const PlaceCard = (props) => {
                     <StarBorderIcon/>
                     В избранное
                 </BlockButton>
+                {props.displayRemoveButton ? <BlockButton variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
+                onClick={e => removePlace(props.cardData._id, props.setPlaces)}>
+                    <DeleteOutlineOutlinedIcon/>
+                    Удалить
+                </BlockButton> : null}
             </ButtonBlock>
         </StyledCard>
     );

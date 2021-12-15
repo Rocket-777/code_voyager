@@ -47,4 +47,7 @@ async function getAllUsers(dbclient, req){
     return usersAll;
 
 }
+
+
+
 export {findUsr, findUsrFromKey, getAllUsers};
