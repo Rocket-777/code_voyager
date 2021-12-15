@@ -43,7 +43,7 @@ const Main = () => {
             <Routes>
                 <Route exact path="/" element={<PlacesTape usrData={usrData}/>}/>
                 <Route exact path="/news" element={<Aaaa/>}/>
-                <Route exact path="/profile" element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} usrData={usrData} />}/>
+                <Route exact path="/profile" element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} usrData={usrData} setUsrData={setUsrData}/>}/>
                 <Route exact path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
             </Routes>
 

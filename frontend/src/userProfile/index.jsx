@@ -38,7 +38,7 @@ const UsrProfile = (props) => {
                   To be done...
               </StyledTypography>
           </StyledRow>
-          <StyledButton onClick={e => logOutAction(props.auth, navigate)}>
+          <StyledButton onClick={e => logOutAction(props.auth, navigate, props.setUsrData)}>
               Выйти
           </StyledButton>
 
