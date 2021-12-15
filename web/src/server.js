@@ -25,7 +25,7 @@ const dbClient = new MongoClient(mongoUri);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'C:/Users/kirik/WebstormProjects/code_voyager/web/src/uploads/')
+        cb(null, 'C:/Users/kirik/WebstormProjects/code_voyager/web/uploads/')
     },
     filename: function (req, file, cb) {
         console.log(file);
@@ -107,7 +107,7 @@ app.listen(port, () => {
 
 app.get('/uploads/:id', (req, res, next) => {
     //res.send(req.params.id);
-    res.sendFile(`C:/Users/kirik/WebstormProjects/code_voyager/web/src/uploads/${req.params.id}`);
+    res.sendFile(`C:/Users/kirik/WebstormProjects/code_voyager/web/uploads/${req.params.id}`);
 
 
 });
