@@ -12,7 +12,7 @@ const PlaceCard = (props) => {
                 {props.cardData.place_name}
             </StyledHeader>
             <ImageContainer>
-                { props.cardData.image.data ? <img src={`data:image/*; base64, ${props.cardData.image.data.buffer}`} alt=':('/> : <NoImage variant='h1'>No_Image</NoImage>}
+                { props.cardData.image? <img src={props.cardData.image} alt=':('/> : <NoImage variant='h1'>No_Image</NoImage>}
             </ImageContainer>
             <StyledDescription >
                 {props.cardData.place_description}
