@@ -4,7 +4,10 @@ import FavoriteBorderIcon  from '@mui/icons-material/FavoriteBorder';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import {removePlace} from "./scripst/placeRemoval";
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+
+import {removePlace, approvePlace} from "./scripst/placeCardScripts";
 
 const PlaceCard = (props) => {
 
@@ -19,7 +22,7 @@ const PlaceCard = (props) => {
             <StyledDescription >
                 {props.cardData.place_description}
             </StyledDescription>
-            <ButtonBlock>
+            {props. cardData.approved ? <ButtonBlock>
                 <BlockButton color='secondary' variant='contained'>
                     <FavoriteBorderIcon/>
                     Нравится
@@ -37,7 +40,18 @@ const PlaceCard = (props) => {
                     <DeleteOutlineOutlinedIcon/>
                     Удалить
                 </BlockButton> : null}
-            </ButtonBlock>
+            </ButtonBlock> : <ButtonBlock>
+                <BlockButton color='secondary' variant='contained'
+                onClick={e => approvePlace(props.cardData._id, props.setPlaces)}>
+                    <CheckOutlinedIcon/>
+                    Утвердить
+                </BlockButton>
+                <BlockButton variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
+                             onClick={e => removePlace(props.cardData._id, props.setPlaces)}>
+                    <ClearOutlinedIcon/>
+                    Отказать
+                </BlockButton>
+            </ButtonBlock>}
         </StyledCard>
     );
 }

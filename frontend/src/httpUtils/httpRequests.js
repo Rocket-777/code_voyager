@@ -52,11 +52,26 @@ async function deleteReq(uri, id){
         cache: 'no-cache',
         credentials: 'include',
         headers: {
-            // 'Authorization' : 'Basic ' + base64.encode(body.username + ':' + body.password),
+
             'Content-Type': 'application/json;charset=utf-8'
         },
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({key: id})
     }).then(res => res.json()).catch(e => console.log(e));
 }
-export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq}
+
+async function putReq(uri, body){
+    return await fetch(uri, {
+        method: 'PUT',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify(body)
+    }).then(res => res.json()).catch(e => console.log(e));
+}
+export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq, putReq}

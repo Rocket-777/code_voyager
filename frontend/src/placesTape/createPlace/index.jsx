@@ -39,7 +39,9 @@ const PlaceCreator = (props) => {
         handleFileRemove();
         setPlaceName('');
         setPlaceDesc('');
-        props.setPlaces(null);
+        if(props.isPrivileged){
+            props.setPlaces(null);
+        }
     }
     return(
         <StyledCard>
@@ -81,7 +83,7 @@ const PlaceCreator = (props) => {
                     Загрузить изображение
                 </UploadButton>
             </UploadButtonContainer>}
-            <StyledButton onClick={e => handleSubmit()}>Добавить</StyledButton>
+            <StyledButton onClick={e => handleSubmit()}>{props.isPrivileged ? "Добавить" : "Предложить"}</StyledButton>
         </StyledCard>
 
     );

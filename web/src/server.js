@@ -9,7 +9,7 @@ import {getAllUsers} from "./dbUtils/mongoUtils.js";
 import {cookieAuthorization} from "./authorization/index.js";
 import {sendUserData} from "./usrData/getUsrData.js";
 import {cookieDenie} from "./authorization/cookieUtils.js";
-import {addNewPlace, sendPlaces, removePlace} from "./places/placesScripts.js";
+import {addNewPlace, sendPlaces, removePlace, approvePlace} from "./places/placesScripts.js";
 import crypto from 'crypto';
 import multer from 'multer';
 
@@ -89,14 +89,16 @@ app.post('/places/new', upload.single('image') , (req, res, next) => {
     console.log('Got new place req!');
     //console.log(req.body);
     addNewPlace(req, res, db).catch(e => console.log(e));
-    console.log(req.file.path);
+
 });
-app.get('/places', (req, res, next) => {
+app.get('/places/:state', (req, res, next) => {
     sendPlaces(req, res, db).catch(e => console.log(e));
 });
 app.delete('/places', (req, res, next) => {
-
     removePlace(req, res, db);
+});
+app.put('/places/:id', (req, res, next) => {
+    approvePlace(req, res, db);
 });
 app.get('/users', (req, res, next) => {
     sendUsers(req, res).catch(e => console.log(e));
