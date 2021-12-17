@@ -13,6 +13,8 @@ import {addNewPlace, sendPlaces, removePlace, approvePlace} from "./places/place
 import crypto from 'crypto';
 import multer from 'multer';
 import {setUserImage, removeUsrImage} from "./usrData/userScripts.js";
+import {fileURLToPath} from 'url';
+import path from "path";
 
 const app = express(); // Application variable
 const port = 3003; // Server listening port
@@ -24,10 +26,11 @@ const mongoUri = "mongodb://root:root123@localhost:27015/?authSource=admin";
 const {MongoClient} = Mongo;
 const dbClient = new MongoClient(mongoUri);
 
+const uploadPath =  path.dirname(fileURLToPath(import.meta.url)) + '/../uploads/'; //UPLOAD RELATIVE PATH
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const error = (req.signedCookies.admin || req.signedCookies.user || req.signedCookies.moderator) ? null : new Error('unauthorized');
-        cb(error, 'C:/Users/kirik/WebstormProjects/code_voyager/web/uploads/')
+        cb(error, uploadPath)
     },
     filename: function (req, file, cb) {
         console.log(file);
@@ -37,6 +40,7 @@ const storage = multer.diskStorage({
         cb(null, name + Date.now()+ '.' +extension)
     }
 });
+
 const upload = multer({storage: storage});
 
 app.use(cookie_parser('ass'));
@@ -116,11 +120,13 @@ app.delete('/userImage', upload.single('image'), (req, res, next) => {
 });
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}`);
+    console.log(uploadPath);
+
 });
 
 app.get('/uploads/:id', (req, res, next) => {
     //res.send(req.params.id);
-    res.sendFile(`C:/Users/kirik/WebstormProjects/code_voyager/web/uploads/${req.params.id}`);
+    res.sendFile(path.resolve(`${uploadPath}` + `${req.params.id}`));
 
 
 });
