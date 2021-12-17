@@ -75,7 +75,7 @@ const BlockButton = styled(Button)`
 `;
 const ButtonBlockContainer = styled('div')`
   display: flex;
-  width: 80%;
+  width: 90%;
   padding: 0;
   margin: 0 auto 0 auto;
  
