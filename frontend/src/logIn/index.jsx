@@ -3,7 +3,8 @@ import {loginReq} from "./scripts/loginRequest";
 import {useState} from "react";
 import {SignUpCon} from "./signUp";
 import {useNavigate} from "react-router-dom";
-
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import AppRegistrationOutlinedIcon from '@mui/icons-material/AppRegistrationOutlined';
 const LogInCard = (props) => {
     const [authCon, setAuthCont] = useState(true);
 
@@ -20,9 +21,11 @@ const LogInCard = (props) => {
         <StyledCard>
             <StyledHeader>
                 <StyledBookmark1 onClick={e => setAuthCont(true)} sx={authCon ? {backgroundColor: '#bec9eb'} : null}>
+                    <LoginOutlinedIcon sx={{marginRight: '0.3vw'}}/>
                         Войти
                 </StyledBookmark1>
                 <StyledBookmark2 onClick={e => setAuthCont(false)}  sx={authCon ? null : {backgroundColor: '#bec9eb'}}>
+                    <AppRegistrationOutlinedIcon sx={{marginRight: '0.3vw'}}/>
                     Зарегистрироваться
                 </StyledBookmark2>
             </StyledHeader>
@@ -36,7 +39,9 @@ const LogInCard = (props) => {
                         <StyledSemiRow>Password:</StyledSemiRow>
                         <StyledTextInp  error={errorPassword} helperText={errorPassword ? 'Wrong password' : null} size="small" type="password" onChange={e => setUserPassword(e.target.value)} value={userPassword}/>
                     </StyledRow>
-                    <StyledButton onClick={e => loginReq(userName, userPassword, props.auth, setError, navigate)}>Войти</StyledButton>
+                    <StyledButton onClick={e => loginReq(userName, userPassword, props.auth, setError, navigate)}>
+                        <LoginOutlinedIcon sx={{marginRight: '0.4vw'}}/>
+                        Войти</StyledButton>
                 </Container> : <SignUpCon contChoice={setAuthCont}/>
             }
 

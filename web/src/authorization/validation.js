@@ -6,6 +6,7 @@ async function validateUser(username, password, dbClient){
 
     if(credentials != null){
         if(username === credentials.username){
+          //  console.log("@@@@@@@@ " + credentials.password);
             console.log('USERNAME_: ' + username + ' ACCEPTED')
             if(password === credentials.password){
                 console.log('PASSWORD_: ' + username + ' ACCEPTED')

@@ -71,7 +71,7 @@ const StyledButton = styled(Button)`
   background-color: #26418f;
   color: #d9deff;
   width: 100%;
-  
+  padding-top: 1vh;
   //border-top-left-radius: 0;
   //border-top-right-radius: 0;
   border-radius: 0;

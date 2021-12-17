@@ -1,6 +1,6 @@
 
 
-async function cookieDenie(req, res, db){
+async function cookieDenie(req, res){
     if(req.signedCookies.user){
         await res.clearCookie('user');
         await res.send('Logged Out!');

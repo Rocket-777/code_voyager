@@ -1,4 +1,5 @@
-import {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage, ButtonBlock, BlockButton} from "./styles";
+import {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage, ButtonBlock, BlockButton,
+ButtonBlockContainer} from "./styles";
 import {useState} from "react";
 import FavoriteBorderIcon  from '@mui/icons-material/FavoriteBorder';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -22,36 +23,39 @@ const PlaceCard = (props) => {
             <StyledDescription >
                 {props.cardData.place_description}
             </StyledDescription>
-            {props. cardData.approved ? <ButtonBlock>
-                <BlockButton color='secondary' variant='contained'>
-                    <FavoriteBorderIcon/>
-                    Нравится
-                </BlockButton>
-                <BlockButton variant='contained'>
-                    <CommentOutlinedIcon/>
-                    Комментарии
-                </BlockButton>
-                <BlockButton variant='contained'>
-                    <StarBorderIcon/>
-                    В избранное
-                </BlockButton>
-                {props.displayRemoveButton ? <BlockButton variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
-                onClick={e => removePlace(props.cardData._id, props.setPlaces)}>
-                    <DeleteOutlineOutlinedIcon/>
-                    Удалить
-                </BlockButton> : null}
-            </ButtonBlock> : <ButtonBlock>
-                <BlockButton color='secondary' variant='contained'
-                onClick={e => approvePlace(props.cardData._id, props.setPlaces)}>
-                    <CheckOutlinedIcon/>
-                    Утвердить
-                </BlockButton>
-                <BlockButton variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
-                             onClick={e => removePlace(props.cardData._id, props.setPlaces)}>
-                    <ClearOutlinedIcon/>
-                    Отказать
-                </BlockButton>
-            </ButtonBlock>}
+            {props.isAuth ? <ButtonBlockContainer>
+                {props. cardData.approved ? <ButtonBlock>
+                    <BlockButton color='secondary' variant='contained'>
+                        <FavoriteBorderIcon/>
+                        Нравится
+                    </BlockButton>
+                    <BlockButton variant='contained'>
+                        <CommentOutlinedIcon/>
+                        Комментарии
+                    </BlockButton>
+                    <BlockButton variant='contained'>
+                        <StarBorderIcon/>
+                        В избранное
+                    </BlockButton>
+                    {props.displayRemoveButton ? <BlockButton variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
+                                                              onClick={e => removePlace(props.cardData._id, props.setPlaces)}>
+                        <DeleteOutlineOutlinedIcon/>
+                        Удалить
+                    </BlockButton> : null}
+                </ButtonBlock> : <ButtonBlock>
+                    <BlockButton color='secondary' variant='contained'
+                                 onClick={e => approvePlace(props.cardData._id, props.setPlaces)}>
+                        <CheckOutlinedIcon/>
+                        Утвердить
+                    </BlockButton>
+                    <BlockButton variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
+                                 onClick={e => removePlace(props.cardData._id, props.setPlaces)}>
+                        <ClearOutlinedIcon/>
+                        Отказать
+                    </BlockButton>
+                </ButtonBlock>}
+            </ButtonBlockContainer> : null}
+
         </StyledCard>
     );
 }

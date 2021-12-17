@@ -4,7 +4,9 @@ ImageContainer, RemoveImageButton} from "./styles";
 import {useState} from "react";
 import {postRequestWithFile} from "../../httpUtils/httpRequests.js";
 import base64 from "base-64";
-
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 
 const PlaceCreator = (props) => {
     const [thumbnail, setThumbnail] = useState(null);
@@ -69,7 +71,9 @@ const PlaceCreator = (props) => {
                         <img src={thumbnail} alt='unlucky :('/>
                     </ImageContainer>
                     <RemoveImageButton color='secondary' variant='contained'
-                    onClick={e => handleFileRemove()}>Убрать изображение</RemoveImageButton>
+                    onClick={e => handleFileRemove()}>
+                        <DeleteOutlineOutlinedIcon sx={{marginRight: '1vw'}}/>
+                        Убрать изображение</RemoveImageButton>
                 </StyledColumn>
 
                 : <UploadButtonContainer>
@@ -80,10 +84,13 @@ const PlaceCreator = (props) => {
                     onChange={e => handleFile(e)}
                 />
                 <UploadButton color="secondary" variant="contained" component="span">
+                    <FileUploadOutlinedIcon sx={{marginRight: '1vw'}}/>
                     Загрузить изображение
                 </UploadButton>
             </UploadButtonContainer>}
-            <StyledButton onClick={e => handleSubmit()}>{props.isPrivileged ? "Добавить" : "Предложить"}</StyledButton>
+            <StyledButton onClick={e => handleSubmit()}>
+                <SendOutlinedIcon sx={{marginRight: '0.4vw'}}/>
+                {props.isPrivileged ? "Добавить" : "Предложить"}</StyledButton>
         </StyledCard>
 
     );

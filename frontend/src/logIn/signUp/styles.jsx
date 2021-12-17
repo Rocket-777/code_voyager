@@ -3,8 +3,9 @@ import {styled} from "@mui/material/styles";
 
 const StyledButton = styled(Button)`
   background-color: #26418f;
-  color: #d9deff;
+  color: white;
   width: 100%;
+  padding-top: 1vh;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   margin-top: auto;

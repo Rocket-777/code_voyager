@@ -64,7 +64,7 @@ const ButtonBlock = styled('div')`
   display: flex;
   flex-direction: row;
   margin: 0 auto 1rem auto;
-  width: 80%;
+  width: 100%;
   justify-content: space-evenly;
 `;
 const BlockButton = styled(Button)`
@@ -73,4 +73,11 @@ const BlockButton = styled(Button)`
   width: auto;
   justify-content: space-evenly;
 `;
-export {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage, ButtonBlock, BlockButton}
+const ButtonBlockContainer = styled('div')`
+  display: flex;
+  width: 80%;
+  padding: 0;
+  margin: 0 auto 0 auto;
+ 
+`;
+export {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage, ButtonBlock, BlockButton, ButtonBlockContainer}

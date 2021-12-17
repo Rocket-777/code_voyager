@@ -22,7 +22,7 @@ async function findUsrFromKey(dbclient, id){
     await dbclient.collection('users').findOne({_id: ObjectId(id)}).then(res => {
         if(res != null){
 
-            searchRes = {username: res.username, password: res.password, _id: res._id, status: res.status};
+            searchRes = {username: res.username, password: res.password, _id: res._id, status: res.status, image: res.image};
         }
         else searchRes = null;
     })

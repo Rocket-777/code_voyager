@@ -20,7 +20,7 @@ const Aaaa = () => {
 
 
 const Main = () => {
-    const [usrData, setUsrData] = useState({username: '', status: ''});
+    const [usrData, setUsrData] = useState({username: '', status: '', image: null});
     const [usrAuthorized, setAuthorized] = useState(false);
     useEffect(() => {
         if(getCookie('user') || getCookie('admin') || getCookie('moderator')){
@@ -41,9 +41,9 @@ const Main = () => {
         <MainLayout>
             <Header isAuth={usrAuthorized} usrData={usrData}/>
             <Routes>
-                <Route exact path="/" element={<PlacesTape usrData={usrData}/>}/>
+                <Route exact path="/" element={<PlacesTape usrData={usrData} isAuth={usrAuthorized}/>}/>
                 <Route exact path="/news" element={<Aaaa/>}/>
-                <Route exact path="/profile" element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} usrData={usrData} setUsrData={setUsrData}/>}/>
+                {usrAuthorized ? <Route exact path="/profile" element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} usrData={usrData} setUsrData={setUsrData}/>}/> : null}
                 <Route exact path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
             </Routes>
 

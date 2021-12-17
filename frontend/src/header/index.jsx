@@ -3,10 +3,10 @@ import {Link} from "react-router-dom";
 import {linkstyle} from "./styles";
 import {useEffect, useState} from "react";
 import {usrInit} from "../userProfile/scripts/usrInit";
-
+import {Avatar} from "@mui/material";
 
 const Header = (props) => {
-
+    const usrImage = props.usrData.image ? props.usrData.image : 'noimage.png';
 
     return (
 
@@ -24,7 +24,8 @@ const Header = (props) => {
             </StyledButton>
             <StyledUserButton>
 
-                {props.isAuth ? <Link to='/profile' style={linkstyle}>{props.usrData.username}</Link> : <Link to='/log-in' style={linkstyle}>Войти/Регистрация</Link>}
+                {props.isAuth ? <Link to='/profile' style={linkstyle}> <Avatar src={usrImage} sx={{marginRight: "1vw", width: 35, height: 35}}/> {props.usrData.username}</Link>
+                    : <Link to='/log-in' style={linkstyle}>Войти/Регистрация</Link>}
             </StyledUserButton>
 
         </StyledHeader>

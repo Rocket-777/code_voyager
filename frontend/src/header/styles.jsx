@@ -49,6 +49,7 @@ const StyledHeader = styled(Paper) `
 
 `;
 const linkstyle = {
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
     color: "white",

@@ -12,6 +12,7 @@ import {cookieDenie} from "./authorization/cookieUtils.js";
 import {addNewPlace, sendPlaces, removePlace, approvePlace} from "./places/placesScripts.js";
 import crypto from 'crypto';
 import multer from 'multer';
+import {setUserImage, removeUsrImage} from "./usrData/userScripts.js";
 
 const app = express(); // Application variable
 const port = 3003; // Server listening port
@@ -25,7 +26,8 @@ const dbClient = new MongoClient(mongoUri);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'C:/Users/kirik/WebstormProjects/code_voyager/web/uploads/')
+        const error = (req.signedCookies.admin || req.signedCookies.user || req.signedCookies.moderator) ? null : new Error('unauthorized');
+        cb(error, 'C:/Users/kirik/WebstormProjects/code_voyager/web/uploads/')
     },
     filename: function (req, file, cb) {
         console.log(file);
@@ -105,6 +107,12 @@ app.get('/users', (req, res, next) => {
 });
 app.get('/home', (req, res, next) => {
     sendUserData(req, res, db).catch(e => console.log(e));
+});
+app.post('/userImage', upload.single('image'), (req, res, next) => {
+    setUserImage(req, res, db).catch(e => console.log(e));
+});
+app.delete('/userImage', upload.single('image'), (req, res, next) => {
+    removeUsrImage(req, res, db).catch(e => console.log(e));
 });
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}`);

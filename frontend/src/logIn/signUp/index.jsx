@@ -1,6 +1,7 @@
 import {StyledButton, StyledRow, StyledSemiRow, Container, StyledTextInp, StyledSignStatus} from "./styles";
 import {useState} from "react";
 import {submitNewUser} from "./scripts/newUserRequest";
+import AppRegistrationOutlinedIcon from "@mui/icons-material/AppRegistrationOutlined";
 
 const SignUpCon = (props) => {
 
@@ -21,6 +22,7 @@ const SignUpCon = (props) => {
             </StyledRow>
             {doneStatus ? <StyledSignStatus>Готово!</StyledSignStatus> : null}
             <StyledButton onClick={e => submitNewUser(userName, userPassword, setDoneStatus, setUserName, setUserPassword, props.contChoice, setError)}>
+                <AppRegistrationOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                 Зарегистрироваться
             </StyledButton>
         </Container>
