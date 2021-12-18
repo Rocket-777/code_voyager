@@ -1,5 +1,6 @@
 import {ObjectId} from "mongodb";
 import * as fs from "fs";
+import path from "path";
 
 async function addNewPlace (req, res, db){
     let pathToImage = null;
@@ -33,13 +34,13 @@ async function sendPlaces (req, res, db){
 
 }
 
-async function removePlace(req, res, db){
+async function removePlace(req, res, db, uplPath){
 
     const place = await db.collection('places').findOne({_id: ObjectId(req.body.key)}).catch(e => console.log(e));
     if(place){
         if(place.image){
             const imagePath = place.image.split('/').pop();
-            fs.unlink('C:/Users/kirik/WebstormProjects/code_voyager/web/uploads/' + imagePath, (err) => {
+            fs.unlink(path.resolve(uplPath + imagePath), (err) => {
                 if(err){
                     console.log(err)
                 }

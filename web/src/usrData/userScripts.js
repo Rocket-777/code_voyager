@@ -1,5 +1,6 @@
 import {ObjectId} from "mongodb";
 import * as fs from 'fs';
+import path from "path";
 
 async function setUserImage(req, res, db){
     let pathToImage = null;
@@ -24,7 +25,7 @@ async function setUserImage(req, res, db){
     await db.collection('users').updateOne({_id: ObjectId(user)}, update);
     res.end();
 }
-async function removeUsrImage(req, res, db){
+async function removeUsrImage(req, res, db, uplPath){
 
     let user = null;
     if(req.signedCookies.admin){
@@ -38,7 +39,7 @@ async function removeUsrImage(req, res, db){
     }
     console.log(user);
     const userData = await db.collection('users').findOne({_id: ObjectId(user)});
-    fs.unlink('C:/Users/kirik/WebstormProjects/code_voyager/web/uploads/' + userData.image.split('/').pop(), (err) => {
+    fs.unlink((uplPath + userData.image.split('/').pop()), (err) => {
         if(err){
             console.log(err)
         }

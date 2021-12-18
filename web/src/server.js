@@ -101,7 +101,7 @@ app.get('/places/:state', (req, res, next) => {
     sendPlaces(req, res, db).catch(e => console.log(e));
 });
 app.delete('/places', (req, res, next) => {
-    removePlace(req, res, db);
+    removePlace(req, res, db, uploadPath);
 });
 app.put('/places/:id', (req, res, next) => {
     approvePlace(req, res, db);
@@ -116,7 +116,7 @@ app.post('/userImage', upload.single('image'), (req, res, next) => {
     setUserImage(req, res, db).catch(e => console.log(e));
 });
 app.delete('/userImage', upload.single('image'), (req, res, next) => {
-    removeUsrImage(req, res, db).catch(e => console.log(e));
+    removeUsrImage(req, res, db, uploadPath).catch(e => console.log(e));
 });
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}`);
