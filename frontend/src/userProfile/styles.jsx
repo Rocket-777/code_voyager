@@ -20,6 +20,7 @@ const StyledRow = styled('div')`
   width: 75%;
   height: 7%;
   justify-content: right;
+  align-items: center;
   margin-bottom: 1.5rem;
   margin-right: 2vw;
 
@@ -38,8 +39,8 @@ const StyledTypography = styled(Typography)`
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  width: 60%;
-  height: 100%;
+  width: 20vw;
+  height: 3vh;
   border-radius: 5px;
   
   border: 2px solid #6c78b8 ;
@@ -50,8 +51,8 @@ const StyledCard = styled(Card)`
   align-items: center;
   display: flex;
   flex-direction: column;
-  width: 40%;
-  height: 50%;
+  width: 45vw;
+  height: 70vh;
   margin-top: 6rem;
   margin-right: auto;
   margin-left: auto;

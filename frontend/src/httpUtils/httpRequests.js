@@ -57,7 +57,7 @@ async function deleteReq(uri, id){
         },
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({key: id})
-    }).then(res => res.json()).catch(e => console.log(e));
+    }).then(res => res).catch(e => console.log(e));
 }
 
 async function putReq(uri, body){

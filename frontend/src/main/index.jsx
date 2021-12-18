@@ -12,7 +12,7 @@ import {PlacesTape} from "../placesTape";
 
 const Aaaa = () => {
     return(
-        <a>AAAAAAAAAA</a>
+        <a>WORK IN PROGRESS__________</a>
     );
 }
 

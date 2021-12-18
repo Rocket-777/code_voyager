@@ -26,31 +26,31 @@ const PlaceCard = (props) => {
             {props.isAuth ? <ButtonBlockContainer>
                 {props. cardData.approved ? <ButtonBlock>
                     <BlockButton color='secondary' variant='contained'>
-                        <FavoriteBorderIcon/>
+                        <FavoriteBorderIcon sx={{marginRight: '0.4vw'}}/>
                         Нравится
                     </BlockButton>
                     <BlockButton variant='contained'>
-                        <CommentOutlinedIcon/>
+                        <CommentOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                         Комментарии
                     </BlockButton>
                     <BlockButton variant='contained'>
-                        <StarBorderIcon/>
+                        <StarBorderIcon  sx={{marginRight: '0.4vw'}}/>
                         В избранное
                     </BlockButton>
                     {props.displayRemoveButton ? <BlockButton variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
                                                               onClick={e => removePlace(props.cardData._id, props.setPlaces)}>
-                        <DeleteOutlineOutlinedIcon/>
+                        <DeleteOutlineOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                         Удалить
                     </BlockButton> : null}
                 </ButtonBlock> : <ButtonBlock>
                     <BlockButton color='secondary' variant='contained'
                                  onClick={e => approvePlace(props.cardData._id, props.setPlaces)}>
-                        <CheckOutlinedIcon/>
+                        <CheckOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                         Утвердить
                     </BlockButton>
                     <BlockButton variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
                                  onClick={e => removePlace(props.cardData._id, props.setPlaces)}>
-                        <ClearOutlinedIcon/>
+                        <ClearOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                         Отказать
                     </BlockButton>
                 </ButtonBlock>}

@@ -39,7 +39,7 @@ async function removeUsrImage(req, res, db, uplPath){
     }
     console.log(user);
     const userData = await db.collection('users').findOne({_id: ObjectId(user)});
-    fs.unlink((uplPath + userData.image.split('/').pop()), (err) => {
+    fs.unlink(path.resolve(uplPath + userData.image.split('/').pop()), (err) => {
         if(err){
             console.log(err)
         }

@@ -11,7 +11,7 @@ async function usrInit(uri, setUsrData){
 
 
     if(user.status === 0 ){
-        setUsrData({username: user.username, status: 'Рядовой пользователь', image: user.image});
+        setUsrData({username: user.username, status: 'Пользователь', image: user.image});
     }else if(user.status === 1){
         setUsrData({username: user.username, status: 'Модератор', image: user.image});
     }else if(user.status === 2){

@@ -69,9 +69,8 @@ const ButtonBlock = styled('div')`
 `;
 const BlockButton = styled(Button)`
   //margin-left: 2rem;
-  
   width: auto;
-  justify-content: space-evenly;
+  
 `;
 const ButtonBlockContainer = styled('div')`
   display: flex;
