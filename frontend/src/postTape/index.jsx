@@ -5,8 +5,9 @@ import {useEffect, useState} from "react";
 import {initPosts} from "./scripts/postsScr";
 
 const PostTape = (props) => {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
     useEffect(() => {
+        if(posts == null)
         initPosts(setPosts);
     }, [posts]);
     return(
@@ -14,8 +15,9 @@ const PostTape = (props) => {
         <PostTapeContainer>
             {props.isAuth? <CreatePost setPosts={setPosts}/> : null}
 
-            {posts ? posts.reverse().map(item => {
-                return <PostCard username={item.username} text={item.text} userImg={item.usrImage}/>
+            {posts ? posts.map(item => {
+                return <PostCard key={item._id} id={item._id} username={item.username} text={item.text}
+                                 setPosts={setPosts} userImg={item.usrImage} isPriveleged={item.isPrivileged}/>
             }) : null}
 
 

@@ -13,7 +13,7 @@ import {addNewPlace, sendPlaces, removePlace, approvePlace} from "./places/place
 import crypto from 'crypto';
 import multer from 'multer';
 import {setUserImage, removeUsrImage} from "./usrData/userScripts.js";
-import {addPost, sendPosts} from "./posts/postsScripts.js";
+import {addPost, sendPosts, deletePost} from "./posts/postsScripts.js";
 import {fileURLToPath} from 'url';
 import path from "path";
 
@@ -74,7 +74,9 @@ async function sendUsers(req ,res, ){
 
 }
 
-
+app.delete('/news/:id', (req, res, next) => {
+    deletePost(req, res, db).catch(e => console.log(e));
+});
 
 app.post('/news', (req, res, next) => {
     addPost(req, res, db).catch(e => console.log(e));

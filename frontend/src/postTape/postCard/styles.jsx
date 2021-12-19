@@ -42,10 +42,11 @@ const StyledText = styled(Typography)`
 const ButtonBlock = styled('div')`
   display: flex;
   flex-direction: row;
-  width: 20vw;
+  margin: 0 auto 1vh auto;
+  width: 80%;
   justify-content: space-evenly;
-  align-self: end;
-  margin-bottom: 1vh;
+  
+  
 `;
 const PostBody = styled('div')`
   display: flex;

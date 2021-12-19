@@ -74,6 +74,19 @@ async function deleteReq(uri, id){
         body: JSON.stringify({key: id})
     }).then(res => res).catch(e => console.log(e));
 }
+async function deleteReqUri(uri){
+    return await fetch(uri, {
+        method: 'DELETE',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        referrerPolicy: 'no-referrer',
+    }).then(res => res).catch(e => console.log(e));
+}
 
 async function putReq(uri, body){
     return await fetch(uri, {
@@ -89,4 +102,4 @@ async function putReq(uri, body){
         body: JSON.stringify(body)
     }).then(res => res.json()).catch(e => console.log(e));
 }
-export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq, putReq, getPosts}
+export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq, putReq, getPosts, deleteReqUri}
