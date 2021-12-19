@@ -13,6 +13,7 @@ import {addNewPlace, sendPlaces, removePlace, approvePlace} from "./places/place
 import crypto from 'crypto';
 import multer from 'multer';
 import {setUserImage, removeUsrImage} from "./usrData/userScripts.js";
+import {addPost, sendPosts} from "./posts/postsScripts.js";
 import {fileURLToPath} from 'url';
 import path from "path";
 
@@ -75,8 +76,12 @@ async function sendUsers(req ,res, ){
 
 
 
-
-
+app.post('/news', (req, res, next) => {
+    addPost(req, res, db).catch(e => console.log(e));
+});
+app.get('/news', (req, res, next) => {
+    sendPosts(req, res, db).catch(e => console.log(e));
+});
 app.post('/users', (req, res, next) => {
     console.log('got a post req');
     submitNewUser(db,req.body.username,req.body.password,0).catch(e => console.log(e));

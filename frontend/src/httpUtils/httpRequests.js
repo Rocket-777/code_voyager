@@ -44,6 +44,21 @@ async function getPlacesRequest(uri){
     }).then(res => res.json()).catch(e => console.log(e)); //EXAMPLE OF RETRIVING TEXT DATA
 
 }
+async function getPosts(uri){
+    return await fetch(uri, {
+        method: 'GET',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+            // 'Authorization' : 'Basic ' + base64.encode(body.username + ':' + body.password),
+
+        },
+        referrerPolicy: 'no-referrer',
+
+    }).then(res => res.json()).catch(e => console.log(e)); //EXAMPLE OF RETRIVING TEXT DATA
+
+}
 
 async function deleteReq(uri, id){
     return await fetch(uri, {
@@ -74,4 +89,4 @@ async function putReq(uri, body){
         body: JSON.stringify(body)
     }).then(res => res.json()).catch(e => console.log(e));
 }
-export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq, putReq}
+export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq, putReq, getPosts}
