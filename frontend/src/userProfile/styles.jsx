@@ -51,8 +51,8 @@ const StyledCard = styled(Card)`
   align-items: center;
   display: flex;
   flex-direction: column;
-  width: 45vw;
-  height: 70vh;
+  width: 50vw;
+  height: 100vh;
   margin-top: 6rem;
   margin-right: auto;
   margin-left: auto;
