@@ -9,6 +9,10 @@ const StyledCard = styled(Card)`
   margin-right: auto;
   margin-left: auto;
   margin-top: 2rem;
+  z-index: 5;
+  :hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 `;
 
 const StyledHeader = styled(Typography)`

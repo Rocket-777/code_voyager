@@ -35,6 +35,7 @@ const StyledHeader = styled(Paper) `
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  z-index: 1;
  
   
   

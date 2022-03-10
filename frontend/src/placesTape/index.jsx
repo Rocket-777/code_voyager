@@ -30,7 +30,7 @@ const PlacesTape = (props) => {
                 onClick={e => {setDisplayPlaces('proposed'); setPlaces(null)}}>Предложения пользователей</StyledButton>
             </ButtonContainer> : null}
             { places ? places.reverse().map(item =>
-                <StyledLink to={'/places/' + item._id}>
+                <StyledLink to={'/places/' + item._id} key={item._id}>
                 <PlaceCard isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setPlaces} displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
                 </StyledLink>
             ) : null}

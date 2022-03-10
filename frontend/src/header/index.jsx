@@ -12,6 +12,7 @@ const Header = (props) => {
 
 
         <StyledHeader elevation={3} square={true}>
+            <img src="/logoHeader.png" alt='logo' width={39} style={{marginLeft: '1vw', marginRight: '1vw'}}/>
             <StyledButton>
                 <Link to='/places' style={linkstyle}>
                     Главная
