@@ -5,7 +5,7 @@ import {styled, Typography, Card} from "@mui/material";
 const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 60%;
   margin-bottom: 4vh;
 
 `;

@@ -18,10 +18,11 @@ const StyledButton = styled(Button)`
 const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
-  width: 70%;
-  margin-bottom: 5vh;
-  margin-left: auto;
-  margin-right: auto;
+  width: 60%;
+  margin: 1vh auto 5vh auto;
+  //margin-bottom: 5vh;
+  //margin-left: auto;
+  //margin-right: auto;
  // border: 4px solid #1a237e;
   
 `;

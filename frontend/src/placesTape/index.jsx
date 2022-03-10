@@ -1,9 +1,11 @@
-import {PlacesTapeContainer, ButtonContainer, StyledButton} from "./styles";
+import {PlacesTapeContainer, ButtonContainer, StyledButton, StyledLink} from "./styles";
 import {PlaceCard} from "./placeCard";
 import {PlaceCreator} from "./createPlace";
 import {useState} from "react";
 import {useEffect} from "react";
 import {getPlaces} from "./scripts/placesUtils";
+
+
 
 const PlacesTape = (props) => {
 
@@ -28,7 +30,9 @@ const PlacesTape = (props) => {
                 onClick={e => {setDisplayPlaces('proposed'); setPlaces(null)}}>Предложения пользователей</StyledButton>
             </ButtonContainer> : null}
             { places ? places.reverse().map(item =>
+                <StyledLink to={'/places/' + item._id}>
                 <PlaceCard isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setPlaces} displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
+                </StyledLink>
             ) : null}
 
 

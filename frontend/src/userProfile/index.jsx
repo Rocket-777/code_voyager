@@ -1,22 +1,23 @@
 import {
+    StyledButton,
     StyledCard,
-    StyledTypography,
     StyledHeader,
+    StyledImageOps,
     StyledRow,
     StyledSemiRow,
-    StyledButton,
-    StyledImageOps,
-    UploadButtonContainer,
-    UploadButton
+    StyledTypography,
+    UploadButton,
+    UploadButtonContainer
 } from "./styles";
 import {logOutAction} from "../logIn/scripts/logOutRequest";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {Avatar} from "@mui/material";
-import {sendUserImage, removeUserImage} from "./scripts/profileScripts";
+import {removeUserImage, sendUserImage} from "./scripts/profileScripts";
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+
 const UsrProfile = (props) => {
 
     const navigate = useNavigate();
@@ -33,14 +34,16 @@ const UsrProfile = (props) => {
             }
             reader.readAsDataURL(event.target.files[0]);
 
-        const reqData = new FormData();
-        reqData.append('image', event.target.files[0]);
-        sendUserImage(reqData, props.auth).catch(e => console.log(e));
+            const reqData = new FormData();
+            reqData.append('image', event.target.files[0]);
+            sendUserImage(reqData, props.auth).catch(e => console.log(e));
+        }
     }
-    }
-    function handleRemoveImg(){
+
+    function handleRemoveImg() {
         removeUserImage(props.auth);
     }
+
     return (<StyledCard>
         <StyledHeader variant="h4">
             Профиль пользователя
@@ -97,4 +100,4 @@ const UsrProfile = (props) => {
 }
 
 
-                export {UsrProfile};
+export {UsrProfile};

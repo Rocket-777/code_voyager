@@ -1,6 +1,5 @@
 import {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage, ButtonBlock, BlockButton,
 ButtonBlockContainer} from "./styles";
-import {useState} from "react";
 import FavoriteBorderIcon  from '@mui/icons-material/FavoriteBorder';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
@@ -25,7 +24,7 @@ const PlaceCard = (props) => {
             </StyledDescription>
             {props.isAuth ? <ButtonBlockContainer>
                 {props. cardData.approved ? <ButtonBlock>
-                    <BlockButton color='secondary' variant='contained'>
+                    <BlockButton color='secondary' variant='contained' onClick={e => {e.preventDefault(); } }> {/* preventdefault - prevents button from acting as a link!!!*/}
                         <FavoriteBorderIcon sx={{marginRight: '0.4vw'}}/>
                         Нравится
                     </BlockButton>

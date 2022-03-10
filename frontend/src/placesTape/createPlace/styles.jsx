@@ -4,7 +4,7 @@ import {Button, Card, TextField, Typography} from "@mui/material";
 const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
   border: 4px solid #1a237e;

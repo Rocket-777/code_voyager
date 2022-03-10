@@ -1,8 +1,8 @@
-import {Card, Typography, Button} from "@mui/material";
+import {Button, Card, Typography} from "@mui/material";
 import {styled} from "@mui/material/styles";
 
 const StyledHeader = styled(Typography)`
-  display: flex;    
+  display: flex;
   padding-top: 1.2rem;
   margin-bottom: 3.5rem;
   text-align: center;
@@ -42,8 +42,8 @@ const StyledTypography = styled(Typography)`
   width: 20vw;
   height: 3vh;
   border-radius: 5px;
-  
-  border: 2px solid #6c78b8 ;
+
+  border: 2px solid #6c78b8;
 
 `;
 
@@ -51,11 +51,10 @@ const StyledCard = styled(Card)`
   align-items: center;
   display: flex;
   flex-direction: column;
-  width: 50vw;
-  height: 100vh;
-  margin-top: 6rem;
-  margin-right: auto;
-  margin-left: auto;
+  width: 60vw;
+  height: auto;
+  margin: 3rem auto auto auto;
+
   background-color: #bec9eb;
   border: 4px solid #1a237e;
 `;
@@ -69,6 +68,7 @@ const StyledButton = styled(Button)`
   //border-top-right-radius: 0;
   border-radius: 0;
   margin-top: auto;
+
   :hover {
     background-color: #1d357a;
   }
@@ -85,7 +85,7 @@ const UploadButton = styled(Button)`
   //background-color: #26418f;
   //color: #26418f;
   width: auto;
-  
+
   margin: 0 auto 0 auto;
   height: 100%;
   justify-content: space-evenly;
@@ -98,5 +98,14 @@ const UploadButtonContainer = styled('label')`
   width: 100%;
   margin: 2vh auto 0 auto;
 `;
-export {StyledCard, StyledTypography, StyledHeader, StyledRow, StyledSemiRow, StyledButton, StyledImageOps,
-UploadButtonContainer, UploadButton}
+export {
+    StyledCard,
+    StyledTypography,
+    StyledHeader,
+    StyledRow,
+    StyledSemiRow,
+    StyledButton,
+    StyledImageOps,
+    UploadButtonContainer,
+    UploadButton
+}

@@ -5,7 +5,7 @@ const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
   min-height: 20rem;
-  width: 80%;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
   margin-top: 2rem;
@@ -70,6 +70,8 @@ const ButtonBlock = styled('div')`
 const BlockButton = styled(Button)`
   //margin-left: 2rem;
   width: auto;
+  
+  
   
 `;
 const ButtonBlockContainer = styled('div')`

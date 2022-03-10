@@ -31,6 +31,7 @@ const StyledUserButton = styled(Button)`
   }`
 
 const StyledHeader = styled(Paper) `
+  //height: 20%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

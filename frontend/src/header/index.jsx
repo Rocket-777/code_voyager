@@ -13,7 +13,7 @@ const Header = (props) => {
 
         <StyledHeader elevation={3} square={true}>
             <StyledButton>
-                <Link to='/' style={linkstyle}>
+                <Link to='/places' style={linkstyle}>
                     Главная
                 </Link>
             </StyledButton>
