@@ -11,7 +11,11 @@ const PostTapeContainer = styled('div')`
   //margin-top: 3rem;
   flex-flow: row wrap;
   overflow-y: auto;
-  padding-bottom: 5px;
+  min-height: 100%;
+  
+  
+  
+  
 
 `;
 

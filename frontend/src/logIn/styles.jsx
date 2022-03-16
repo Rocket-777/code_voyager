@@ -19,7 +19,7 @@ const StyledCard = styled(Card)`
   flex-direction: column;
      
   width: 40%;
-  height: 50%;
+  height: auto;
   margin-top: 12rem;
   margin-right: auto;
   margin-left: auto;

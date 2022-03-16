@@ -12,7 +12,7 @@ import {removePlace, approvePlace} from "./scripst/placeCardScripts";
 const PlaceCard = (props) => {
 
     return(
-        <StyledCard>
+        <StyledCard >
             <StyledHeader variant='h2'>
                 {props.cardData.place_name}
             </StyledHeader>
@@ -36,8 +36,8 @@ const PlaceCard = (props) => {
                         <StarBorderIcon  sx={{marginRight: '0.4vw'}}/>
                         В избранное
                     </BlockButton>
-                    {props.displayRemoveButton ? <BlockButton variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
-                                                              onClick={e => removePlace(props.cardData._id, props.setPlaces)}>
+                    {props.displayRemoveButton ? <BlockButton  variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
+                                                              onClick={e => {e.preventDefault(); removePlace(props.cardData._id, props.setPlaces, props.placesState); }}>
                         <DeleteOutlineOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                         Удалить
                     </BlockButton> : null}

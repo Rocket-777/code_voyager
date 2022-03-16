@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import {Button, Paper} from "@mui/material";
 
 const StyledButton = styled(Button)`
+  text-transform: none;
   height: 100%;
   width: 20%;
   color: white;
@@ -16,7 +17,7 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledUserButton = styled(Button)`
-  
+  text-transform: none;
   margin-left: auto;
   
   height: 100%;
@@ -36,14 +37,8 @@ const StyledHeader = styled(Paper) `
   flex-direction: row;
   justify-content: flex-start;
   z-index: 1;
- 
-  
-  
   background-color: #5c6bc0;
-  
-  
   align-items: center;
-
   border-radius: 0;
   padding: 0;
   margin: 0;

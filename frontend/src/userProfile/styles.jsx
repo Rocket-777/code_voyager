@@ -64,6 +64,7 @@ const StyledButton = styled(Button)`
   color: #d9deff;
   width: 100%;
   padding-top: 1vh;
+  text-transform: none;
   //border-top-left-radius: 0;
   //border-top-right-radius: 0;
   border-radius: 0;
@@ -85,7 +86,7 @@ const UploadButton = styled(Button)`
   //background-color: #26418f;
   //color: #26418f;
   width: auto;
-
+  text-transform: none;
   margin: 0 auto 0 auto;
   height: 100%;
   justify-content: space-evenly;

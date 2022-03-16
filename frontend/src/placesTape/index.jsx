@@ -1,10 +1,11 @@
 import {PlacesTapeContainer, ButtonContainer, StyledButton, StyledLink} from "./styles";
 import {PlaceCard} from "./placeCard";
 import {PlaceCreator} from "./createPlace";
-import {useState} from "react";
+import React, {useState} from "react";
 import {useEffect} from "react";
 import {getPlaces} from "./scripts/placesUtils";
-
+import {NavigateTop} from "../main/navigation";
+import {Footer} from "../main/footer";
 
 
 const PlacesTape = (props) => {
@@ -13,27 +14,34 @@ const PlacesTape = (props) => {
     const [displayPlaces, setDisplayPlaces] = useState("approved");
 
     useEffect(() => {
-        if(places == null){
+        if(places == null ){
             getPlaces(setPlaces, displayPlaces);
         }
 
-    }, [places]);
+    }, []);
 
+    useEffect(()=>{
+        getPlaces(setPlaces, displayPlaces);
+    }, [displayPlaces])
     return(
 
-        <PlacesTapeContainer>
-            {props.isAuth ? <PlaceCreator setPlaces={setPlaces} isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}
+        <PlacesTapeContainer id='placeTape' >
+            <NavigateTop elemId='placeTape'/>
+            {props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}
             {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ? <ButtonContainer>
                 <StyledButton  sx={ displayPlaces === 'approved' ? {backgroundColor: '#bec9eb'} : null}
-                onClick={e => {setDisplayPlaces('approved'); setPlaces(null)}}>Подтвержденные</StyledButton>
+                onClick={e => {e.preventDefault(); setDisplayPlaces('approved'); }}>Подтвержденные</StyledButton>
                 <StyledButton  sx={ displayPlaces === 'proposed' ? {backgroundColor: '#bec9eb'} : null}
-                onClick={e => {setDisplayPlaces('proposed'); setPlaces(null)}}>Предложения пользователей</StyledButton>
+                onClick={e => {e.preventDefault(); setDisplayPlaces('proposed'); }}>Предложения пользователей</StyledButton>
             </ButtonContainer> : null}
-            { places ? places.reverse().map(item =>
+            { places ? places.map(item =>
                 <StyledLink to={'/places/' + item._id} key={item._id}>
-                <PlaceCard isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setPlaces} displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
+                <PlaceCard  isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setPlaces} placesState={displayPlaces}
+                            displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
                 </StyledLink>
             ) : null}
+            <Footer/>
+
 
 
         </PlacesTapeContainer>

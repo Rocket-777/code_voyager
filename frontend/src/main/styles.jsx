@@ -4,27 +4,23 @@ import { styled } from '@mui/material/styles';
 const MainLayout = styled('div')`
   display: flex;
   flex-direction: column;
-  
-  
+  padding: 0;
+  height: 100%;
   background-color: #e8ebff;
-  
-  
   //padding-bottom: 5rem;
-  
-  
 
 `;
 const ScrollContainer = styled('div')`
   display: flex;
   flex-direction: column;
   margin: 0 0 0 0;
-  
   padding: 0;
   position: absolute;
-  top: 5%;
+  top: 4.8%;
   left: 0;
   right: 0;
   bottom: 0;
+  
   *::-webkit-scrollbar-track {
     background-color: inherit;
     border-radius: 50px;

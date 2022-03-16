@@ -6,18 +6,18 @@ const PlacesTapeContainer = styled('div')`
   display: flex;
   flex-direction: column;
   //width: 60%;
-  width: 100vw;
-  
+  width: 100%;
+  min-height: 100%;
   
   margin-left: auto;
   margin-right: auto;
   
   flex-flow: row wrap;
-  overflow-y: auto;
-  
+  overflow-y: scroll;
+  scroll-behavior: smooth;
   //margin-bottom: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  
+  //padding-bottom: 5px;
 `;
 
 const ButtonContainer = styled('div')`
@@ -33,7 +33,7 @@ const StyledButton = styled(Button)`
   color: #1a237e;
   background-color: #8e99f3;
   font-size: 2vh;
-  
+  text-transform: none;
   border-radius: 0;
   :hover{
     background-color: #bec9eb;
@@ -41,6 +41,8 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledLink = styled(Link)`
+ 
+  
   text-decoration: none;
   width: 60%;
   margin-left: auto;

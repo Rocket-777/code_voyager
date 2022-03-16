@@ -8,6 +8,7 @@ const StyledCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
   border: 4px solid #1a237e;
+  margin-top: 1rem;
   
   
 `;
@@ -76,6 +77,7 @@ const StyledButton = styled(Button)`
   //border-top-right-radius: 0;
   border-radius: 0;
   margin-top: auto;
+  text-transform: none;
   :hover {
     background-color: #1d357a;
   }
@@ -85,7 +87,7 @@ const UploadButton = styled(Button)`
   //color: #26418f;
   width: 100%;
   height: 100%;
-  
+  text-transform: none;
   //border-color: #26418f;
   //border-radius: 8px;
 `;

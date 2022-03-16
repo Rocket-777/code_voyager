@@ -6,11 +6,13 @@ const StyledCard = styled(Card)`
   flex-direction: column;
   min-height: 20rem;
   width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 2rem;
+  margin: 1rem auto 2rem auto;
+ 
   z-index: 5;
   :hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  :active{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 `;
@@ -70,16 +72,18 @@ const ButtonBlock = styled('div')`
   margin: 0 auto 1rem auto;
   width: 100%;
   justify-content: space-evenly;
+  
 `;
 const BlockButton = styled(Button)`
   //margin-left: 2rem;
   width: auto;
-  
+  text-transform: none;
   
   
 `;
 const ButtonBlockContainer = styled('div')`
   display: flex;
+  text-transform: none;
   width: 90%;
   padding: 0;
   margin: 0 auto 0 auto;

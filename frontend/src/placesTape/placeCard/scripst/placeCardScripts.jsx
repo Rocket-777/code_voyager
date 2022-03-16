@@ -1,9 +1,14 @@
 import {deleteReq, putReq} from "../../../httpUtils/httpRequests.js";
+import {getPlaces} from "../../scripts/placesUtils";
+
+async function removePlace(id, setPlaces, placeState){
 
 
-async function removePlace(id, setPlaces){
     await deleteReq('http://localhost:3003/places', id);
-    setPlaces(null);
+
+    await getPlaces(setPlaces, placeState);
+
+
 }
 
 
