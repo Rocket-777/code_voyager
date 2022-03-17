@@ -9,7 +9,9 @@ const StyledCard = styled(Card)`
   margin-right: auto;
   border: 4px solid #1a237e;
   margin-top: 1rem;
-  
+  @media only screen and (max-width: 768px){
+    width: 90%
+  }
   
 `;
 
@@ -106,6 +108,7 @@ const ImageContainer = styled('div')`
 `;
 const RemoveImageButton = styled(Button)`
   margin: 1rem auto 1rem auto;
+  text-transform: none;
 `;
 export {StyledCard, StyledRow, StyledSemiRow, StyledTextInp, StyledHeader, StyledButton, StyledTextInpDescription,
 StyledColumn, UploadButton, UploadButtonContainer, ImageContainer, RemoveImageButton}

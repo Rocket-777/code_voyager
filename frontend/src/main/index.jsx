@@ -46,8 +46,6 @@ const Main = () => {
                                                                  usrData={usrData} setUsrData={setUsrData}/>}/> : null}
                     <Route path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
                 </Routes>
-
-
             </ScrollContainer>
 
         </MainLayout>

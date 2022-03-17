@@ -16,7 +16,7 @@ const ScrollContainer = styled('div')`
   margin: 0 0 0 0;
   padding: 0;
   position: absolute;
-  top: 4.8%;
+  top: 3rem;
   left: 0;
   right: 0;
   bottom: 0;

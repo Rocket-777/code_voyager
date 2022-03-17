@@ -26,13 +26,13 @@ const StyledUserButton = styled(Button)`
   border-radius: 0;
   padding: 0;
   font-size: 18px;
-  line-height: 3rem;
+  line-height: 3rem; //height of header
   :hover{
     background-color: #8e99f3;
   }`
 
 const StyledHeader = styled(Paper) `
-  //height: 20%;
+  
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

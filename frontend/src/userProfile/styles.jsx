@@ -12,6 +12,9 @@ const StyledHeader = styled(Typography)`
   //border-bottom: solid #d9deff;
   color: white;
   background-color: #1a237e;
+  @media only screen and (max-width: 768px){
+    font-size: 3vh;
+  }
 `;
 
 const StyledRow = styled('div')`
@@ -30,6 +33,10 @@ const StyledSemiRow = styled(Typography)`
   display: flex;
   margin-right: 0.5vw;
   background-color: #bec9eb;
+  @media only screen and (max-width: 768px){
+    font-size: 2vh;
+    width: 50%;
+  }
 `;
 
 const StyledTypography = styled(Typography)`
@@ -44,6 +51,10 @@ const StyledTypography = styled(Typography)`
   border-radius: 5px;
 
   border: 2px solid #6c78b8;
+  @media only screen and (max-width: 768px){
+    font-size: 2vh;
+    width: 60%;
+  }
 
 `;
 
@@ -57,6 +68,9 @@ const StyledCard = styled(Card)`
 
   background-color: #bec9eb;
   border: 4px solid #1a237e;
+  @media only screen and (max-width: 768px){
+    width: 90%
+  }
 `;
 
 const StyledButton = styled(Button)`

@@ -7,6 +7,9 @@ const StyledCard = styled(Card)`
   flex-direction: column;
   width: 60%;
   margin-bottom: 4vh;
+  @media only screen and (max-width: 768px){
+    width: 90%
+  }
 
 `;
 const UserInfo = styled('div')`

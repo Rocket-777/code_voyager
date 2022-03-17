@@ -21,13 +21,13 @@ const PostCard = (props) => {
                 </StyledText>
 
             <ButtonBlock>
-                <Button variant='contained' color='secondary'>
+                <Button variant='contained' color='secondary' sx={{ textTransform: 'none'}}>
                     <FavoriteBorderIcon sx={{marginRight: '0.4vw'}}/>
                     Нравится</Button>
-                <Button variant='contained'>
+                <Button variant='contained' sx={{ textTransform: 'none'}}>
                     <CommentOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                     Комментарии</Button>
-                {props.isPriveleged ? <Button variant='contained' sx={{backgroundColor: 'red', ':hover': {backgroundColor: 'crimson'}}}
+                {props.isPriveleged ? <Button variant='contained' sx={{backgroundColor: 'red', ':hover': {backgroundColor: 'crimson'}, textTransform: 'none'}}
                 onClick={e => deletePost(props.id, props.setPosts)}>
                     <DeleteOutlineOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                     Удалить</Button> : null}

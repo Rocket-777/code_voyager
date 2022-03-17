@@ -4,7 +4,7 @@ import {Card, Typography, Button} from "@mui/material";
 const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
-  min-height: 20rem;
+  
   width: 100%;
   margin: 1rem auto 2rem auto;
  
@@ -30,7 +30,11 @@ const ImageContainer = styled('div')`
   margin-top: 2rem;
   margin-left: auto;
   margin-right: auto;
-  max-width: 85%;
+  width: 70%;
+  @media only screen and (max-width: 768px){
+    width: 90%
+  }
+  
   
 `;
 
@@ -63,6 +67,11 @@ const NoImage = styled(Typography)`
   border-radius: 8px;
   font-weight: bolder;
   border: solid 2px #d4d4d4;
+  @media only screen and (max-width: 768px){
+    width: 100%;
+    font-size: 5vh;
+    
+  }
   
 `;
 
@@ -78,6 +87,11 @@ const BlockButton = styled(Button)`
   //margin-left: 2rem;
   width: auto;
   text-transform: none;
+  @media only screen and (max-width: 768px){
+    font-size: 0;
+    //justify-content: center;
+    
+  }
   
   
 `;

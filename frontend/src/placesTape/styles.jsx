@@ -25,6 +25,9 @@ const ButtonContainer = styled('div')`
   flex-direction: row;
   width: 60%;
   margin: 4vh auto 0 auto;
+  @media only screen and (max-width: 768px){
+    width: 90%
+  }
   
 `;
 
@@ -41,8 +44,10 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledLink = styled(Link)`
- 
-  
+
+  @media only screen and (max-width: 768px){
+    width: 90%
+  }
   text-decoration: none;
   width: 60%;
   margin-left: auto;

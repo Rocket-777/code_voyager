@@ -4,6 +4,7 @@ const StyledFooter = styled('div')`
   display: flex;
   width: 100%;
   //background-color: #dfe2f5;
+  
   justify-content: center;
   font-size: 30px;
   align-items: center;
