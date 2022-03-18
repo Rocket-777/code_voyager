@@ -11,16 +11,11 @@ import {Footer} from "../main/footer";
 const PlacesTape = (props) => {
 
     const [places, setPlaces] = useState(null);
-    const [displayPlaces, setDisplayPlaces] = useState("approved");
+    const [displayPlaces, setDisplayPlaces] = useState('approved');
 
-    useEffect(() => {
-        if(places == null ){
-            getPlaces(setPlaces, displayPlaces);
-        }
-
-    }, []);
 
     useEffect(()=>{
+
         getPlaces(setPlaces, displayPlaces);
     }, [displayPlaces])
     return(

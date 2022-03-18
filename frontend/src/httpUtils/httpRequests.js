@@ -44,6 +44,8 @@ async function getPlacesRequest(uri){
     }).then(res => res.json()).catch(e => console.log(e)); //EXAMPLE OF RETRIVING TEXT DATA
 
 }
+
+
 async function getPosts(uri){
     return await fetch(uri, {
         method: 'GET',

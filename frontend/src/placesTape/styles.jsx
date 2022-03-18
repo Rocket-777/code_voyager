@@ -52,5 +52,6 @@ const StyledLink = styled(Link)`
   width: 60%;
   margin-left: auto;
   margin-right: auto;
+  
 `
 export {PlacesTapeContainer, ButtonContainer, StyledButton, StyledLink}

@@ -21,6 +21,7 @@ const ScrollContainer = styled('div')`
   right: 0;
   bottom: 0;
   
+  
   *::-webkit-scrollbar-track {
     background-color: inherit;
     border-radius: 50px;

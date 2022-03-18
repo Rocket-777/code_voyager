@@ -13,7 +13,7 @@ const PlaceCard = (props) => {
 
     return(
         <StyledCard >
-            <StyledHeader variant='h2'>
+            <StyledHeader variant='h4' >
                 {props.cardData.place_name}
             </StyledHeader>
             <ImageContainer>

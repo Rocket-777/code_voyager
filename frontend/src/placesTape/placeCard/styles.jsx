@@ -8,7 +8,7 @@ const StyledCard = styled(Card)`
   width: 100%;
   margin: 1rem auto 2rem auto;
  
-  z-index: 5;
+  
   :hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
@@ -18,8 +18,11 @@ const StyledCard = styled(Card)`
 `;
 
 const StyledHeader = styled(Typography)`
+  
   padding-left: 3rem;
+  padding-right: 3rem;
   margin-top: 1rem;
+  overflow-wrap: anywhere;
   border-bottom: 3px solid #1a237e;
   color: #1a237e;
   
@@ -30,11 +33,22 @@ const ImageContainer = styled('div')`
   margin-top: 2rem;
   margin-left: auto;
   margin-right: auto;
+  align-items: center;
   width: 70%;
   @media only screen and (max-width: 768px){
-    width: 90%
+    width: 100%
+    
   }
-  
+  img{
+    height: 50vh;
+    width: 50vw;
+    object-fit: contain;
+    @media only screen and (max-width: 768px){
+      height: 30vh;
+      width: 80vw;
+
+    }
+  }
   
 `;
 
@@ -43,8 +57,9 @@ const StyledDescription = styled(Typography)`
   margin: 1rem auto 1rem auto;
   width: 82%;
   background-color: #ededed;
-  flex-basis: 10rem;
-  //max-height: 9rem;
+  //flex-basis: 5rem;
+  min-height: 2rem;
+  max-height: 9rem;
   padding: 1rem;
   border-radius: 5px;
   word-wrap: anywhere;

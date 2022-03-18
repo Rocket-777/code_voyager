@@ -45,6 +45,7 @@ const Main = () => {
                                             element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized}
                                                                  usrData={usrData} setUsrData={setUsrData}/>}/> : null}
                     <Route path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
+                    <Route path='*' element={<h1>404_NOT_FOUND</h1>}/>
                 </Routes>
             </ScrollContainer>
 

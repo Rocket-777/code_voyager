@@ -34,6 +34,24 @@ async function sendPlaces (req, res, db){
 
 }
 
+async function sendPlace(req, res, db){
+
+    if(req.params.id.length === 24){
+        const place = await db.collection('places').findOne({_id: ObjectId(req.params.id)}).catch(e => console.log(e));
+        if(place){
+            res.send(place);
+        }
+        else{
+            res.send({error: 'NOT_FOUND'});
+        }
+    }
+    else{
+        res.send({error: 'NOT_FOUND; INVALID_ID'});
+    }
+
+    res.end();
+}
+
 async function removePlace(req, res, db, uplPath){
 
     const place = await db.collection('places').findOne({_id: ObjectId(req.body.key)}).catch(e => console.log(e));
@@ -63,4 +81,4 @@ async function approvePlace(req, res, db){
     await db.collection('places').updateOne({_id: ObjectId(req.params.id)}, update);
     res.end();
 }
-export {addNewPlace, sendPlaces, removePlace, approvePlace}
+export {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace}
