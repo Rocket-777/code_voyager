@@ -27,7 +27,7 @@ const StyledFabBack = styled(Fab)`
   position: absolute;
   //border: solid white 1px;
   left: 12%;
-  top: 6%;
+  top: 4%;
   background-color: #5c6bc0;
   height: 5rem;
   width: 5rem;
@@ -37,6 +37,8 @@ const StyledFabBack = styled(Fab)`
   @media only screen and (max-width: 768px){
     top: 3%;
     left: 3%;
+    height: 4rem;
+    width: 4rem;
   }
   
 `
