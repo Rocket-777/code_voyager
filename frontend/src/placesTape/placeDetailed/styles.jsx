@@ -1,5 +1,5 @@
 import {styled} from "@mui/material/styles";
-import {Card, Typography} from "@mui/material";
+import {Card, Typography, Divider} from "@mui/material";
 
 
 const Container = styled('div')`
@@ -17,7 +17,7 @@ const StyledCard = styled(Card)`
   flex-direction: column;
   
   width: 60%;
-  margin: 1rem auto 2rem auto;
+  margin: 1rem auto 0.5rem auto;
   @media only screen and (max-width: 768px){
     width: 90%
   }
@@ -84,10 +84,21 @@ const Info = styled(Typography)`
   
 `;
 
-const CommentContainer = styled('div')`
-  display: flex;
-  flex-direction: column;
-  border-top: 3px solid #1a237e;
+const StyledDivider = styled(Divider)`
+::before{
+  top:0; 
+  border-top: 3px solid #1a237e
+} 
+  ::after{
+    top:0;
+    border-top: 3px solid #1a237e;
+  }
 `
 
-export {Container, StyledCard, StyledHeader, ShortDescription, FullDescription, Info, CommentContainer}
+const DividerTypography = styled(Typography)`
+  font-size: 3vh;
+  color: #1a237e;
+
+`
+
+export {Container, StyledCard, StyledHeader, ShortDescription, FullDescription, Info, StyledDivider, DividerTypography}

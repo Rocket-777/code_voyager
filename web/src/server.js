@@ -3,6 +3,7 @@ import cors from 'cors';
 import * as Mongo from 'mongodb';
 import * as Utils from './dbUtils/mongoUtils.js'
 import {ObjectId} from "mongodb";
+import {newComment, sendComments} from './comments/commentUtils.js'
 import {submitNewUser} from "./submitNewUser/submitNewUser.js";
 import cookie_parser from 'cookie-parser';
 import {getAllUsers} from "./dbUtils/mongoUtils.js";
@@ -98,11 +99,17 @@ app.get('/logout', (req, res, next) => {
     cookieDenie(req, res, db).catch(e => console.log(e));
 });
 
+app.get('/comments/:placeId', (req, res, next) => {
+    sendComments(req, res, db);
+});
+
 app.post('/places/new', upload.single('image') , (req, res, next) => {
     console.log('Got new place req!');
     //console.log(req.body);
     addNewPlace(req, res, db).catch(e => console.log(e));
-
+});
+app.post('/comments', upload.single('image') , (req, res, next) => {
+    newComment(req, res, db);
 });
 app.get('/places/:state', (req, res, next) => {
     sendPlaces(req, res, db).catch(e => console.log(e));

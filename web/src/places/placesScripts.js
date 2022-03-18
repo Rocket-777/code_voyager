@@ -79,6 +79,7 @@ async function approvePlace(req, res, db){
         }
     }
     await db.collection('places').updateOne({_id: ObjectId(req.params.id)}, update);
+    res.send({message: 'Success'})
     res.end();
 }
 export {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace}

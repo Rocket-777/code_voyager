@@ -43,7 +43,6 @@ const StyledTextInp = styled(TextField)`
   background-color: #e8ebff;
   border-radius: 4px;   
   
-  
 `;
 const StyledTextInpDescription = styled(TextField)`
   margin: 1rem auto 1rem auto;

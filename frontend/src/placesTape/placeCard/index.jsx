@@ -43,12 +43,12 @@ const PlaceCard = (props) => {
                     </BlockButton> : null}
                 </ButtonBlock> : <ButtonBlock>
                     <BlockButton color='secondary' variant='contained'
-                                 onClick={e => approvePlace(props.cardData._id, props.setPlaces)}>
+                                 onClick={e => {e.preventDefault(); approvePlace(props.cardData._id, props.setPlaces, props.placesState)}}>
                         <CheckOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                         Утвердить
                     </BlockButton>
                     <BlockButton variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
-                                 onClick={e => removePlace(props.cardData._id, props.setPlaces)}>
+                                 onClick={e => {e.preventDefault(); removePlace(props.cardData._id, props.setPlaces, props.placesState)}}>
                         <ClearOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                         Отказать
                     </BlockButton>

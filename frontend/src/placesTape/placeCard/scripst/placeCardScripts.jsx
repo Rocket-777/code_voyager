@@ -12,8 +12,8 @@ async function removePlace(id, setPlaces, placeState){
 }
 
 
-async function approvePlace(id, setPlaces){
+async function approvePlace(id, setPlaces, placeState){
     await putReq(`http://localhost:3003/places/${id}`, {approved: true})
-    setPlaces(null);
+    await getPlaces(setPlaces, placeState);
 }
 export {removePlace, approvePlace}
