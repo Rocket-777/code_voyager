@@ -8,13 +8,21 @@ async function submitNewUser(username, password, setDoneState, setUserName, setU
     const body = {username: username, password: password};
     const uri = 'http://localhost:3003/users';
 
-    await postRequest(uri, body).catch(e => console.log(e));
-    setDoneState(true);
-    setUserName('');
-    setUserPassword('');
-    await timeout(3000);
-    setDoneState(false);
-    setAuthCont(true);
+    const reqState = await postRequest(uri, body).catch(e => console.log(e));
+
+    if(reqState.status === 'success'){
+        setDoneState(true);
+        setUserName('');
+        setUserPassword('');
+        setDoneState('Успех!');
+        await timeout(2000);
+        setAuthCont(true);
+    }
+    else{
+
+        setDoneState(reqState.status);
+    }
+
 }
 
 export {submitNewUser}

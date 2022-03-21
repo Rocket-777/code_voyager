@@ -7,7 +7,7 @@ const SignUpCon = (props) => {
 
     const [userName, setUserName] = useState('');
     const [userPassword, setUserPassword] = useState('');
-    const [doneStatus, setDoneStatus] = useState(false);
+    const [doneStatus, setDoneStatus] = useState('');
     const [err, setError] = useState(false);
 
     return(
@@ -20,7 +20,7 @@ const SignUpCon = (props) => {
                 <StyledSemiRow>Password:</StyledSemiRow>
                 <StyledTextInp size="small" type="password" onChange={e => setUserPassword(e.target.value)} value={userPassword}/>
             </StyledRow>
-            {doneStatus ? <StyledSignStatus>Готово!</StyledSignStatus> : null}
+            {doneStatus ? <StyledSignStatus>{doneStatus}</StyledSignStatus> : null}
             <StyledButton onClick={e => submitNewUser(userName, userPassword, setDoneStatus, setUserName, setUserPassword, props.contChoice, setError)}>
                 <AppRegistrationOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                 Зарегистрироваться

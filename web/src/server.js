@@ -87,8 +87,9 @@ app.get('/news', (req, res, next) => {
 });
 app.post('/users', (req, res, next) => {
     console.log('got a post req');
-    submitNewUser(db,req.body.username,req.body.password,0).catch(e => console.log(e));
-    res.end();
+    submitNewUser(db,req.body.username,req.body.password,0, res).catch(e => console.log(e));
+
+
 });
 
 app.get('/login', (req, res, next) => {

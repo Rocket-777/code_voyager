@@ -11,7 +11,7 @@ async function postRequest(uri, body){
 
         referrerPolicy: 'no-referrer',
         body: JSON.stringify(body)
-    }).then(res => res).catch(e => console.log(e));
+    }).then(res => res.json()).catch(e => console.log(e));
 }
 
 async function postRequestWithFile(uri, body){
