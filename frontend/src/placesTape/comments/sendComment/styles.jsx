@@ -1,17 +1,20 @@
 import {styled} from "@mui/material/styles";
 import {Card, TextField, Fab} from "@mui/material";
 
+const MarginContainer = styled('div')`
+  width: 60%;
+  margin: 0 auto 6vh auto;
+  @media only screen and (max-width: 1000px){
+    width: 90%
+  }
+`
+
 const StyledCard = styled(Card)`
   
   display: flex;
   flex-direction: row;
-  width: 60%;
-  margin: 0 auto 6vh auto;
+  width: 100%;
   
-
-  @media only screen and (max-width: 768px){
-    width: 90%
-  }
 `
 
 const StyledTextInp = styled(TextField)`
@@ -45,4 +48,4 @@ const InputContainer = styled('div')`
   margin: 1rem auto 1rem auto;
   
 `
-export {StyledCard, StyledTextInp, SendFab, InputContainer}
+export {StyledCard, StyledTextInp, SendFab, InputContainer, MarginContainer}

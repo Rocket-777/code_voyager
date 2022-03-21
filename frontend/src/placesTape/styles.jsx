@@ -13,7 +13,7 @@ const PlacesTapeContainer = styled('div')`
   margin-right: auto;
   
   flex-flow: row wrap;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
   //margin-bottom: 5px;
   
@@ -25,7 +25,7 @@ const ButtonContainer = styled('div')`
   flex-direction: row;
   width: 60%;
   margin: 4vh auto 0 auto;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 1000px){
     width: 90%
   }
   
@@ -45,9 +45,10 @@ const StyledButton = styled(Button)`
 
 const StyledLink = styled(Link)`
 
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 1000px){
     width: 90%
   }
+  
   text-decoration: none;
   width: 60%;
   margin-left: auto;

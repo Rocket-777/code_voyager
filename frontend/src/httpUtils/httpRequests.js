@@ -11,7 +11,7 @@ async function postRequest(uri, body){
 
         referrerPolicy: 'no-referrer',
         body: JSON.stringify(body)
-    }).then(res => console.log(res)).catch(e => console.log(e));
+    }).then(res => res).catch(e => console.log(e));
 }
 
 async function postRequestWithFile(uri, body){
@@ -91,17 +91,34 @@ async function deleteReqUri(uri){
 }
 
 async function putReq(uri, body){
-    return await fetch(uri, {
-        method: 'PUT',
-        mode: "cors",
-        cache: 'no-cache',
-        credentials: 'include',
-        headers: {
+    if(body !== null){
+        return await fetch(uri, {
+            method: 'PUT',
+            mode: "cors",
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
 
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify(body)
-    }).then(res => res.json()).catch(e => console.log(e));
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(body)
+        }).then(res => res.json()).catch(e => console.log(e));
+    }
+    else{
+        return await fetch(uri, {
+            method: 'PUT',
+            mode: "cors",
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            referrerPolicy: 'no-referrer',
+
+        }).then(res => res.json()).catch(e => console.log(e));
+    }
+
 }
 export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq, putReq, getPosts, deleteReqUri}

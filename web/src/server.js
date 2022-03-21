@@ -10,7 +10,7 @@ import {getAllUsers} from "./dbUtils/mongoUtils.js";
 import {cookieAuthorization} from "./authorization/index.js";
 import {sendUserData} from "./usrData/getUsrData.js";
 import {cookieDenie} from "./authorization/cookieUtils.js";
-import {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace} from "./places/placesScripts.js";
+import {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace, likeAction} from "./places/placesScripts.js";
 import crypto from 'crypto';
 import multer from 'multer';
 import {setUserImage, removeUsrImage} from "./usrData/userScripts.js";
@@ -122,6 +122,9 @@ app.delete('/places', (req, res, next) => {
 });
 app.put('/places/:id', (req, res, next) => {
     approvePlace(req, res, db);
+});
+app.put('/places/:id/like', (req, res, next) => {
+    likeAction(req, res, db);
 });
 app.get('/users', (req, res, next) => {
     sendUsers(req, res).catch(e => console.log(e));

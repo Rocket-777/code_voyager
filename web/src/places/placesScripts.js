@@ -9,11 +9,11 @@ async function addNewPlace (req, res, db){
     }
     if(req.signedCookies.moderator || req.signedCookies.admin){
         await db.collection('places').insertOne({place_name: req.body.placeName, place_description: req.body.placeDescription,
-            usersLiked: [], comments: [], image: pathToImage, approved: true}).then(res => console.log(res));
+            usersLiked: [], comments: 0, likes: 0, image: pathToImage, approved: true}).then(res => console.log(res));
     }
     else if(req.signedCookies.user){
         await db.collection('places').insertOne({place_name: req.body.placeName, place_description: req.body.placeDescription,
-            usersLiked: [], comments: [], image: pathToImage, approved: false}).then(res => console.log(res));
+            usersLiked: [], comments: 0, likes: 0,  image: pathToImage, approved: false}).then(res => console.log(res));
     }
     res.end();
 }
@@ -66,7 +66,7 @@ async function removePlace(req, res, db, uplPath){
         }
 
         await db.collection('places').deleteOne({_id: ObjectId(req.body.key)}).catch(e => console.log(e));
-
+        await db.collection('comments').deleteMany({postId: req.body.key}).catch(e => console.log(e));
     }
     res.end();
 }
@@ -82,4 +82,53 @@ async function approvePlace(req, res, db){
     res.send({message: 'Success'})
     res.end();
 }
-export {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace}
+
+
+async function likeAction(req, res, db){
+    let user = null;
+    if(req.signedCookies.user){
+        user = req.signedCookies.user;
+    }
+    else if(req.signedCookies.moderator){
+        user = req.signedCookies.moderator;
+    }else if(req.signedCookies.admin){
+        user = req.signedCookies.admin;
+    }
+    if(user){
+        const place = await db.collection('places').findOne({_id: ObjectId(req.params.id)}).catch(e => console.log(e));
+        let isLiked = false;
+
+        place.usersLiked.map(item => {
+            if(item === user){
+                isLiked = true;
+            }
+        });
+
+        if(isLiked){
+            await db.collection('places').updateOne({_id: ObjectId(req.params.id)}, {
+                $pull:{
+                    usersLiked: user
+                },
+                $inc:{
+                    likes: -1
+                }
+            });
+        }
+        else{
+            await db.collection('places').updateOne({_id: ObjectId(req.params.id)}, {
+                $addToSet:{
+                    usersLiked: user
+                },
+                $inc:{
+                    likes: 1
+                }
+            });
+        }
+
+    }
+    res.send({response: 'ok'});
+    res.end();
+
+}
+
+export {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace, likeAction}

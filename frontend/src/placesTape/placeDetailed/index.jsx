@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom";
 import {Container, StyledCard, StyledHeader, ShortDescription, FullDescription, Info} from "./styles";
 import {ImageContainer, NoImage} from "../placeCard/styles";
+import {MarginContainer} from "../comments/sendComment/styles";
 import {Footer} from "../../main/footer";
 import {getPlaceById} from "./scripts";
 import React, {useEffect, useState} from "react";
@@ -22,7 +23,7 @@ const PlaceDetailed = () => {
 
 
     useEffect(()=>{
-        getComments(setCommentsData, params.id);
+       getComments(setCommentsData, params.id);
     }, [])
 
     if(!placeData.error){
@@ -48,7 +49,10 @@ const PlaceDetailed = () => {
 
 
                 </StyledCard>
-                <SendComment id={params.id} updateComments={setCommentsData}/>
+                <MarginContainer>
+                    <SendComment id={params.id} updateComments={setCommentsData} updatePlaceData={null}/>
+                </MarginContainer>
+
                 <Footer/>
             </Container>
         );

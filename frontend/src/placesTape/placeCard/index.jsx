@@ -8,8 +8,24 @@ import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import {removePlace, approvePlace} from "./scripst/placeCardScripts";
+import {Comments} from "../comments";
+import {SendComment} from "../comments/sendComment";
+import {useEffect, useState} from "react";
+import {getComments} from "../comments/scripts";
+import {likeAction} from "./scripst/placeCardScripts";
+import {updatePlaceData} from "../comments/scripts";
 
 const PlaceCard = (props) => {
+
+    const [showComments, setShowComments] = useState(false);
+    const [commentsData, setCommentsData] = useState('');
+    const [placeData, setPlaceData] = useState(props.cardData);
+
+    useEffect(()=>{
+        if(showComments){
+            getComments(setCommentsData, props.cardData._id);
+        }
+    }, [showComments])
 
     return(
         <StyledCard >
@@ -23,14 +39,15 @@ const PlaceCard = (props) => {
                 {props.cardData.place_description}
             </StyledDescription>
             {props.isAuth ? <ButtonBlockContainer>
-                {props. cardData.approved ? <ButtonBlock>
-                    <BlockButton color='secondary' variant='contained' onClick={e => {e.preventDefault(); } }> {/* preventdefault - prevents button from acting as a link!!!*/}
+                {props.cardData.approved ? <ButtonBlock>
+                    <BlockButton color='secondary' variant='contained' onClick={async e => {e.preventDefault(); await likeAction(placeData._id);
+                    await updatePlaceData(placeData._id, setPlaceData)} }> {/* preventdefault - prevents button from acting as a link!!!*/}
                         <FavoriteBorderIcon sx={{marginRight: '0.4vw'}}/>
-                        Нравится
+                        {placeData.likes}
                     </BlockButton>
-                    <BlockButton variant='contained'>
+                    <BlockButton variant='contained' onClick={e => {e.preventDefault(); setShowComments(!showComments)} }>
                         <CommentOutlinedIcon sx={{marginRight: '0.4vw'}}/>
-                        Комментарии
+                        {placeData.comments}
                     </BlockButton>
                     <BlockButton variant='contained'>
                         <StarBorderIcon  sx={{marginRight: '0.4vw'}}/>
@@ -54,6 +71,13 @@ const PlaceCard = (props) => {
                     </BlockButton>
                 </ButtonBlock>}
             </ButtonBlockContainer> : null}
+
+            {
+                showComments ? <div onClick={e=> e.preventDefault()}>
+                    <Comments data={commentsData}/>
+                    <SendComment updateComments={setCommentsData} id={props.cardData._id} updatePlaceData={setPlaceData}/>
+                </div> : null
+            }
 
         </StyledCard>
     );

@@ -20,7 +20,7 @@ const StyledCard = styled(Card)`
   flex-direction: column;
   width: 60%;
   margin: 1vh auto 5vh auto;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 1000px){
     width: 90%
   }
   //margin-bottom: 5vh;

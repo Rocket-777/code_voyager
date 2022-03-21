@@ -44,58 +44,62 @@ const UsrProfile = (props) => {
         removeUserImage(props.auth);
     }
 
-    return (<StyledCard>
-        <StyledHeader variant="h4">
-            Профиль пользователя
-        </StyledHeader>
-        <StyledRow>
-            <StyledSemiRow variant="h5">
-                Имя пользователя
-            </StyledSemiRow>
-            <StyledTypography>
-                {props.usrData.username}
-            </StyledTypography>
-        </StyledRow>
-        <StyledRow>
-            <StyledSemiRow variant="h5">
-                Статус
-            </StyledSemiRow>
-            <StyledTypography>
-                {props.usrData.status}
-            </StyledTypography>
-        </StyledRow>
-        <StyledImageOps>
-            {props.usrData.image ? <Avatar src={props.usrData.image} alt=':C' sx={{width: 300, height: 300}}/>
-                : <Avatar src='noImage.png' alt=':C' sx={{width: 300, height: 300}}/>}
-            {props.usrData.image ?
-                <UploadButtonContainer>
-                    <UploadButton color="secondary" variant="contained" onClick={e => handleRemoveImg()}
-                                  sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}>
-                        <DeleteOutlineOutlinedIcon sx={{marginRight: '1vw'}}/>
-                        Удалить изображение
-                    </UploadButton>
-                </UploadButtonContainer> :
-                <UploadButtonContainer>
-                    <input id='imgInp'
-                           style={{display: "none"}}
-                           type="file"
-                           accept="image/*"
-                           onChange={e => handleFile(e)}
-                    />
-                    <UploadButton color="secondary" variant="contained" component="span">
-                        <FileUploadOutlinedIcon sx={{marginRight: '1vw'}}/>
-                        Загрузить изображение
-                    </UploadButton>
-                </UploadButtonContainer>}
+    return (
+        <div>
+            <StyledCard>
+                <StyledHeader variant="h4">
+                    Профиль пользователя
+                </StyledHeader>
+                <StyledRow>
+                    <StyledSemiRow variant="h5">
+                        Имя пользователя
+                    </StyledSemiRow>
+                    <StyledTypography>
+                        {props.usrData.username}
+                    </StyledTypography>
+                </StyledRow>
+                <StyledRow>
+                    <StyledSemiRow variant="h5">
+                        Статус
+                    </StyledSemiRow>
+                    <StyledTypography>
+                        {props.usrData.status}
+                    </StyledTypography>
+                </StyledRow>
+                <StyledImageOps>
+                    {props.usrData.image ? <Avatar src={props.usrData.image} alt=':C' sx={{width: 300, height: 300}}/>
+                        : <Avatar src='noImage.png' alt=':C' sx={{width: 300, height: 300}}/>}
+                    {props.usrData.image ?
+                        <UploadButtonContainer>
+                            <UploadButton color="secondary" variant="contained" onClick={e => handleRemoveImg()}
+                                          sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}>
+                                <DeleteOutlineOutlinedIcon sx={{marginRight: '1vw'}}/>
+                                Удалить изображение
+                            </UploadButton>
+                        </UploadButtonContainer> :
+                        <UploadButtonContainer>
+                            <input id='imgInp'
+                                   style={{display: "none"}}
+                                   type="file"
+                                   accept="image/*"
+                                   onChange={e => handleFile(e)}
+                            />
+                            <UploadButton color="secondary" variant="contained" component="span">
+                                <FileUploadOutlinedIcon sx={{marginRight: '1vw'}}/>
+                                Загрузить изображение
+                            </UploadButton>
+                        </UploadButtonContainer>}
 
-        </StyledImageOps>
+                </StyledImageOps>
 
-        <StyledButton onClick={e => logOutAction(props.auth, navigate, props.setUsrData)}>
-            <LogoutOutlinedIcon sx={{marginRight: '0.4vw'}}/>
-            Выйти
-        </StyledButton>
+                <StyledButton onClick={e => logOutAction(props.auth, navigate, props.setUsrData)}>
+                    <LogoutOutlinedIcon sx={{marginRight: '0.4vw'}}/>
+                    Выйти
+                </StyledButton>
 
-    </StyledCard>);
+            </StyledCard>
+        </div>
+        );
 
 }
 

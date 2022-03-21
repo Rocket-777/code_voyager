@@ -16,4 +16,10 @@ async function approvePlace(id, setPlaces, placeState){
     await putReq(`http://localhost:3003/places/${id}`, {approved: true})
     await getPlaces(setPlaces, placeState);
 }
-export {removePlace, approvePlace}
+
+async function likeAction(id){
+    await putReq(`http://localhost:3003/places/${id}/like`, null);
+
+}
+
+export {removePlace, approvePlace, likeAction}

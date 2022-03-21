@@ -12,9 +12,13 @@ async function newComment(req, res, db){
     }
     if(signed){
         await db.collection('comments').insertOne({postId: req.body.postId , comment: req.body.comment, creator: signed});
-    }
+        await db.collection('places').updateOne({_id: ObjectId(req.body.postId)}, {$inc: {comments: 1}});
+        res.send({response: 'success'});
 
+    }
     res.end();
+
+
 
 }
 
@@ -22,12 +26,15 @@ async function sendComments(req, res, db){
 
     const searchParam = {postId: req.params.placeId}
     const data = await db.collection('comments').find(searchParam).toArray().then(res => res).catch(e => console.log(e));
+
     const result = Promise.all(await data.map(async item => {
         const user = await db.collection('users').findOne({_id: ObjectId(item.creator)});
         item = {...item, usrImage: user.image, username: user.username};
         return item;
     }));
+    console.log(await result);
     res.send(await result);
+
     res.end();
 }
 

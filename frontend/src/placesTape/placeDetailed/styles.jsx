@@ -18,7 +18,7 @@ const StyledCard = styled(Card)`
   
   width: 60%;
   margin: 1rem auto 0.5rem auto;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 1000px){
     width: 90%
   }
  
