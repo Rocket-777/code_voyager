@@ -10,7 +10,8 @@ async function addPost(req, res, db){
         signed = req.signedCookies.user;
     }
     if(signed){
-        await db.collection('posts').insertOne({creator: signed, text: req.body.postBody, likedBy: [], comments: []});
+       const shit = await db.collection('posts').insertOne({creator: signed, text: req.body.postBody, likedBy: [], comments: []}).then(res => res);
+       res.send(shit);
     }
     res.end();
 

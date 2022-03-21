@@ -51,12 +51,13 @@ const PlaceCreator = (props) => {
 
         await postRequestWithFile('http://localhost:3003/places/new', reqData).catch(e => console.log(e));
         handleFileRemove();
-        setPlaceName('');
-        setPlaceDesc('');
+
         if (props.isPrivileged) {
             //props.setPlaces(null);
             await getPlaces(props.setPlaces, props.placeStatus);
         }
+        setPlaceName('');
+        setPlaceDesc('');
     }
 
     return (

@@ -1,6 +1,6 @@
 async function postRequest(uri, body){
 
-    fetch(uri, {
+    return await fetch(uri, {   // DO NOT FORGET THE AWAIT !!!!!!!!!
         method: 'POST',
         mode: "cors",
         cache: 'no-cache',
