@@ -20,6 +20,14 @@ async function addNewPlace (req, res, db){
 
 async function sendPlaces (req, res, db){
     let searchParam = null;
+    let user = null;
+    if(req.signedCookies.user){
+        user = req.signedCookies.user;
+    }else if(req.signedCookies.moderator){
+        user = req.signedCookies.moderator;
+    }else if(req.signedCookies.admin){
+        user = req.signedCookies.admin;
+    }
     if(req.params.state === 'approved'){
         searchParam = {approved : true};
     }
@@ -28,18 +36,48 @@ async function sendPlaces (req, res, db){
     }
     if(searchParam){
         const data = await db.collection('places').find(searchParam).toArray().then(res => res).catch(e => console.log(e));
-        res.send(data);
+        const result = data.map(item => {
+            let isLiked = false;
+            item.usersLiked.map( it => {
+                if(it === user){
+                    isLiked = true;
+                }
+            })
+            if(isLiked){
+                item = {...item, isLiked: true}
+            }
+            else{
+                item = {...item, isLiked: false}
+            }
+            return item;
+
+        });
+        res.send(result);
     }
     res.end;
 
 }
 
 async function sendPlace(req, res, db){
+    let user = null;
+    if(req.signedCookies.user){
+        user = req.signedCookies.user;
+    }else if(req.signedCookies.moderator){
+        user = req.signedCookies.moderator;
+    }else if(req.signedCookies.admin){
+        user = req.signedCookies.admin;
+    }
 
     if(req.params.id.length === 24){
         const place = await db.collection('places').findOne({_id: ObjectId(req.params.id)}).catch(e => console.log(e));
+        let islkd =  false;
+        place.usersLiked.map(item => {
+            if(item === user){
+                islkd =  true;
+            }
+        })
         if(place){
-            res.send(place);
+            res.send({...place, isLiked: islkd});
         }
         else{
             res.send({error: 'NOT_FOUND'});

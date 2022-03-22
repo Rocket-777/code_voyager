@@ -14,6 +14,7 @@ import {useEffect, useState} from "react";
 import {getComments} from "../comments/scripts";
 import {likeAction} from "./scripst/placeCardScripts";
 import {updatePlaceData} from "../comments/scripts";
+import {ActionButtons} from "../../actionButtons";
 
 const PlaceCard = (props) => {
 
@@ -27,6 +28,10 @@ const PlaceCard = (props) => {
         }
     }, [showComments])
 
+    async function handleLike(){
+        await likeAction(placeData._id);
+        await updatePlaceData(placeData._id, setPlaceData)
+    }
     return(
         <StyledCard >
             <StyledHeader variant='h4' >
@@ -40,24 +45,19 @@ const PlaceCard = (props) => {
             </StyledDescription>
             {props.isAuth ? <ButtonBlockContainer>
                 {props.cardData.approved ? <ButtonBlock>
-                    <BlockButton color='secondary' variant='contained' onClick={async e => {e.preventDefault(); await likeAction(placeData._id);
-                    await updatePlaceData(placeData._id, setPlaceData)} }> {/* preventdefault - prevents button from acting as a link!!!*/}
-                        <FavoriteBorderIcon sx={{marginRight: '0.4vw'}}/>
-                        {placeData.likes}
-                    </BlockButton>
-                    <BlockButton variant='contained' onClick={e => {e.preventDefault(); setShowComments(!showComments)} }>
-                        <CommentOutlinedIcon sx={{marginRight: '0.4vw'}}/>
-                        {placeData.comments}
-                    </BlockButton>
-                    <BlockButton variant='contained'>
-                        <StarBorderIcon  sx={{marginRight: '0.4vw'}}/>
-                        В избранное
-                    </BlockButton>
-                    {props.displayRemoveButton ? <BlockButton  variant='contained' sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
-                                                              onClick={e => {e.preventDefault(); removePlace(props.cardData._id, props.setPlaces, props.placesState); }}>
-                        <DeleteOutlineOutlinedIcon sx={{marginRight: '0.4vw'}}/>
-                        Удалить
-                    </BlockButton> : null}
+                    {/*<BlockButton color='secondary' variant='contained' onClick={e => {e.preventDefault(); handleLike();}}> /!* preventdefault - prevents button from acting as a link!!!*!/*/}
+                    {/*    <FavoriteBorderIcon sx={{marginRight: '0.4vw'}}/>*/}
+                    {/*    {placeData.likes}*/}
+                    {/*</BlockButton>*/}
+                    {/*<BlockButton variant='contained' onClick={e => {e.preventDefault(); setShowComments(!showComments)} }>*/}
+                    {/*    <CommentOutlinedIcon sx={{marginRight: '0.4vw'}}/>*/}
+                    {/*    {placeData.comments}*/}
+                    {/*</BlockButton>*/}
+                    {/*<BlockButton variant='contained'>*/}
+                    {/*    <StarBorderIcon  sx={{marginRight: '0.4vw'}}/>*/}
+                    {/*    В избранное*/}
+                    {/*</BlockButton>*/}
+
                 </ButtonBlock> : <ButtonBlock>
                     <BlockButton color='secondary' variant='contained'
                                  onClick={e => {e.preventDefault(); approvePlace(props.cardData._id, props.setPlaces, props.placesState)}}>
@@ -71,6 +71,9 @@ const PlaceCard = (props) => {
                     </BlockButton>
                 </ButtonBlock>}
             </ButtonBlockContainer> : null}
+            <ActionButtons likeCount={placeData.likes} commentCount={placeData.comments} isLiked={placeData.isLiked}
+                           likeAction={handleLike} commentAction={() => setShowComments(!showComments)} favoriteVisible={true}
+                           removeAction={() => removePlace(props.cardData._id, props.setPlaces, props.placesState)} removeVisible={props.displayRemoveButton}/>
 
             {
                 showComments ? <div onClick={e=> e.preventDefault()}>

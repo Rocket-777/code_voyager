@@ -34,7 +34,7 @@ const ImageContainer = styled('div')`
   margin-right: auto;
   align-items: center;
   width: 70%;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 1000px){
     width: 100%
     
   }
@@ -42,7 +42,7 @@ const ImageContainer = styled('div')`
     height: 50vh;
     width: 50vw;
     object-fit: contain;
-    @media only screen and (max-width: 768px){
+    @media only screen and (max-width: 1000px){
       height: 30vh;
       width: 80vw;
 
@@ -81,7 +81,7 @@ const NoImage = styled(Typography)`
   border-radius: 8px;
   font-weight: bolder;
   border: solid 2px #d4d4d4;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 1000px){
     width: 100%;
     font-size: 5vh;
     
@@ -101,7 +101,7 @@ const BlockButton = styled(Button)`
   //margin-left: 2rem;
   width: auto;
   text-transform: none;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 1000px){
     font-size: 0;
     //justify-content: center;
     
