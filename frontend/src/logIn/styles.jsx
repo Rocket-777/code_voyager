@@ -1,6 +1,11 @@
 import {Card, Typography, Button, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 
+const WrapContainer = styled('div')`
+  overflow-y: auto;
+
+`
+
 const StyledHeader = styled(Typography)`
   display: flex;    
   //margin-top: 1.5rem;
@@ -24,6 +29,9 @@ const StyledCard = styled(Card)`
   margin-right: auto;
   margin-left: auto;
   background-color: #bec9eb;
+     @media only screen and (max-width: 1000px){
+          width: 95%
+     }
 `;
 const StyledBookmark1 = styled(Button)`
   display: flex;
@@ -38,7 +46,9 @@ const StyledBookmark1 = styled(Button)`
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   border-right: solid 2px #e8ebff;
-  
+     @media only screen and (max-width: 1000px){
+          font-size: 0.8rem;
+     }
   
 `;
 const StyledBookmark2 = styled(Button)`
@@ -54,7 +64,9 @@ const StyledBookmark2 = styled(Button)`
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-left: solid 2px #e8ebff;
-  
+     @media only screen and (max-width: 1000px){
+          font-size: 0.8rem;
+     }
 `;
 const StyledButton = styled(Button)`
   background-color: #26418f;
@@ -107,4 +119,4 @@ const StyledTextInp = styled(TextField)`
 `;
 
 export {StyledCard, StyledHeader, StyledRow, StyledSemiRow, StyledButton, StyledBookmark1, StyledBookmark2, Container,
-     StyledTextInp}
+     StyledTextInp, WrapContainer}

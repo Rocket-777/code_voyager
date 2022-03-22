@@ -11,6 +11,7 @@ const StyledButton = styled(Button)`
   font-size: 18px;
   vertical-align: middle;
   line-height: 3rem;
+
   :hover{
     background-color: #8e99f3;
   }
@@ -21,15 +22,19 @@ const StyledUserButton = styled(Button)`
   margin-left: auto;
   
   height: 100%;
-  width: 20%;
+  min-width: 20%;
   color: white;
   border-radius: 0;
   padding: 0;
   font-size: 18px;
   line-height: 3rem; //height of header
+  @media only screen and (max-width: 768px){
+    font-size: 0.8rem;
+  }
   :hover{
     background-color: #8e99f3;
   }`
+
 
 const StyledHeader = styled(Paper) `
   

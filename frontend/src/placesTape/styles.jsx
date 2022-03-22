@@ -44,15 +44,15 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledLink = styled(Link)`
-
+  margin: 1rem auto 2rem auto;
   @media only screen and (max-width: 1000px){
     width: 90%
   }
   
   text-decoration: none;
   width: 60%;
-  margin-left: auto;
-  margin-right: auto;
+  
+
   
 `
 export {PlacesTapeContainer, ButtonContainer, StyledButton, StyledLink}

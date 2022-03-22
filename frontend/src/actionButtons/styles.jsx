@@ -54,8 +54,11 @@ const ActionButton = styled(Button)`
   }
   @media only screen and (max-width: 1000px){
     :hover {
-      background-color: #8e99f3;
+      background-color: #5c6bc0;
       transform: none;
+    }
+    :active{
+      background-color: #8e99f3;
     }
   }
   

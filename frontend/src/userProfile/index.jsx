@@ -7,7 +7,8 @@ import {
     StyledSemiRow,
     StyledTypography,
     UploadButton,
-    UploadButtonContainer
+    UploadButtonContainer,
+    Container
 } from "./styles";
 import {logOutAction} from "../logIn/scripts/logOutRequest";
 import {useNavigate} from "react-router-dom";
@@ -45,7 +46,7 @@ const UsrProfile = (props) => {
     }
 
     return (
-        <div>
+        <Container>
             <StyledCard>
                 <StyledHeader variant="h4">
                     Профиль пользователя
@@ -98,7 +99,7 @@ const UsrProfile = (props) => {
                 </StyledButton>
 
             </StyledCard>
-        </div>
+        </Container>
         );
 
 }

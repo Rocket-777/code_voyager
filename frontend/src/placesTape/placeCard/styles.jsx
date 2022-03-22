@@ -4,15 +4,17 @@ import {Card, Typography, Button} from "@mui/material";
 const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
-  
+
   width: 100%;
-  margin: 1rem auto 2rem auto;
+
   
   :hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
   }
   :active{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
   }
 `;
 

@@ -24,9 +24,8 @@ const Header = (props) => {
                 </Link>
             </StyledButton>
             <StyledUserButton>
-
                 {props.isAuth ? <Link to='/profile' style={linkstyle}> <Avatar src={usrImage} sx={{marginRight: "1vw", width: 35, height: 35}}/> {props.usrData.username}</Link>
-                    : <Link to='/log-in' style={linkstyle}>Войти/Регистрация</Link>}
+                    : <Link to='/log-in' style={linkstyle}>Войти/Зарегистрироваться</Link>}
             </StyledUserButton>
 
         </StyledHeader>
