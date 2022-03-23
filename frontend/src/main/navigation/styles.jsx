@@ -15,7 +15,7 @@ const StyledFabUpwards = styled(Fab)`
   
   @keyframes appear{
     0%{
-      transform: translateY(100%);
+      transform: translateY(45%);
     }
     100%{
       transform: translateY(0);
