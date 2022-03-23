@@ -26,7 +26,6 @@ const ActionButtons = ({isLiked, likeCount, commentCount, isFavorite,
             {removeVisible ? <RemoveContainer>
                 <RemoveButton onClick={e => removeAction()} >
                     <RemoveSign/>
-                    Удалить
                 </RemoveButton>
             </RemoveContainer> : null}
 

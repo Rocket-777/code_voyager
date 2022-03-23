@@ -125,7 +125,8 @@ const RemoveContainer = styled('div')`
   
   @media only screen and (max-width: 1000px){
     justify-content: center;
-    margin: auto;
+    margin: 0 auto 0 auto;
+    //margin: auto;
   }
 
 `

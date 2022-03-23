@@ -45,9 +45,17 @@ const StyledText = styled(Typography)`
 const ButtonBlock = styled('div')`
   display: flex;
   flex-direction: row;
-  margin: 0 auto 1vh auto;
-  width: 80%;
-  justify-content: space-evenly;
+  //margin: 0 auto 1vh auto;
+  width: 50%;
+  justify-content: flex-start;
+  @media only screen and (max-width: 1360px){
+    width: 70%;
+    justify-content: center;
+  }
+  @media only screen and (max-width: 768px){
+    width: 100%;
+    justify-content: center;
+  }
   
   
 `;
