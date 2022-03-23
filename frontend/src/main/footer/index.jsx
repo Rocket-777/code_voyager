@@ -1,11 +1,12 @@
 import {StyledFooter} from "./styles";
+import {Typography} from "@mui/material";
 
 const Footer = () => {
 
     return(<StyledFooter>
-        <h3 style={{fontStyle: 'Italic'}}>
+        <Typography style={{fontStyle: 'Italic'}}>
             Voyager
-        </h3>
+        </Typography>
 
         <img src="/logoHeader.png" alt='logo' width={90} style={{marginLeft: '1vw', marginRight: '1vw'}}/>
     </StyledFooter>);

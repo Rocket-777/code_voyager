@@ -22,6 +22,7 @@ const PlaceCard = (props) => {
     const [commentsData, setCommentsData] = useState('');
     const [placeData, setPlaceData] = useState(props.cardData);
 
+
     useEffect(()=>{
         if(showComments){
             getComments(setCommentsData, props.cardData._id);
@@ -45,21 +46,7 @@ const PlaceCard = (props) => {
                 {props.cardData.place_description}
             </StyledDescription>
             {props.isAuth ? <ButtonBlockContainer>
-                {props.cardData.approved ? <ButtonBlock>
-                    {/*<BlockButton color='secondary' variant='contained' onClick={e => {e.preventDefault(); handleLike();}}> /!* preventdefault - prevents button from acting as a link!!!*!/*/}
-                    {/*    <FavoriteBorderIcon sx={{marginRight: '0.4vw'}}/>*/}
-                    {/*    {placeData.likes}*/}
-                    {/*</BlockButton>*/}
-                    {/*<BlockButton variant='contained' onClick={e => {e.preventDefault(); setShowComments(!showComments)} }>*/}
-                    {/*    <CommentOutlinedIcon sx={{marginRight: '0.4vw'}}/>*/}
-                    {/*    {placeData.comments}*/}
-                    {/*</BlockButton>*/}
-                    {/*<BlockButton variant='contained'>*/}
-                    {/*    <StarBorderIcon  sx={{marginRight: '0.4vw'}}/>*/}
-                    {/*    В избранное*/}
-                    {/*</BlockButton>*/}
-
-                </ButtonBlock> : <ButtonBlock>
+                {props.cardData.approved ? null : <ButtonBlock>
                     <BlockButton color='secondary' variant='contained'
                                  onClick={e => {e.preventDefault(); approvePlace(props.cardData._id, props.setPlaces, props.placesState)}}>
                         <CheckOutlinedIcon sx={{marginRight: '0.4vw'}}/>

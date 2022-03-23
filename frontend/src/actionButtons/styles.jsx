@@ -16,6 +16,8 @@ const ActionContainer = styled('div')`
   margin: 0 auto 0 auto;
   padding: 1rem;
   //background-color: blue;
+  cursor: default;
+ 
   @media only screen and (max-width: 768px){
     flex-direction: column;
 
@@ -27,6 +29,7 @@ const ButtonContainer = styled('div')`
   display: flex;
   flex-direction: row;
   //background-color: coral;
+
   width: 45%;
   justify-content: space-between;
   @media only screen and (max-width: 1000px){
@@ -48,9 +51,14 @@ const ActionButton = styled(Button)`
   min-width: 5.5rem;
   transition: all 0.3s ease 0s;
   letter-spacing: 2px;
+  
   :hover {
     background-color: #8e99f3;
-    transform: translateY(-7px);
+    transform: translateY(-5px);
+  }
+  :active{
+    transform: none;
+    transition: all 0.1s ease 0s;
   }
   @media only screen and (max-width: 1000px){
     :hover {
@@ -76,7 +84,7 @@ const RemoveButton = styled(Button)`
   letter-spacing: 2px;
   :hover {
     background-color: red;
-    transform: translateY(-7px);
+    transform: translateY(-5px);
   }
   
 `

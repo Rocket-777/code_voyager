@@ -14,6 +14,7 @@ const StyledCard = styled(Card)`
   display: flex;
   flex-direction: row;
   width: 100%;
+  position: relative;
   
 `
 
@@ -23,9 +24,7 @@ const StyledTextInp = styled(TextField)`
   width: 100%;
   
   background-color: #e8ebff;
-  border-radius: 4px;  
-  
-  
+  border-radius: 4px;
 `;
 
 const SendFab = styled(Fab)`

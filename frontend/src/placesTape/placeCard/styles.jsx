@@ -6,7 +6,7 @@ const StyledCard = styled(Card)`
   flex-direction: column;
 
   width: 100%;
-
+  
   
   :hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -55,7 +55,7 @@ const ImageContainer = styled('div')`
 
 const StyledDescription = styled(Typography)`
   display: block;
-  margin: 1rem auto 1rem auto;
+  margin: 1rem auto 0 auto;
   width: 82%;
   background-color: #ededed;
   //flex-basis: 5rem;

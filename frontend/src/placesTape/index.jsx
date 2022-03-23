@@ -30,7 +30,9 @@ const PlacesTape = (props) => {
                 onClick={e => {e.preventDefault(); setDisplayPlaces('proposed'); }}>Предложения пользователей</StyledButton>
             </ButtonContainer> : null}
             { places ? places.map(item =>
-                <StyledLink to={'/places/' + item._id} key={item._id}  >
+
+                <StyledLink to={'/places/' + item._id} key={item._id}>
+
                 <PlaceCard  isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setPlaces} placesState={displayPlaces}
                             displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
                 </StyledLink>

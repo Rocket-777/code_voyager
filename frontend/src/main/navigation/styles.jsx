@@ -10,6 +10,18 @@ const StyledFabUpwards = styled(Fab)`
   background-color: #5c6bc0;
   height: 5rem;
   width: 5rem;
+  
+  animation: 0.5s ease 0s 1 appear;
+  
+  @keyframes appear{
+    0%{
+      transform: translateY(100%);
+    }
+    100%{
+      transform: translateY(0);
+    }
+  }
+  
   :hover{
     background-color: #8e99f3;
   }
@@ -18,6 +30,7 @@ const StyledFabUpwards = styled(Fab)`
     right: 3%;
     height: 4rem;
     width: 4rem;
+    animation: none;
   }
   
 `
@@ -31,6 +44,16 @@ const StyledFabBack = styled(Fab)`
   background-color: #5c6bc0;
   height: 5rem;
   width: 5rem;
+  animation: 0.5s ease 0s 1 appear;
+
+  @keyframes appear{
+    0%{
+      transform: translateY(100%);
+    }
+    100%{
+      transform: translateY(0);
+    }
+  }
   :hover{
     background-color: #8e99f3;
   }
@@ -39,6 +62,7 @@ const StyledFabBack = styled(Fab)`
     left: 3%;
     height: 4rem;
     width: 4rem;
+    animation: none;
   }
   
 `
