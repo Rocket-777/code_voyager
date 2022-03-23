@@ -13,9 +13,9 @@ const SendComment = (props) => {
             <InputContainer>
                 <StyledTextInp placeholder='Придумай комментарий...' size='small'  multiline={true} type='text' minRows={2}
                 onChange={e => setCommentVal(e.target.value)} value={commentVal}/>
-                <SendFab disabled={!commentVal} onClick={ async e => {await sendComment(commentVal, props.id, setCommentVal, props.updateComments);
-                      if(props.updatePlaceData){
-                          await updatePlaceData(props.id, props.updatePlaceData)
+                <SendFab disabled={!commentVal} onClick={ async e => {await sendComment(commentVal, props.id, setCommentVal, props.updateComments, props.commentOf);
+                      if(props.updateData){
+                          await props.updateData();
                       }}}>
                     <SendRoundedIcon sx={{fontSize: 25, color: 'white' }}/>
                 </SendFab>

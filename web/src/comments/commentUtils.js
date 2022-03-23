@@ -12,7 +12,12 @@ async function newComment(req, res, db){
     }
     if(signed){
         await db.collection('comments').insertOne({postId: req.body.postId , comment: req.body.comment, creator: signed});
-        await db.collection('places').updateOne({_id: ObjectId(req.body.postId)}, {$inc: {comments: 1}});
+        if(req.body.commentOf === 'places'){
+            await db.collection('places').updateOne({_id: ObjectId(req.body.postId)}, {$inc: {comments: 1}});
+        }else if(req.body.commentOf === 'posts'){
+            await db.collection('posts').updateOne({_id: ObjectId(req.body.postId)}, {$inc: {comments: 1}});
+        }
+
         res.send({response: 'success'});
 
     }
@@ -32,7 +37,7 @@ async function sendComments(req, res, db){
         item = {...item, usrImage: user.image, username: user.username};
         return item;
     }));
-    console.log(await result);
+
     res.send(await result);
 
     res.end();

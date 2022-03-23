@@ -14,7 +14,7 @@ import {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace, likeActio
 import crypto from 'crypto';
 import multer from 'multer';
 import {setUserImage, removeUsrImage} from "./usrData/userScripts.js";
-import {addPost, sendPosts, deletePost} from "./posts/postsScripts.js";
+import {addPost, sendPosts, deletePost, sendPostById, postLikeAction} from "./posts/postsScripts.js";
 import {fileURLToPath} from 'url';
 import path from "path";
 
@@ -85,6 +85,13 @@ app.post('/news', (req, res, next) => {
 app.get('/news', (req, res, next) => {
     sendPosts(req, res, db).catch(e => console.log(e));
 });
+app.get('/news/:id', (req, res, next) => {
+   sendPostById(req, res, db);
+});
+app.put('/news/:id/like', (req, res, next) => {
+    postLikeAction(req, res, db);
+});
+
 app.post('/users', (req, res, next) => {
     console.log('got a post req');
     submitNewUser(db,req.body.username,req.body.password,0, res).catch(e => console.log(e));

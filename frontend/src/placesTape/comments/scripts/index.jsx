@@ -2,8 +2,8 @@ import {postRequest} from "../../../httpUtils/httpRequests";
 import {getPosts} from "../../../httpUtils/httpRequests";
 import {getPlaceById} from "../../placeDetailed/scripts";
 
-async function sendComment(body, id, resetComment, updateComments){
-    const reqData = {postId: id, comment: body};
+async function sendComment(body, id, resetComment, updateComments, commentOf){
+    const reqData = {postId: id, comment: body, commentOf: commentOf};
     await postRequest(`http://localhost:3003/comments`, reqData);
     await getComments(updateComments, id);
     resetComment('');

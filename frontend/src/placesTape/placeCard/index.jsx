@@ -66,7 +66,7 @@ const PlaceCard = (props) => {
             {
                 showComments ? <div onClick={e=> e.preventDefault()}>
                     <Comments data={commentsData}/>
-                    <SendComment updateComments={setCommentsData} id={props.cardData._id} updatePlaceData={setPlaceData}/>
+                    <SendComment updateComments={setCommentsData} id={props.cardData._id} updateData={() => updatePlaceData(placeData._id, setPlaceData)} commentOf='places' />
                 </div> : null
             }
 

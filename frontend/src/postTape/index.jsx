@@ -29,7 +29,7 @@ const PostTape = (props) => {
             {props.isAuth ? <CreatePost setPosts={setPosts} handleSubmit={handleSubmit} /> : null}
             {posts ? posts.map(item => {
                 return <PostCard key={item._id} id={item._id} username={item.username} text={item.text}
-                                 setPosts={setPosts} userImg={item.usrImage} isPriveleged={item.isPrivileged}/>
+                                 setPosts={setPosts} userImg={item.usrImage} isPriveleged={item.isPrivileged} postData={item}/>
             }) : null}
             <Footer/>
         </PostTapeContainer>
