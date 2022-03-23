@@ -6,7 +6,7 @@ const StyledFabUpwards = styled(Fab)`
   position: absolute;
   //border: solid white 1px;
   right: 12%;
-  bottom: 12%;
+  bottom: 12vh;
   background-color: #5c6bc0;
   height: 5rem;
   width: 5rem;
