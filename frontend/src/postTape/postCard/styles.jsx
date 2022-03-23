@@ -48,6 +48,10 @@ const ButtonBlock = styled('div')`
   //margin: 0 auto 1vh auto;
   width: 50%;
   justify-content: flex-start;
+  @media only screen and (max-width: 1620px){
+    width: 60%;
+    justify-content: center;
+  }
   @media only screen and (max-width: 1360px){
     width: 70%;
     justify-content: center;
