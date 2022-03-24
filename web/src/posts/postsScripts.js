@@ -37,7 +37,7 @@ async function sendPostById(req, res, db) {
     let data = await db.collection('posts').findOne({_id: ObjectId(req.params.id)});
     const user = await db.collection('users').findOne({_id: ObjectId(data.creator)});
     const isPrivileged = req.signedCookies.admin || req.signedCookies.moderator;
-    if (isPrivileged || req.signedCookies.user === item.creator) {
+    if (isPrivileged || req.signedCookies.user === data.creator) {
         data = {...data, isPrivileged: true};
     } else {
         data = {...data, isPrivileged: false};
