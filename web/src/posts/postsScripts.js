@@ -84,9 +84,7 @@ async function sendPosts(req, res, db) {
 
             }
         })
-        // if(isLiked){
-        //     console.log(item.usersLiked);
-        // }
+
         item = {...item, isLiked: isLiked}
         return item;
     }))
