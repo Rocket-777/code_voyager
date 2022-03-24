@@ -57,7 +57,7 @@ async function sendPosts(req, res, db) {
     let data = await db.collection('posts').find({}).toArray();
     const isPrivileged = req.signedCookies.admin || req.signedCookies.moderator;
 
-    let isLiked = false;
+
     let userCurrent = null;
 
     if (req.signedCookies.user) {
@@ -69,19 +69,24 @@ async function sendPosts(req, res, db) {
     }
 
     const result = Promise.all(await data.map(async item => {
-
+        let isLiked = false;
         const user = await db.collection('users').findOne({_id: ObjectId(item.creator)});
         if (isPrivileged || req.signedCookies.user === item.creator) {
             item = {...item, usrImage: user.image, username: user.username, isPrivileged: true};
         } else {
             item = {...item, usrImage: user.image, username: user.username, isPrivileged: false};
         }
+
         item.usersLiked.map(it => {
 
             if (it === userCurrent) {
                 isLiked = true;
+
             }
         })
+        // if(isLiked){
+        //     console.log(item.usersLiked);
+        // }
         item = {...item, isLiked: isLiked}
         return item;
     }))
