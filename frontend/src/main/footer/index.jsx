@@ -1,4 +1,4 @@
-import {StyledFooter, Container, LogoInfo, Info, Text} from "./styles";
+import {StyledFooter, Container, LogoInfo, Info, Text, TechLogos, LogoText} from "./styles";
 
 const Footer = () => {
 
@@ -15,11 +15,16 @@ const Footer = () => {
                     Автор проекта и разработчик: Дереглазов К.Ю.
                 </Text>
             </Info>
+
             <LogoInfo>
-                <img src="/logoFooter.png" alt='logo' width={90} style={{}} />
-                <Text>
-                    Voyager
-                </Text>
+                <img src="/logoFooter.png" alt='logo' width={60} style={{}} />
+                <LogoText>
+                    VOYAGER
+                </LogoText>
+                <TechLogos>
+                    <img src="/nodeJsLogo.png" alt='logo' width={45} style={{}} />
+                    <img src="/reactLogo.png" alt='logo' width={45} style={{}} />
+                </TechLogos>
             </LogoInfo>
 
 

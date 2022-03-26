@@ -30,7 +30,15 @@ const LogoInfo = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto 2% auto auto
+  margin: auto 2% auto 2%;
+  
+`
+
+const TechLogos = styled('div')`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1% auto auto auto
   
 `
 
@@ -66,4 +74,20 @@ const Text = styled(Typography)`
     margin-top: 0.4rem;
   }
 `
-export {StyledFooter, Container, LogoInfo, Info, Text}
+
+const LogoText = styled(Typography)`
+  text-align: justify;
+  text-justify: inter-word;
+  color: #344086;
+  font-size: 0.9rem;
+  line-height: 1rem;
+  font-weight: bold;
+  margin-top: 0.1rem;
+  margin-bottom: 0.3rem;
+  @media only screen and (max-width: 420px){
+    font-size: 0.7rem;
+    margin-top: 0.4rem;
+  }
+`
+
+export {StyledFooter, Container, LogoInfo, Info, Text, TechLogos, LogoText}
