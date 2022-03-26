@@ -1,5 +1,4 @@
 import {MainLayout, ScrollContainer} from "./styles";
-import {NavigateTop} from "./navigation";
 import {Header} from "../header";
 import {LogInCard} from "../logIn";
 import {Routes, Route} from "react-router-dom";
@@ -12,7 +11,7 @@ import {PlacesTape} from "../placesTape";
 import {PostTape} from "../postTape";
 import {PlaceDetailed} from "../placesTape/placeDetailed";
 import {Home} from "../home";
-import {Footer} from "./footer";
+
 
 const Main = () => {
 

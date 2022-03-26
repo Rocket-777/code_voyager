@@ -15,10 +15,23 @@ const PlacesTape = (props) => {
 
 
     useEffect(()=>{
+       getPlaces(setPlaces, displayPlaces).then(res => handleScrollPos());
 
-        getPlaces(setPlaces, displayPlaces);
     }, [displayPlaces])
 
+
+    const handleScrollPos = () => {
+        const scrollPos = sessionStorage.getItem('scrollPosition');
+        if(scrollPos){
+            document.getElementById('placeTape').scrollTo(0, parseInt(scrollPos));
+            sessionStorage.removeItem('scrollPosition');
+        }
+    }
+
+    const handleTransition = () => {
+        const scrollPos = document.getElementById('placeTape').scrollTop.toString();
+        sessionStorage.setItem('scrollPosition', scrollPos);
+    }
 
     return(
 
@@ -33,7 +46,7 @@ const PlacesTape = (props) => {
             </ButtonContainer> : null}
             { places ? places.map(item =>
 
-                <StyledLink to={'/places/' + item._id} key={item._id}>
+                <StyledLink to={'/places/' + item._id} key={item._id} onClick={e => handleTransition()} >
 
                 <PlaceCard  isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setPlaces} placesState={displayPlaces}
                             displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>

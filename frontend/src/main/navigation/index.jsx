@@ -16,8 +16,6 @@ const NavigateTop = (props) => {
         }
     }, [])
 
-    //document.getElementById(props.elemId).scrollTo({top: 0, behavior: "smooth"})
-
     if (scrollPos > 1500) {
         return (<StyledFabUpwards onClick={e => animateScroll(document.getElementById(props.elemId), scrollPos )}>
             <KeyboardArrowUpIcon sx={{fontSize: 70, color: 'white'}}/>
@@ -29,9 +27,12 @@ const NavigateTop = (props) => {
 
 const NavigateBack = () => {
     const navigate = useNavigate();
+    function handleBack(){
+        navigate(-1);
+    }
 
     return(
-        <StyledFabBack onClick={e => navigate(-1)}>
+        <StyledFabBack onClick={e => handleBack()}>
             <KeyboardArrowLeftIcon sx={{fontSize: 70, color: 'white'}}/>
         </StyledFabBack>
     );

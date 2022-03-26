@@ -11,7 +11,7 @@ import {SendComment} from "../comments/sendComment";
 import {getComments} from "../comments/scripts";
 import {PrettyDivider} from "./divider";
 
-const PlaceDetailed = () => {
+const PlaceDetailed = (props) => {
 
     const [placeData, setPlaceData] = useState('');
     const [commentsData, setCommentsData] = useState('');
@@ -24,13 +24,15 @@ const PlaceDetailed = () => {
 
     useEffect(()=>{
        getComments(setCommentsData, params.id);
+
     }, [])
+
 
     if(!placeData.error){
         return(
             <Container id='detailedPlace'>
                 <NavigateTop elemId='detailedPlace'/>
-                <NavigateBack/>
+                <NavigateBack />
                 <StyledCard>
                     <StyledHeader variant='h4'>{placeData.place_name}</StyledHeader>
                     <ImageContainer>
