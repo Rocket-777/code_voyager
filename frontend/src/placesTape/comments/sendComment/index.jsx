@@ -1,9 +1,8 @@
 import {StyledCard, StyledTextInp, SendFab, InputContainer} from "./styles";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import {useState} from "react";
-import {sendComment, updatePlaceData} from "../scripts";
+import {sendComment} from "../scripts";
 
-//TODO REDO ASYNC REQUESTS WITH .then syntax like doSomTh().then(res => setSomeState(res))
 
 const SendComment = (props) => {
 

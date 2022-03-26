@@ -6,13 +6,23 @@ const StyledTextInp = styled(TextField)`
   width: 100%;
   
   background-color: #ededed;
-  
+  div{
+    ::after{
+      border-bottom: 2px solid #5c6bc0;
+    }
+  }
+
   
 `;
 
 const StyledButton = styled(Button)`
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  background-color: #5c6bc0;
+  text-transform: none;
+  :hover{
+    background-color: #8e99f3;
+  }
 `;
 
 const StyledCard = styled(Card)`

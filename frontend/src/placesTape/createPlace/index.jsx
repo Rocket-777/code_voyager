@@ -16,7 +16,7 @@ import {useState} from "react";
 import {postRequestWithFile} from "../../httpUtils/httpRequests.js";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import {getPlaces} from "../scripts/placesUtils";
 
 const PlaceCreator = (props) => {
@@ -105,7 +105,7 @@ const PlaceCreator = (props) => {
                     </UploadButton>
                 </UploadButtonContainer>}
             <StyledButton onClick={e => handleSubmit()}>
-                <SendOutlinedIcon sx={{marginRight: '0.4vw'}}/>
+                <SendRoundedIcon sx={{marginRight: '0.4vw'}}/>
                 {props.isPrivileged ? "Добавить" : "Предложить"}</StyledButton>
         </StyledCard>
 
