@@ -18,6 +18,8 @@ const PlacesTape = (props) => {
 
         getPlaces(setPlaces, displayPlaces);
     }, [displayPlaces])
+
+
     return(
 
         <PlacesTapeContainer id='placeTape' >

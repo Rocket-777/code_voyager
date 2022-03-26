@@ -3,9 +3,11 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {animateScroll} from "./scripts";
 
 const NavigateTop = (props) => {
     const [scrollPos, setScrollPos] = useState(0);
+
     useEffect(() => {
         const scrollAble = document.getElementById(props.elemId)
         scrollAble.addEventListener('scroll', () => setScrollPos(scrollAble.scrollTop));
@@ -14,9 +16,10 @@ const NavigateTop = (props) => {
         }
     }, [])
 
+    //document.getElementById(props.elemId).scrollTo({top: 0, behavior: "smooth"})
 
     if (scrollPos > 1500) {
-        return (<StyledFabUpwards onClick={e => document.getElementById(props.elemId).scrollTo({top: 0, behavior: "smooth"})}>
+        return (<StyledFabUpwards onClick={e => animateScroll(document.getElementById(props.elemId), scrollPos )}>
             <KeyboardArrowUpIcon sx={{fontSize: 70, color: 'white'}}/>
         </StyledFabUpwards>)
     } else {
