@@ -22,8 +22,8 @@ function animateScroll(doc, initialPosition){
         if(position < 0){
             position = 0;
         }
-
-        doc.scrollTo(0, position);
+        console.log(relativeProgress);
+        doc.scrollTo({top: position, behavior: 'instant'});
         if(elapsed < duration){
             animationFrame = window.requestAnimationFrame(step);
         }
