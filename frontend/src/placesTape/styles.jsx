@@ -24,9 +24,11 @@ const ButtonContainer = styled('div')`
   display: flex;
   flex-direction: row;
   width: 60%;
+  height: 5vh;
   margin: 4vh auto 0 auto;
   @media only screen and (max-width: 1000px){
-    width: 90%
+    width: 90%;
+    height: 10vh;
   }
   
 `;

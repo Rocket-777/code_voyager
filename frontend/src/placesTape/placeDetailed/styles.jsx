@@ -101,4 +101,8 @@ const DividerTypography = styled(Typography)`
 
 `
 
-export {Container, StyledCard, StyledHeader, ShortDescription, FullDescription, Info, StyledDivider, DividerTypography}
+
+
+
+export {Container, StyledCard, StyledHeader, ShortDescription,
+    FullDescription, Info, StyledDivider, DividerTypography}

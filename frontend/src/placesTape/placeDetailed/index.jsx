@@ -1,5 +1,6 @@
 import {useParams} from "react-router-dom";
-import {Container, StyledCard, StyledHeader, ShortDescription, FullDescription, Info} from "./styles";
+import {Container, StyledCard, StyledHeader, ShortDescription,
+    FullDescription, Info} from "./styles";
 import {ImageContainer, NoImage} from "../placeCard/styles";
 import {MarginContainer} from "../comments/sendComment/styles";
 import {Footer} from "../../main/footer";
@@ -49,12 +50,10 @@ const PlaceDetailed = (props) => {
                     <Info>{'PLACE_ID: ' + params.id + ' _info'}</Info>
                     <Comments data={commentsData}/>
 
-
                 </StyledCard>
                 <MarginContainer>
                     <SendComment id={params.id} updateComments={setCommentsData} updatePlaceData={null}/>
                 </MarginContainer>
-
                 <Footer/>
             </Container>
         );
