@@ -2,9 +2,19 @@ import {getPlacesRequest} from "../../httpUtils/httpRequests";
 
 async function getPlaces(setPlaces, param) {
     const data = await getPlacesRequest(`http://localhost:3003/places/${param}`);
+    if(data){
+        setPlaces(data.reverse());
+    }
 
-    setPlaces(data.reverse());
 
 }
 
-export {getPlaces}
+async function getFavorites(setPlaces){
+    const data = await getPlacesRequest('http://localhost:3003/places/favorites');
+    if(data){
+        setPlaces(data.reverse());
+    }
+
+}
+
+export {getPlaces, getFavorites}

@@ -14,7 +14,7 @@ const PlacesTapeContainer = styled('div')`
   
   flex-flow: row wrap;
   overflow-y: auto;
-  scroll-behavior: smooth;
+  
   //margin-bottom: 5px;
   
   //padding-bottom: 5px;

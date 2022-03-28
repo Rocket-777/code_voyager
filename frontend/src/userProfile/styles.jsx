@@ -3,7 +3,10 @@ import {styled} from "@mui/material/styles";
 
 const Container = styled('div')`
   overflow-y: auto;
-
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  flex-flow: row wrap;
 `
 
 const StyledHeader = styled(Typography)`
@@ -69,6 +72,7 @@ const StyledCard = styled(Card)`
   flex-direction: column;
   width: 60vw;
   height: auto;
+  
   margin: 3rem auto auto auto;
 
   background-color: #bec9eb;
@@ -118,6 +122,31 @@ const UploadButtonContainer = styled('label')`
   width: 100%;
   margin: 2vh auto 0 auto;
 `;
+
+const FavoriteContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
+  
+  width: 100%;
+  margin: auto;
+
+`
+
+const FavoritesHeader = styled(Typography)`
+  display: flex;
+  flex-direction: row;
+  margin: 1rem auto 0 auto;
+  font-size: 1.7rem;
+
+  background-color: #5c6bc0;
+  padding-left: 0.8rem;
+  color: white;
+  width: 13rem;
+  border-radius: 45px;
+  align-items: center;
+  justify-content: center;
+  
+`
 export {
     StyledCard,
     StyledTypography,
@@ -128,5 +157,7 @@ export {
     StyledImageOps,
     UploadButtonContainer,
     UploadButton,
-    Container
+    Container,
+    FavoriteContainer,
+    FavoritesHeader
 }

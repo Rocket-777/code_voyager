@@ -6,13 +6,14 @@ import {initPosts} from "./scripts/postsScr";
 import {NavigateTop} from "../main/navigation";
 import {Footer} from "../main/footer";
 import {postRequest} from "../httpUtils/httpRequests";
+import {Loader} from "../main/loading";
 
 const PostTape = (props) => {
     const [posts, setPosts] = useState(null);
-
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
 
-            initPosts().then(res => setPosts(res.reverse()));
+            initPosts().then(res =>{setIsLoading(false); setPosts(res.reverse())} );
     }, []);
 
     async function handleSubmit(textVal){
@@ -26,11 +27,12 @@ const PostTape = (props) => {
 
         <PostTapeContainer id='postTape'>
             <NavigateTop elemId='postTape'/>
-            {props.isAuth ? <CreatePost setPosts={setPosts} handleSubmit={handleSubmit} /> : null}
-            {posts ? posts.map(item => {
+            {props.isAuth && !isLoading ? <CreatePost setPosts={setPosts} handleSubmit={handleSubmit} /> : null}
+            {posts && !isLoading ? posts.map(item => {
                 return <PostCard key={item._id} id={item._id} username={item.username} text={item.text}
                                  setPosts={setPosts} userImg={item.usrImage} isPriveleged={item.isPrivileged} postData={item}/>
             }) : null}
+            {isLoading ? <Loader/> : null}
             <Footer/>
         </PostTapeContainer>
     );

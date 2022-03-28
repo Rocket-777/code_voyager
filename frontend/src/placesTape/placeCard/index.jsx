@@ -33,7 +33,12 @@ const PlaceCard = (props) => {
 
     async function handleFavorite(){
         await favoriteAction(placeData._id);
-        await updatePlaceData(placeData._id, setPlaceData);
+        if(!props.updateFavorites){
+            await updatePlaceData(placeData._id, setPlaceData);
+        }
+        if(props.updateFavorites){
+            props.updateFavorites();
+        }
     }
 
     return(

@@ -6,7 +6,7 @@ import {usrInit} from "../userProfile/scripts/usrInit";
 import {Avatar} from "@mui/material";
 
 const Header = (props) => {
-    const usrImage = props.usrData.image ? props.usrData.image : 'noimage.png';
+    const usrImage = props.usrData.image ? props.usrData.image : null;
 
     return (
 

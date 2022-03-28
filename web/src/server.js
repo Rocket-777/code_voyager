@@ -11,7 +11,7 @@ import {cookieAuthorization} from "./authorization/index.js";
 import {sendUserData} from "./usrData/getUsrData.js";
 import {cookieDenie} from "./authorization/cookieUtils.js";
 import {addNewPlace, sendPlaces, removePlace, approvePlace,
-    sendPlace, likeAction, favoriteAction} from "./places/placesScripts.js";
+    sendPlace, likeAction, favoriteAction, sendFavorites} from "./places/placesScripts.js";
 import crypto from 'crypto';
 import multer from 'multer';
 import {setUserImage, removeUsrImage} from "./usrData/userScripts.js";
@@ -111,9 +111,14 @@ app.post('/places/new', upload.single('image') , (req, res, next) => {
 app.post('/comments', upload.single('image') , (req, res, next) => {
     newComment(req, res, db).catch(e => console.log(e));
 });
+app.get('/places/favorites', (req, res, next) => {
+    sendFavorites(req, res, db).catch(e => console.log(e));
+});
+
 app.get('/places/:state', (req, res, next) => {
     sendPlaces(req, res, db).catch(e => console.log(e));
 });
+
 app.get('/places/id/:id', (req, res, next) => {
     sendPlace(req, res, db).catch(e => console.log(e));
 });

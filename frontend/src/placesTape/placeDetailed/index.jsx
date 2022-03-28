@@ -13,12 +13,13 @@ import {getComments} from "../comments/scripts";
 import {PrettyDivider} from "./divider";
 import {ActionButtons} from "../../actionButtons";
 import {likeAction, favoriteAction} from "../placeCard/scripst/placeCardScripts";
-
+import {Loader} from "../../main/loading";
 
 const PlaceDetailed = (props) => {
 
     const [placeData, setPlaceData] = useState('');
     const [commentsData, setCommentsData] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
     const params = useParams();
 
     async function handleLike(){
@@ -32,7 +33,7 @@ const PlaceDetailed = (props) => {
     }
 
     useEffect(()=>{
-        getPlaceById(params.id, setPlaceData);
+        getPlaceById(params.id, setPlaceData).then(res => setIsLoading(false));
     }, [])
 
 
@@ -42,7 +43,7 @@ const PlaceDetailed = (props) => {
     }, [])
 
 
-    if(!placeData.error){
+    if(!placeData.error && !isLoading){
         return(
             <Container id='detailedPlace'>
                 <NavigateTop elemId='detailedPlace'/>
@@ -77,9 +78,16 @@ const PlaceDetailed = (props) => {
             </Container>
         );
     }
-    else{
+    else if(placeData.error){
         return(
             <h1>{placeData.error}</h1>
+        );
+    } else if(isLoading){
+        return(
+            <Container>
+                <Loader/>
+                <Footer/>
+            </Container>
         );
     }
 

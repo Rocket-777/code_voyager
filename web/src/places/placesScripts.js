@@ -20,6 +20,26 @@ async function addNewPlace (req, res, db){
     res.end();
 }
 
+async function sendFavorites (req, res, db){
+
+    const user = getUser(req.signedCookies);
+    const userData = await db.collection('users').findOne({_id: ObjectId(user)}).catch(e => console.log(e));
+    if(userData){
+        const result = Promise.all(userData.favorites.map(async item => {
+            const data = await db.collection('places').findOne({_id: ObjectId(item)}).catch(e => console.log(e));
+            let isLiked = false;
+            data.usersLiked.map(it => {
+                if(it === user){
+                    isLiked = true;
+                }
+            });
+            return {...data, isLiked: isLiked, isFavorite: true}
+        }));
+        res.send(await result);
+    }
+    res.end();
+}
+
 async function sendPlaces (req, res, db){
     let searchParam = null;
     const user = getUser(req.signedCookies);
@@ -210,4 +230,4 @@ async function favoriteAction(req, res, db){
     res.end();
 }
 
-export {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace, likeAction, favoriteAction}
+export {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace, likeAction, favoriteAction, sendFavorites}
