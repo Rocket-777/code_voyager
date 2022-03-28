@@ -101,8 +101,26 @@ const DividerTypography = styled(Typography)`
 
 `
 
-
+const ActionButtonContainer = styled('div')`
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 82%;
+  div {
+    padding-left: 0;
+    margin-left: 0;
+    width: 50%;
+    @media only screen and (max-width: 1000px){
+      width: 100%
+    }
+  }
+  @media only screen and (max-width: 1000px){
+    width: 90%
+  }
+  
+  
+`
 
 
 export {Container, StyledCard, StyledHeader, ShortDescription,
-    FullDescription, Info, StyledDivider, DividerTypography}
+    FullDescription, Info, StyledDivider, DividerTypography, ActionButtonContainer}

@@ -41,7 +41,7 @@ const PostCard = (props) => {
             <ButtonBlock>
                 <ActionButtons removeVisible={props.isPriveleged} removeAction={() => deletePost(props.id, props.setPosts)}
                 likeCount={postData.likes} commentCount={postData.comments} isLiked={postData.isLiked} likeAction={() => handleLike()}
-                               commentAction={() => setShowComments(!showComments)} />
+                               commentAction={() => setShowComments(!showComments)} commentVisible={true}/>
             </ButtonBlock>
             {showComments ?  <div>
                 <Comments data={commentsData} />

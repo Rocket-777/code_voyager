@@ -12,12 +12,12 @@ const PostTape = (props) => {
 
     useEffect(() => {
 
-            initPosts().then(res => setPosts(res));
+            initPosts().then(res => setPosts(res.reverse()));
     }, []);
 
     async function handleSubmit(textVal){
         await postRequest('http://localhost:3003/news', {postBody: textVal}).then(res => res).catch(e => console.log(e));
-        await initPosts().then(res => setPosts(res));
+        await initPosts().then(res => setPosts(res.reverse()));
 
     }
 

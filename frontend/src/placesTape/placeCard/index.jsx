@@ -1,9 +1,6 @@
 import {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage, ButtonBlock, BlockButton,
 ButtonBlockContainer} from "./styles";
-import FavoriteBorderIcon  from '@mui/icons-material/FavoriteBorder';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import {removePlace, approvePlace} from "./scripst/placeCardScripts";
@@ -11,7 +8,7 @@ import {Comments} from "../comments";
 import {SendComment} from "../comments/sendComment";
 import {useEffect, useState} from "react";
 import {getComments} from "../comments/scripts";
-import {likeAction} from "./scripst/placeCardScripts";
+import {likeAction, favoriteAction} from "./scripst/placeCardScripts";
 import {updatePlaceData} from "../comments/scripts";
 import {ActionButtons} from "../../actionButtons";
 
@@ -33,6 +30,12 @@ const PlaceCard = (props) => {
         await likeAction(placeData._id);
         await updatePlaceData(placeData._id, setPlaceData)
     }
+
+    async function handleFavorite(){
+        await favoriteAction(placeData._id);
+        await updatePlaceData(placeData._id, setPlaceData);
+    }
+
     return(
         <StyledCard >
 
@@ -60,8 +63,10 @@ const PlaceCard = (props) => {
                 </ButtonBlock>}
             </ButtonBlockContainer> : null}
             <ActionButtons likeCount={placeData.likes} commentCount={placeData.comments} isLiked={placeData.isLiked}
-                           likeAction={handleLike} commentAction={() => setShowComments(!showComments)} favoriteVisible={true}
-                           removeAction={() => removePlace(props.cardData._id, props.setPlaces, props.placesState)} removeVisible={props.displayRemoveButton}/>
+                           likeAction={() => handleLike()} commentAction={() => setShowComments(!showComments)} favoriteVisible={true}
+                           removeAction={() => removePlace(props.cardData._id, props.setPlaces, props.placesState)}
+                           removeVisible={props.displayRemoveButton} commentVisible={true}
+                           favoriteAction={() => handleFavorite()} isFavorite={placeData.isFavorite}/>
 
             {
                 showComments ? <div onClick={e=> e.preventDefault()}>

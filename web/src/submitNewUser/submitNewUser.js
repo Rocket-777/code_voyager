@@ -6,7 +6,7 @@ async function submitNewUser(dbClient, name, password, status, res){ //TODO conn
         console.log('UserExist');
         userExists = 'UserExists';
     }else{
-        await dbClient.collection('users').insertOne({username: name, password: password, status: status, image: null}).then(res => console.log(res));
+        await dbClient.collection('users').insertOne({username: name, password: password, status: status, image: null, favorites: []}).then(res => console.log(res));
 
     }
     res.send({status: userExists});

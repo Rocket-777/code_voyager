@@ -15,7 +15,7 @@ const PlacesTape = (props) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(()=>{
-       getPlaces(setPlaces, displayPlaces).then(res => {handleScrollPos(); setIsLoading(false)});
+       getPlaces(setPlaces, displayPlaces).then(res => {setIsLoading(false); handleScrollPos(); });
 
     }, [displayPlaces])
 

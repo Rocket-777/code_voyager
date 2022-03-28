@@ -22,4 +22,8 @@ async function likeAction(id){
 
 }
 
-export {removePlace, approvePlace, likeAction}
+async function favoriteAction(id){
+    await putReq(`http://localhost:3003/places/${id}/favorite`, null);
+}
+
+export {removePlace, approvePlace, likeAction, favoriteAction}

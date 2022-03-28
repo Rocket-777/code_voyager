@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import {Container, StyledCard, StyledHeader, ShortDescription,
-    FullDescription, Info} from "./styles";
+    FullDescription, Info, ActionButtonContainer} from "./styles";
 import {ImageContainer, NoImage} from "../placeCard/styles";
 import {MarginContainer} from "../comments/sendComment/styles";
 import {Footer} from "../../main/footer";
@@ -11,12 +11,25 @@ import {Comments} from "../comments";
 import {SendComment} from "../comments/sendComment";
 import {getComments} from "../comments/scripts";
 import {PrettyDivider} from "./divider";
+import {ActionButtons} from "../../actionButtons";
+import {likeAction, favoriteAction} from "../placeCard/scripst/placeCardScripts";
+
 
 const PlaceDetailed = (props) => {
 
     const [placeData, setPlaceData] = useState('');
     const [commentsData, setCommentsData] = useState('');
     const params = useParams();
+
+    async function handleLike(){
+        await likeAction(placeData._id);
+        await getPlaceById(params.id, setPlaceData);
+    }
+
+    async function handleFavorite(){
+        await favoriteAction(placeData._id);
+        await getPlaceById(params.id, setPlaceData);
+    }
 
     useEffect(()=>{
         getPlaceById(params.id, setPlaceData);
@@ -48,6 +61,12 @@ const PlaceDetailed = (props) => {
                         <NoImage variant='h2'>MAP_PLACEHOLDER</NoImage>
                     </ImageContainer>
                     <Info>{'PLACE_ID: ' + params.id + ' _info'}</Info>
+                    <ActionButtonContainer>
+                        <ActionButtons favoriteVisible={true} isFavorite={placeData.isFavorite}
+                                       isLiked={placeData.isLiked} removeVisible={false}
+                                       likeCount={placeData.likes} likeAction={() => handleLike()} favoriteAction={() => handleFavorite()}/>
+                    </ActionButtonContainer>
+
                     <Comments data={commentsData}/>
 
                 </StyledCard>

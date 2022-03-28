@@ -10,7 +10,8 @@ import {getAllUsers} from "./dbUtils/mongoUtils.js";
 import {cookieAuthorization} from "./authorization/index.js";
 import {sendUserData} from "./usrData/getUsrData.js";
 import {cookieDenie} from "./authorization/cookieUtils.js";
-import {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace, likeAction} from "./places/placesScripts.js";
+import {addNewPlace, sendPlaces, removePlace, approvePlace,
+    sendPlace, likeAction, favoriteAction} from "./places/placesScripts.js";
 import crypto from 'crypto';
 import multer from 'multer';
 import {setUserImage, removeUsrImage} from "./usrData/userScripts.js";
@@ -20,8 +21,6 @@ import path from "path";
 
 const app = express(); // Application variable
 const port = 3003; // Server listening port
-
-
 
 
 const mongoUri = "mongodb://root:root123@localhost:27015/?authSource=admin";
@@ -52,8 +51,6 @@ app.use(express.json());
 
 
 
-
-
 let db = null;
 dbClient.connect(function(err, client){
     if(err){
@@ -68,11 +65,8 @@ dbClient.connect(function(err, client){
 
 
 async function sendUsers(req ,res, ){
-
     await getAllUsers(db, req).then(response => res.send(JSON.stringify(response)));
-
     res.end();
-
 }
 
 app.delete('/news/:id', (req, res, next) => {
@@ -95,8 +89,6 @@ app.put('/news/:id/like', (req, res, next) => {
 app.post('/users', (req, res, next) => {
     console.log('got a post req');
     submitNewUser(db,req.body.username,req.body.password,0, res).catch(e => console.log(e));
-
-
 });
 
 app.get('/login', (req, res, next) => {
@@ -117,23 +109,27 @@ app.post('/places/new', upload.single('image') , (req, res, next) => {
     addNewPlace(req, res, db).catch(e => console.log(e));
 });
 app.post('/comments', upload.single('image') , (req, res, next) => {
-    newComment(req, res, db);
+    newComment(req, res, db).catch(e => console.log(e));
 });
 app.get('/places/:state', (req, res, next) => {
     sendPlaces(req, res, db).catch(e => console.log(e));
 });
 app.get('/places/id/:id', (req, res, next) => {
-    sendPlace(req, res, db);
+    sendPlace(req, res, db).catch(e => console.log(e));
 });
 app.delete('/places', (req, res, next) => {
-    removePlace(req, res, db, uploadPath);
+    removePlace(req, res, db, uploadPath).catch(e => console.log(e));
 });
 app.put('/places/:id', (req, res, next) => {
-    approvePlace(req, res, db);
+    approvePlace(req, res, db).catch(e => console.log(e));
 });
 app.put('/places/:id/like', (req, res, next) => {
-    likeAction(req, res, db);
+    likeAction(req, res, db).catch(e => console.log(e));
 });
+app.put('/places/:id/favorite', (req, res, next) => {
+    favoriteAction(req, res, db).catch(e => console.log(e));
+});
+
 app.get('/users', (req, res, next) => {
     sendUsers(req, res).catch(e => console.log(e));
 });

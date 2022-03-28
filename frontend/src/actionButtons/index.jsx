@@ -3,7 +3,7 @@ RemoveContainer, RemoveButton, RemoveSign} from "./styles";
 
 
 const ActionButtons = ({isLiked, likeCount, commentCount, isFavorite,
-                       likeAction, commentAction, favoriteAction, favoriteVisible,
+                       likeAction, commentVisible,commentAction, favoriteAction, favoriteVisible,
                            removeAction, removeVisible}) => {
 
 
@@ -14,12 +14,13 @@ const ActionButtons = ({isLiked, likeCount, commentCount, isFavorite,
                     {isLiked ? <LikeActive/> : <LikeInactive/>}
                     {likeCount !== 0 ? likeCount : null}
                 </ActionButton>
-                <ActionButton onClick={e =>  commentAction()} id='comment-button'  >
+
+                {commentVisible ? <ActionButton onClick={e =>  commentAction()} id='comment-button'  >
                     <CommentSign/>
                     {commentCount !== 0 ? commentCount : null}
-                </ActionButton>
+                </ActionButton> : null}
 
-                { favoriteVisible ?  <ActionButton>
+                { favoriteVisible ?  <ActionButton onClick={e => favoriteAction()} >
                     {isFavorite ? <FavoriteActive/> : <FavoriteInactive/>}
                 </ActionButton> : null}
             </ButtonContainer>

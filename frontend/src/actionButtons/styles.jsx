@@ -115,7 +115,7 @@ const FavoriteInactive = styled(StarOutlineRoundedIcon)`
 
 const FavoriteActive = styled(StarRoundedIcon)`
   font-size: 1.8rem;
-  color: white;
+  color: #ffcc66;
   margin: 0 3px 0 3px;
 `
 const RemoveContainer = styled('div')`
