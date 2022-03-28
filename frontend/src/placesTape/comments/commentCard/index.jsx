@@ -3,7 +3,7 @@ import {Avatar} from "@mui/material";
 import { Divider } from '@mui/material';
 
 const CommentCard = (props) => {
-    const usrImg = props.usrImg ? props.usrImg : 'noimage.png';
+    const usrImg = props.usrImg ? props.usrImg : null;
 
     return(
         <Comment>
