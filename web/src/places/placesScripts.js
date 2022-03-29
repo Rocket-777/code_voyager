@@ -31,14 +31,14 @@ async function sendFavorites(req, res, db) {
         const result = Promise.all(userData.favorites.map(async item => {
             const data = await db.collection('places').findOne({_id: ObjectId(item)}).catch(e => console.log(e));
             let isLiked = false;
-            if(data){
-                data.usersLiked.map(it => {
-                    if (it === user) {
-                        isLiked = true;
-                    }
-                });
-                return {...data, isLiked: isLiked, isFavorite: true}
-            }
+
+            data.usersLiked.map(it => {
+                if (it === user) {
+                    isLiked = true;
+                }
+            });
+
+            return {...data, isLiked: isLiked, isFavorite: true}
 
         }));
         res.send(await result);
@@ -135,8 +135,22 @@ async function removePlace(req, res, db, uplPath) {
                 }
             });
         }
+        const users = await db.collection('users').find({}).toArray();
 
+            users.map(item => {
+            item.favorites.map(async it => {
+
+                if(it === req.body.key){
+                    await db.collection('users').updateOne({_id: item._id}, {
+                        $pull: {
+                            favorites: req.body.key
+                        }
+                    })
+                }
+            })
+        });
         await db.collection('places').deleteOne({_id: ObjectId(req.body.key)}).catch(e => console.log(e));
+
         await db.collection('comments').deleteMany({postId: req.body.key}).catch(e => console.log(e));
     }
     res.end();

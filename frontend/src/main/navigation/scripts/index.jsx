@@ -7,7 +7,7 @@ function animateScroll(doc, initialPosition){
     let start;
     let position ;
     let animationFrame;
-    let duration = 4000;
+    let duration = 3000;
 
     function step(timestamp){
         if(!start){

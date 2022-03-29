@@ -58,7 +58,7 @@ const StyledTypography = styled(Typography)`
   height: 3vh;
   border-radius: 5px;
 
-  border: 2px solid #6c78b8;
+ // border: 2px solid #6c78b8;
   @media only screen and (max-width: 1000px){
     font-size: 2vh;
     width: 60%;
@@ -76,7 +76,7 @@ const StyledCard = styled(Card)`
   margin: 3rem auto auto auto;
 
   background-color: #bec9eb;
-  border: 4px solid #1a237e;
+  //border: 4px solid #1a237e;
   @media only screen and (max-width: 1000px){
     width: 90%
   }

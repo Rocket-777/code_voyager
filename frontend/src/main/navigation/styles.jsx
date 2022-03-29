@@ -11,11 +11,11 @@ const StyledFabUpwards = styled(Fab)`
   height: 5rem;
   width: 5rem;
   
-  animation: 0.5s linear 0s 1 appearUp;
+  animation: 0.3s linear 0s 1 appearUp;
   
   @keyframes appearUp{
     0%{
-      transform: translateY(4vh);
+      transform: translateY(2vh);
       
     }
     65%{
