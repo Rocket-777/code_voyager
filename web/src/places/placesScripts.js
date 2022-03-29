@@ -27,13 +27,16 @@ async function sendFavorites (req, res, db){
     if(userData){
         const result = Promise.all(userData.favorites.map(async item => {
             const data = await db.collection('places').findOne({_id: ObjectId(item)}).catch(e => console.log(e));
-            let isLiked = false;
-            data.usersLiked.map(it => {
-                if(it === user){
-                    isLiked = true;
-                }
-            });
-            return {...data, isLiked: isLiked, isFavorite: true}
+            if(data){
+                let isLiked = false;
+                data.usersLiked.map(it => {
+                    if(it === user){
+                        isLiked = true;
+                    }
+                });
+                return {...data, isLiked: isLiked, isFavorite: true}
+            }
+
         }));
         res.send(await result);
     }
