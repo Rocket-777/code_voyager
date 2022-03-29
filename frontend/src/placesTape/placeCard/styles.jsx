@@ -83,9 +83,11 @@ const NoImage = styled(Typography)`
   border-radius: 8px;
   font-weight: bolder;
   border: solid 2px #d4d4d4;
+  overflow-wrap: anywhere;
   @media only screen and (max-width: 1000px){
-    width: 100%;
-    font-size: 5vh;
+    width: 60%;
+    font-size: 3vh;
+    overflow-wrap: anywhere;
     
   }
   
