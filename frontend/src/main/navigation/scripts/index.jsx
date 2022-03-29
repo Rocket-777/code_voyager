@@ -7,7 +7,7 @@ function animateScroll(doc, initialPosition){
     let start;
     let position ;
     let animationFrame;
-    let duration = 3000;
+    let duration = 4000;
 
     function step(timestamp){
         if(!start){
@@ -24,7 +24,7 @@ function animateScroll(doc, initialPosition){
         }
 
         doc.scrollTo({top: position, behavior: 'instant'});
-        if(elapsed < duration){
+       if(elapsed < duration){
             animationFrame = window.requestAnimationFrame(step);
         }
         if(position === 0){

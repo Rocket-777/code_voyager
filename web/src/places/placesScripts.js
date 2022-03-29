@@ -4,33 +4,36 @@ import path from "path";
 import {getUser} from "../utils/index.js";
 
 
-async function addNewPlace (req, res, db){
+async function addNewPlace(req, res, db) {
     let pathToImage = null;
-    if(req.file){
+    if (req.file) {
         pathToImage = `http://localhost:3003/uploads/${req.file.filename}`;
     }
-    if(req.signedCookies.moderator || req.signedCookies.admin){
-        await db.collection('places').insertOne({place_name: req.body.placeName, place_description: req.body.placeDescription,
-            usersLiked: [], comments: 0, likes: 0, image: pathToImage, favoriteCount: 0, approved: true}).then(res => console.log(res));
-    }
-    else if(req.signedCookies.user){
-        await db.collection('places').insertOne({place_name: req.body.placeName, place_description: req.body.placeDescription,
-            usersLiked: [], comments: 0, likes: 0,  image: pathToImage, favoriteCount: 0, approved: false}).then(res => console.log(res));
+    if (req.signedCookies.moderator || req.signedCookies.admin) {
+        await db.collection('places').insertOne({
+            place_name: req.body.placeName, place_description: req.body.placeDescription,
+            usersLiked: [], comments: 0, likes: 0, image: pathToImage, favoriteCount: 0, approved: true
+        }).then(res => console.log(res));
+    } else if (req.signedCookies.user) {
+        await db.collection('places').insertOne({
+            place_name: req.body.placeName, place_description: req.body.placeDescription,
+            usersLiked: [], comments: 0, likes: 0, image: pathToImage, favoriteCount: 0, approved: false
+        }).then(res => console.log(res));
     }
     res.end();
 }
 
-async function sendFavorites (req, res, db){
+async function sendFavorites(req, res, db) {
 
     const user = getUser(req.signedCookies);
     const userData = await db.collection('users').findOne({_id: ObjectId(user)}).catch(e => console.log(e));
-    if(userData){
+    if (userData) {
         const result = Promise.all(userData.favorites.map(async item => {
             const data = await db.collection('places').findOne({_id: ObjectId(item)}).catch(e => console.log(e));
+            let isLiked = false;
             if(data){
-                let isLiked = false;
                 data.usersLiked.map(it => {
-                    if(it === user){
+                    if (it === user) {
                         isLiked = true;
                     }
                 });
@@ -43,33 +46,33 @@ async function sendFavorites (req, res, db){
     res.end();
 }
 
-async function sendPlaces (req, res, db){
+async function sendPlaces(req, res, db) {
     let searchParam = null;
     const user = getUser(req.signedCookies);
     const userData = await db.collection('users').findOne({_id: ObjectId(user)}).catch(e => console.log(e));
 
-    if(req.params.state === 'approved'){
-        searchParam = {approved : true};
+    if (req.params.state === 'approved') {
+        searchParam = {approved: true};
     }
-    if(req.params.state === 'proposed' && (req.signedCookies.moderator || req.signedCookies.admin)){
-        searchParam = {approved : false};
+    if (req.params.state === 'proposed' && (req.signedCookies.moderator || req.signedCookies.admin)) {
+        searchParam = {approved: false};
     }
-    if(searchParam){
+    if (searchParam) {
         const data = await db.collection('places').find(searchParam).toArray().then(res => res).catch(e => console.log(e));
         const result = data.map(item => {
             let isLiked = false;
             let isFavorite = false;
             const id = item._id.toString();
-            if(userData){
+            if (userData) {
                 userData.favorites.map(item => {
-                    if(item === id){
+                    if (item === id) {
                         isFavorite = true;
                     }
                 });
             }
 
-            item.usersLiked.map( it => {
-                if(it === user){
+            item.usersLiked.map(it => {
+                if (it === user) {
                     isLiked = true;
                 }
             })
@@ -85,51 +88,49 @@ async function sendPlaces (req, res, db){
 
 }
 
-async function sendPlace(req, res, db){
+async function sendPlace(req, res, db) {
 
 
-    if(req.params.id.length === 24){
+    if (req.params.id.length === 24) {
         const place = await db.collection('places').findOne({_id: ObjectId(req.params.id)}).catch(e => console.log(e));
-        let islkd =  false;
+        let islkd = false;
         let isFavorite = false;
         const user = getUser(req.signedCookies);
         const userData = await db.collection('users').findOne({_id: ObjectId(user)}).catch(e => console.log(e));
 
-        if(userData){
+        if (userData) {
             userData.favorites.map(item => {
-                if(item === req.params.id){
+                if (item === req.params.id) {
                     isFavorite = true;
                 }
             });
         }
 
         place.usersLiked.map(item => {
-            if(item === user){
-                islkd =  true;
+            if (item === user) {
+                islkd = true;
             }
         })
-        if(place){
+        if (place) {
             res.send({...place, isLiked: islkd, isFavorite: isFavorite});
-        }
-        else{
+        } else {
             res.send({error: 'NOT_FOUND'});
         }
-    }
-    else{
+    } else {
         res.send({error: 'NOT_FOUND; INVALID_ID'});
     }
 
     res.end();
 }
 
-async function removePlace(req, res, db, uplPath){
+async function removePlace(req, res, db, uplPath) {
 
     const place = await db.collection('places').findOne({_id: ObjectId(req.body.key)}).catch(e => console.log(e));
-    if(place){
-        if(place.image){
+    if (place) {
+        if (place.image) {
             const imagePath = place.image.split('/').pop();
             fs.unlink(path.resolve(uplPath + imagePath), (err) => {
-                if(err){
+                if (err) {
                     console.log(err)
                 }
             });
@@ -142,7 +143,7 @@ async function removePlace(req, res, db, uplPath){
 }
 
 
-async function approvePlace(req, res, db){
+async function approvePlace(req, res, db) {
     const update = {
         $set: {
             approved: req.body.approved
@@ -154,35 +155,34 @@ async function approvePlace(req, res, db){
 }
 
 
-async function likeAction(req, res, db){
+async function likeAction(req, res, db) {
     const user = getUser(req.signedCookies);
 
-    if(user){
+    if (user) {
         const place = await db.collection('places').findOne({_id: ObjectId(req.params.id)}).catch(e => console.log(e));
         let isLiked = false;
 
         place.usersLiked.map(item => {
-            if(item === user){
+            if (item === user) {
                 isLiked = true;
             }
         });
 
-        if(isLiked){
+        if (isLiked) {
             await db.collection('places').updateOne({_id: ObjectId(req.params.id)}, {
-                $pull:{
+                $pull: {
                     usersLiked: user
                 },
-                $inc:{
+                $inc: {
                     likes: -1
                 }
             });
-        }
-        else{
+        } else {
             await db.collection('places').updateOne({_id: ObjectId(req.params.id)}, {
-                $addToSet:{
+                $addToSet: {
                     usersLiked: user
                 },
-                $inc:{
+                $inc: {
                     likes: 1
                 }
             });
@@ -194,20 +194,20 @@ async function likeAction(req, res, db){
 
 }
 
-async function favoriteAction(req, res, db){
+async function favoriteAction(req, res, db) {
     const user = getUser(req.signedCookies);
     const userData = await db.collection('users').findOne({_id: ObjectId(user)}).catch(e => console.log(e));
     let isFavorite = false;
 
     userData.favorites.map(item => {
-        if(item === req.params.id){
+        if (item === req.params.id) {
             isFavorite = true;
         }
     });
 
-    if(!isFavorite){
+    if (!isFavorite) {
         await db.collection('users').updateOne({_id: ObjectId(user)}, {
-            $addToSet:{
+            $addToSet: {
                 favorites: req.params.id
             }
         }).catch(e => console.log(e));
@@ -216,10 +216,9 @@ async function favoriteAction(req, res, db){
                 favoriteCount: 1
             }
         });
-    }
-    else{
+    } else {
         await db.collection('users').updateOne({_id: ObjectId(user)}, {
-            $pull:{
+            $pull: {
                 favorites: req.params.id
             }
         }).catch(e => console.log(e));

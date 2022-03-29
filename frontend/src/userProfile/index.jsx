@@ -130,11 +130,11 @@ const UsrProfile = (props) => {
             </StyledCard> : null}
 
             {!isLoading ? <FavoriteContainer>
-                {favorites.length > 0 ? <FavoritesHeader>
+                {favorites[0] !== null  ? <FavoritesHeader>
                     Избранное
                     <FavoriteActive/>
                 </FavoritesHeader> : null}
-                {favorites != null ? favorites.map(item =>
+                {favorites[0] !== null ? favorites.map(item =>
                     <StyledLink to={'/places/' + item._id} key={item._id}  onClick={e => handleTransition()} >
 
                         <PlaceCard  isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setFavorites} placesState={'approved'}

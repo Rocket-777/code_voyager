@@ -15,6 +15,7 @@ async function getFavorites(setPlaces){
         setPlaces(data.reverse());
     }
 
+
 }
 
 export {getPlaces, getFavorites}
