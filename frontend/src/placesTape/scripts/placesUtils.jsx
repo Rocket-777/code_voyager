@@ -12,7 +12,7 @@ async function getPlaces(setPlaces, param) {
 async function getFavorites(setPlaces){
     const data = await getPlacesRequest('http://localhost:3003/places/favorites');
     if(data){
-        setPlaces(data.reverse());
+        setPlaces(data);
     }
 
 
