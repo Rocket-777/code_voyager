@@ -110,6 +110,9 @@ const ActionButtonContainer = styled('div')`
     padding-left: 0;
     margin-left: 0;
     width: 50%;
+    @media only screen and (max-width: 1450px){
+      width: 55%
+    }
     @media only screen and (max-width: 1000px){
       width: 100%
     }
