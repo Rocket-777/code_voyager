@@ -134,7 +134,7 @@ const UsrProfile = (props) => {
                     Избранное
                     <FavoriteActive/>
                 </FavoritesHeader> : null}
-                {favorites ? favorites.map(item =>
+                {favorites != null ? favorites.map(item =>
                     <StyledLink to={'/places/' + item._id} key={item._id}  onClick={e => handleTransition()} >
 
                         <PlaceCard  isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setFavorites} placesState={'approved'}
