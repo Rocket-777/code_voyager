@@ -14,7 +14,7 @@ const StyledHeader = styled(Typography)`
   
   
   width: 100%;
-  border-bottom: solid #e8ebff;
+  border-bottom: solid 3px #e8ebff;
 `;
 
 
@@ -45,7 +45,7 @@ const StyledBookmark1 = styled(Button)`
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  border-right: solid 2px #e8ebff;
+  border-right: solid 3px #e8ebff;
      @media only screen and (max-width: 1000px){
           font-size: 0.8rem;
      }
@@ -63,7 +63,7 @@ const StyledBookmark2 = styled(Button)`
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-left: solid 2px #e8ebff;
+  //border-left: solid 1.5px #e8ebff;
      @media only screen and (max-width: 1000px){
           font-size: 0.8rem;
      }
