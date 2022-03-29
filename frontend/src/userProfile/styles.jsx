@@ -73,7 +73,7 @@ const StyledCard = styled(Card)`
   width: 60vw;
   height: auto;
   
-  margin: 3rem auto auto auto;
+  margin: 3rem auto 3rem auto;
 
   background-color: #bec9eb;
   //border: 4px solid #1a237e;
