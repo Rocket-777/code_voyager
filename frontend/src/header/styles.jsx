@@ -4,14 +4,17 @@ import {Button, Paper} from "@mui/material";
 const StyledButton = styled(Button)`
   text-transform: none;
   height: 100%;
-  width: 20%;
+  width: 10%;
   color: white;
   border-radius: 0;
   padding: 0;
   font-size: 18px;
   vertical-align: middle;
   line-height: 3rem;
-
+  
+  @media only screen and (max-width: 768px){
+    font-size: 0.8rem;
+  }
   :hover{
     background-color: #8e99f3;
   }
@@ -22,7 +25,8 @@ const StyledUserButton = styled(Button)`
   margin-left: auto;
   
   height: 100%;
-  min-width: 20%;
+  min-width: 15%;
+  
   color: white;
   border-radius: 0;
   padding: 0;

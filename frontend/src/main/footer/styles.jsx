@@ -82,7 +82,7 @@ const LogoText = styled(Typography)`
   font-size: 0.9rem;
   line-height: 1rem;
   font-weight: bold;
-  margin-top: 0.1rem;
+  margin-top: 0.2rem;
   margin-bottom: 0.3rem;
   @media only screen and (max-width: 420px){
     font-size: 0.7rem;

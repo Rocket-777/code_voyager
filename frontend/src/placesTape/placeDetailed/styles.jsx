@@ -27,13 +27,12 @@ const StyledCard = styled(Card)`
 `;
 
 const StyledHeader = styled(Typography)`
-  padding-left: 3rem;
-  padding-right: 3rem;
-  margin-top: 1rem;
+  padding: 1rem 3rem 0.5rem 3rem;
+  color: white;
   overflow-wrap: break-word;
-  border-bottom: 3px solid #1a237e;
-  color: #1a237e;
-  
+  //border-bottom: 3px solid #1a237e;
+  //color: #1a237e;
+  background-color: #5c6bc0;
 `;
 
 const ShortDescription = styled(Typography)`
@@ -85,19 +84,23 @@ const Info = styled(Typography)`
 `;
 
 const StyledDivider = styled(Divider)`
+  margin: auto 10% auto 10%;
 ::before{
   top:0; 
-  border-top: 3px solid #1a237e
+  //border-top: 2px solid #1a237e
+  border-top: 2px solid #5c6bc0;
 } 
   ::after{
     top:0;
-    border-top: 3px solid #1a237e;
+    //border-top: 2px solid #1a237e;
+    border-top: 2px solid #5c6bc0;
   }
 `
 
 const DividerTypography = styled(Typography)`
-  font-size: 3vh;
-  color: #1a237e;
+  font-size: 22px;
+  //color: #1a237e;
+  color: #5c6bc0;
 
 `
 
@@ -124,6 +127,12 @@ const ActionButtonContainer = styled('div')`
   
 `
 
+const MapContainer = styled('div')`
+    margin: 1rem auto 1rem auto;
+  width: 80%;
+
+`
+
 
 export {Container, StyledCard, StyledHeader, ShortDescription,
-    FullDescription, Info, StyledDivider, DividerTypography, ActionButtonContainer}
+    FullDescription, Info, StyledDivider, DividerTypography, ActionButtonContainer, MapContainer}

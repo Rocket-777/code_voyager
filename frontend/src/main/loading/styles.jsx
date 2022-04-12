@@ -12,7 +12,7 @@ const LoadingContainer = styled('div')`
 const Spin = styled(LoopIcon)`
   margin: auto;
   color: #5c6bc0;
-  animation: 1s linear 0s infinite spin;
+  animation: 0.7s ease-in-out 0s infinite spin;
   
   
   font-size: 10rem;

@@ -13,7 +13,7 @@ const PostTape = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
 
-            initPosts().then(res =>{setIsLoading(false); setPosts(res.reverse())} );
+            initPosts().then(res =>{setIsLoading(false); if(res)setPosts(res.reverse())} );
     }, []);
 
     async function handleSubmit(textVal){

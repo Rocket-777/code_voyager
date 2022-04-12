@@ -4,6 +4,7 @@ import {linkstyle} from "./styles";
 import {useEffect, useState} from "react";
 import {usrInit} from "../userProfile/scripts/usrInit";
 import {Avatar} from "@mui/material";
+import {ReactComponent as Logo} from "../assets/newLogo.svg"
 
 const Header = (props) => {
     const usrImage = props.usrData.image ? props.usrData.image : null;
@@ -12,7 +13,8 @@ const Header = (props) => {
 
 
         <StyledHeader elevation={3} square={true}>
-            <img src="/logoHeader.png" alt='logo' width={39} style={{marginLeft: '1vw', marginRight: '1vw'}}/>
+            {/*<img src="/logoHeader.png" alt='logo' width={39} style={{marginLeft: '1vw', marginRight: '1vw'}}/>*/}
+            <Logo height={35} style={{marginLeft: '1rem', marginRight: '1rem'}} />
             <StyledButton>
                 <Link to='/places' style={linkstyle}>
                     Главная

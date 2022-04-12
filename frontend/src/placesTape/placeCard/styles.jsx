@@ -19,13 +19,18 @@ const StyledCard = styled(Card)`
 `;
 
 const StyledHeader = styled(Typography)`
-  
-  padding-left: 3rem;
-  padding-right: 3rem;
-  margin-top: 1rem;
+  padding: 1rem 3rem 0.5rem 3rem;
+  //padding-left: 3rem;
+  //padding-right: 3rem;
+  //margin-top: 1rem;
   overflow-wrap: anywhere;
-  border-bottom: 3px solid #1a237e;
-  color: #1a237e;
+  //border-bottom: 3px solid #1a237e;
+  //color: #1a237e;
+  //background-color: #5c6bc0;
+  //color: white;
+  //background-color: #f5f5f5;
+  border-bottom: 2px solid #5c6bc0;
+  color: #5c6bc0;
   
 `;
 const ImageContainer = styled('div')`

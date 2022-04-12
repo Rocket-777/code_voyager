@@ -1,6 +1,7 @@
 import {StyledCard, StyledHeader, ImageContainer, StyledDescription, NoImage, ButtonBlock, BlockButton,
 ButtonBlockContainer} from "./styles";
 
+
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import {removePlace, approvePlace} from "./scripst/placeCardScripts";
