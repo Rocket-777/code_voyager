@@ -5,6 +5,7 @@ const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
   width: 60%;
+  height: 37rem;
   margin-left: auto;
   margin-right: auto;
   //border: 4px solid #1a237e;
