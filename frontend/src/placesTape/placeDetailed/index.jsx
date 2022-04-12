@@ -24,19 +24,19 @@ const PlaceDetailed = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [markerPos, setMarker] = useState([54.514,36.26]);
     const params = useParams();
-
+    let ac = new AbortController();
     async function handleLike(){
         await likeAction(placeData._id);
-        await getPlaceById(params.id, setPlaceData);
+        await getPlaceById(params.id, setPlaceData, ac);
     }
 
     async function handleFavorite(){
         await favoriteAction(placeData._id);
-        await getPlaceById(params.id, setPlaceData);
+        await getPlaceById(params.id, setPlaceData, ac);
     }
 
     useEffect(()=>{
-        let ac = new AbortController();
+
         getPlaceById(params.id, setPlaceData, ac).then(res => {if(!ac.signal.aborted)setIsLoading(false)});
         getComments(setCommentsData, params.id, ac);
         return() => ac.abort();
@@ -90,7 +90,7 @@ const PlaceDetailed = (props) => {
 
                 </StyledCard>
                 <MarginContainer>
-                    <SendComment id={params.id} updateComments={setCommentsData} updatePlaceData={null}/>
+                    <SendComment id={params.id} updateComments={setCommentsData} updatePlaceData={null} ac={ac}/>
                 </MarginContainer>
                 <Footer/>
             </Container>
