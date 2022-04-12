@@ -54,7 +54,7 @@ const PlaceCreator = (props) => {
 
         if (props.isPrivileged) {
             //props.setPlaces(null);
-            await getPlaces(props.setPlaces, props.placeStatus);
+            await getPlaces(props.setPlaces, props.placeStatus, props.ac);
         }
         setPlaceName('');
         setPlaceDesc('');

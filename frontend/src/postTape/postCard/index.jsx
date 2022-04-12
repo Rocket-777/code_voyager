@@ -13,19 +13,21 @@ const PostCard = (props) => {
     const [showComments, setShowComments] = useState(false);
     const [commentsData, setCommentsData] = useState('');
     const [postData, setPostData] = useState(props.postData);
-
+    let ac = new AbortController();
     useEffect(()=>{
+
         if(showComments){
-            getComments(setCommentsData, props.id);
+            getComments(setCommentsData, props.id, ac);
         }
+        return () => ac.abort();
     }, [showComments])
 
     async function handleLike(){
         await postLikeAction(postData._id)
-        await setPostById(postData._id,setPostData);
+        await setPostById(postData._id,setPostData, ac);
     }
 
-    const usrImg = props.userImg ? props.userImg : 'noimage.png';
+    const usrImg = props.userImg ? props.userImg : null;
     return (
 
         <StyledCard>
@@ -39,13 +41,13 @@ const PostCard = (props) => {
                 {props.text}
             </StyledText>
             <ButtonBlock>
-                <ActionButtons removeVisible={props.isPriveleged} removeAction={() => deletePost(props.id, props.setPosts)}
+                <ActionButtons removeVisible={props.isPriveleged} removeAction={() => deletePost(props.id, props.setPosts, props.ac)}
                 likeCount={postData.likes} commentCount={postData.comments} isLiked={postData.isLiked} likeAction={() => handleLike()}
                                commentAction={() => setShowComments(!showComments)} commentVisible={true}/>
             </ButtonBlock>
             {showComments ?  <div>
                 <Comments data={commentsData} />
-                <SendComment commentOf='posts' id={props.id} updateComments={setCommentsData} updateData={() => setPostById(postData._id,setPostData)}/>
+                <SendComment ac={ac} commentOf='posts' id={props.id} updateComments={setCommentsData} updateData={() => setPostById(postData._id,setPostData, ac)}/>
             </div> : null }
 
 

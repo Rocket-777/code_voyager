@@ -29,29 +29,29 @@ const StyledHeader = styled(Typography)`
   //background-color: #5c6bc0;
   //color: white;
   //background-color: #f5f5f5;
-  border-bottom: 2px solid #5c6bc0;
-  color: #5c6bc0;
+  //border-bottom: 2px solid #5c6bc0;
+  //color: #5c6bc0;
   
 `;
 const ImageContainer = styled('div')`
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
+  //margin-top: 2rem;
   margin-left: auto;
   margin-right: auto;
   align-items: center;
-  width: 70%;
+  width: 100%;
   @media only screen and (max-width: 1000px){
     width: 100%
     
   }
   img{
-    height: 50vh;
-    width: 50vw;
-    object-fit: contain;
+    height: 70vh;
+    width: 100%;
+    object-fit: cover;
     @media only screen and (max-width: 1000px){
       height: 30vh;
-      width: 80vw;
+
 
     }
   }

@@ -28,11 +28,12 @@ const StyledCard = styled(Card)`
 
 const StyledHeader = styled(Typography)`
   padding: 1rem 3rem 0.5rem 3rem;
-  color: white;
+  
   overflow-wrap: break-word;
   //border-bottom: 3px solid #1a237e;
   //color: #1a237e;
-  background-color: #5c6bc0;
+  //background-color: #5c6bc0;
+  //color: white;
 `;
 
 const ShortDescription = styled(Typography)`

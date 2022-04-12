@@ -36,16 +36,10 @@ const PlaceDetailed = (props) => {
     }
 
     useEffect(()=>{
-        getPlaceById(params.id, setPlaceData).then(res => setIsLoading(false));
-        getComments(setCommentsData, params.id);
-    }, [])
-
-
-    useEffect(()=>{
-
-
-
-
+        let ac = new AbortController();
+        getPlaceById(params.id, setPlaceData, ac).then(res => {if(!ac.signal.aborted)setIsLoading(false)});
+        getComments(setCommentsData, params.id, ac);
+        return() => ac.abort();
     }, [])
 
 
@@ -55,10 +49,11 @@ const PlaceDetailed = (props) => {
                 <NavigateTop elemId='detailedPlace'/>
                 <NavigateBack />
                 <StyledCard>
-                    <StyledHeader variant='h4'>{placeData.place_name}</StyledHeader>
+
                     <ImageContainer>
                         {placeData.image ? <img src={placeData.image} alt='image'/> : <NoImage variant='h1'>No_Image</NoImage>}
                     </ImageContainer>
+                    <StyledHeader variant='h4'>{placeData.place_name}</StyledHeader>
                     <PrettyDivider textVal='Рецензия'/>
                     <ShortDescription>{placeData.place_description}</ShortDescription>
                     <PrettyDivider textVal='Полное описание'/>

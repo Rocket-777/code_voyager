@@ -11,14 +11,16 @@ import {Loader} from "../main/loading";
 const PostTape = (props) => {
     const [posts, setPosts] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    let ac = new AbortController();
     useEffect(() => {
 
-            initPosts().then(res =>{setIsLoading(false); if(res)setPosts(res.reverse())} );
+        initPosts(ac).then(res =>{if(!ac.signal.aborted){setIsLoading(false); if(res)setPosts(res.reverse())}} );
+        return() => ac.abort();
     }, []);
 
     async function handleSubmit(textVal){
         await postRequest('http://localhost:3003/news', {postBody: textVal}).then(res => res).catch(e => console.log(e));
-        await initPosts().then(res => setPosts(res.reverse()));
+        await initPosts(ac).then(res => setPosts(res.reverse()));
 
     }
 
@@ -29,7 +31,7 @@ const PostTape = (props) => {
             <NavigateTop elemId='postTape'/>
             {props.isAuth && !isLoading ? <CreatePost setPosts={setPosts} handleSubmit={handleSubmit} /> : null}
             {posts && !isLoading ? posts.map(item => {
-                return <PostCard key={item._id} id={item._id} username={item.username} text={item.text}
+                return <PostCard key={item._id} id={item._id} username={item.username} text={item.text} ac={ac}
                                  setPosts={setPosts} userImg={item.usrImage} isPriveleged={item.isPrivileged} postData={item}/>
             }) : null}
             {isLoading ? <Loader/> : null}

@@ -35,9 +35,11 @@ const UsrProfile = (props) => {
     const [thumbnail, setThumbnail] = useState("noImage.png")
     const [favorites, setFavorites] = useState('');
     const [isLoading, setIsLoading] = useState(true);
-
+    let ac = new AbortController();
     useEffect(()=>{
-        getFavorites(setFavorites).then(res => {setIsLoading(false); handleScrollPos();});
+
+        getFavorites(setFavorites, ac).then(res => {if(!ac.signal.aborted){setIsLoading(false); handleScrollPos();}});
+        return () => ac.abort();
     },[]);
 
     const handleScrollPos = () => {
@@ -138,7 +140,7 @@ const UsrProfile = (props) => {
                     <StyledLink to={'/places/' + item._id} key={item._id}  onClick={e => handleTransition()} >
 
                         <PlaceCard  isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setFavorites} placesState={'approved'}
-                                    updateFavorites={() => getFavorites(setFavorites)}
+                                    updateFavorites={() => getFavorites(setFavorites, ac)}
                                     displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
                     </StyledLink>) : null}
 

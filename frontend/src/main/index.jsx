@@ -40,9 +40,9 @@ const Main = () => {
                     <Route path="/places/:id" element={<PlaceDetailed/>}/>
                     <Route path="/places" element={<PlacesTape  usrData={usrData} isAuth={usrAuthorized}/>}/>
                     <Route path="/news" element={<PostTape isAuth={usrAuthorized}/>}/>
-                    {usrAuthorized ? <Route exact path="/profile"
+                    <Route exact path="/profile"
                                             element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized}
-                                                                 usrData={usrData} setUsrData={setUsrData}/>}/> : null}
+                                                                 usrData={usrData} setUsrData={setUsrData}/>}/>
                     <Route path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
                     <Route path='*' element={<h1>404_NOT_FOUND</h1>}/>
                 </Routes>

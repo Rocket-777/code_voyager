@@ -29,8 +29,9 @@ async function postRequestWithFile(uri, body){
         body: body
     }).then(res => res).catch(e => console.log(e));
 }
-async function getPlacesRequest(uri){
+async function getPlacesRequest(uri, ac){
     return await fetch(uri, {
+        signal: ac.signal,
         method: 'GET',
         mode: "cors",
         cache: 'no-cache',
@@ -46,8 +47,9 @@ async function getPlacesRequest(uri){
 }
 
 
-async function getPosts(uri){
+async function getPosts(uri, ac){
     return await fetch(uri, {
+        signal: ac.signal,
         method: 'GET',
         mode: "cors",
         cache: 'no-cache',
@@ -103,7 +105,7 @@ async function putReq(uri, body){
             },
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(body)
-        }).then(res => res.json()).catch(e => console.log(e));
+        }).then(res => res).catch(e => console.log(e));
     }
     else{
         return await fetch(uri, {
@@ -117,7 +119,7 @@ async function putReq(uri, body){
             },
             referrerPolicy: 'no-referrer',
 
-        }).then(res => res.json()).catch(e => console.log(e));
+        }).then(res => res).catch(e => console.log(e));
     }
 
 }
