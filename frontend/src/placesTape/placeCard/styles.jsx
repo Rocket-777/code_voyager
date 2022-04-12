@@ -79,15 +79,15 @@ const NoImage = styled(Typography)`
   background-color: #ededed;
   color: #d4d4d4;
   height: 50vh;
-  width: 40vw;
+  width: 100%;
   
   margin-right: auto;
   margin-left: auto;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  //border-radius: 8px;
   font-weight: bolder;
-  border: solid 2px #d4d4d4;
+  //border: solid 2px #d4d4d4;
   overflow-wrap: anywhere;
   @media only screen and (max-width: 1000px){
     width: 60%;
