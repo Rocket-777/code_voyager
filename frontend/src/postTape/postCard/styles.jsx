@@ -1,12 +1,16 @@
-import {styled, Typography, Card} from "@mui/material";
+import {styled, Typography, Card, Skeleton} from "@mui/material";
 
 
 
 const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
+  height: fit-content;
   width: 60%;
   margin-bottom: 4vh;
+  margin-top: 1rem;
+  
+  
   @media only screen and (max-width: 1000px){
     width: 90%
   }
@@ -46,16 +50,9 @@ const ButtonBlock = styled('div')`
   display: flex;
   flex-direction: row;
   //margin: 0 auto 1vh auto;
-  width: 50%;
-  justify-content: flex-start;
-  @media only screen and (max-width: 1620px){
-    width: 60%;
-    justify-content: center;
-  }
-  @media only screen and (max-width: 1360px){
-    width: 70%;
-    justify-content: center;
-  }
+  width: 100%;
+  
+
   @media only screen and (max-width: 768px){
     width: 100%;
     justify-content: center;
@@ -71,6 +68,25 @@ const PostBody = styled('div')`
   margin: 0;
   padding: 0;
   
-
 `;
-export {StyledCard, StyledText, UserInfo, UserName, ButtonBlock, PostBody}
+
+const SkeletonContent = styled(Skeleton)`
+  transform: none;
+  margin: 1.5vh 1vw 0 1vw;
+`
+
+const SkeletonAvatar = styled(Skeleton)`
+  width: 65px;
+  height: 65px;
+  
+`
+
+const SkeletonUser = styled(Skeleton)`
+  transform: none;
+  height: 1.3rem;
+  width: 14vw;
+  margin-left: 0.7vw;
+
+`
+
+export {StyledCard, StyledText, UserInfo, UserName, ButtonBlock, PostBody, SkeletonUser, SkeletonContent, SkeletonAvatar}

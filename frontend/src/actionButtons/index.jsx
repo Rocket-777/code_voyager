@@ -2,12 +2,12 @@ import {ActionContainer, ActionButton, ButtonContainer, LikeActive, LikeInactive
 RemoveContainer, RemoveButton, RemoveSign} from "./styles";
 
 
-const ActionButtons = ({isLiked, likeCount, commentCount, isFavorite,
+const ActionButtons = ({inactive, isLiked, likeCount, commentCount, isFavorite,
                        likeAction, commentVisible,commentAction, favoriteAction, favoriteVisible,
                            removeAction, removeVisible}) => {
 
 
-    return(
+    if(!inactive) return(
         <ActionContainer onClick={e => e.preventDefault()}>
             <ButtonContainer>
                 <ActionButton onClick={e => likeAction()} >
@@ -29,6 +29,26 @@ const ActionButtons = ({isLiked, likeCount, commentCount, isFavorite,
                     <RemoveSign/>
                 </RemoveButton>
             </RemoveContainer> : null}
+
+        </ActionContainer>
+    );
+    if(inactive) return(
+        <ActionContainer >
+            <ButtonContainer>
+                <ActionButton disabled={true}  >
+                    <LikeInactive/>
+                </ActionButton>
+
+                {commentVisible ? <ActionButton id='comment-button' disabled={true} >
+                    <CommentSign/>
+
+                </ActionButton> : null}
+
+                { favoriteVisible ?  <ActionButton disabled={true}>
+                    <FavoriteInactive/>
+                </ActionButton> : null}
+            </ButtonContainer>
+
 
         </ActionContainer>
     );

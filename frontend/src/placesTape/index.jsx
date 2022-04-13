@@ -40,14 +40,15 @@ const PlacesTape = (props) => {
         sessionStorage.setItem('scrollPosition', scrollPos);
     }
 
-    return (
+    if(!isLoading) return (
 
         <PlacesTapeContainer id='placeTape'>
             <NavigateTop elemId='placeTape'/>
-            {props.isAuth && !isLoading ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}
+
+            {props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}
                                                         isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}
 
-            {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' && !isLoading ?
+            {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'  ?
                 <ButtonContainer>
                     <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#bec9eb'} : null}
                                   onClick={e => {
@@ -61,7 +62,7 @@ const PlacesTape = (props) => {
                                   }}>Предложения пользователей</StyledButton>
                 </ButtonContainer> : null}
 
-            {places && !isLoading ? places.map(item =>
+            {places ? places.map(item =>
 
                 <StyledLink to={'/places/' + item._id} key={item._id} onClick={e => handleTransition()}>
 
@@ -70,12 +71,23 @@ const PlacesTape = (props) => {
                                displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
                 </StyledLink>
             ) : null}
-            {isLoading ? <Loader/> : null}
+
 
 
             <Footer/>
 
 
+        </PlacesTapeContainer>
+    );
+    if(isLoading) return(
+        <PlacesTapeContainer id='placeTape'>
+            <NavigateTop elemId='placeTape'/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <Footer/>
         </PlacesTapeContainer>
     );
 }

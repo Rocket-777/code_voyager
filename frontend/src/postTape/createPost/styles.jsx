@@ -30,6 +30,7 @@ const StyledCard = styled(Card)`
   flex-direction: column;
   width: 60%;
   margin: 1vh auto 5vh auto;
+  height: fit-content;
   @media only screen and (max-width: 1000px){
     width: 90%
   }

@@ -7,7 +7,7 @@ import CommentRoundedIcon from '@mui/icons-material/CommentRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import StarOutlineRoundedIcon from '@mui/icons-material/StarOutlineRounded';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-
+import {Skeleton} from "@mui/material";
 
 const ActionContainer = styled('div')`
   display: flex;
@@ -17,7 +17,8 @@ const ActionContainer = styled('div')`
   padding: 1rem;
   //background-color: blue;
   cursor: default;
- 
+
+
   @media only screen and (max-width: 768px){
     flex-direction: column;
 
@@ -31,8 +32,8 @@ const ButtonContainer = styled('div')`
   //background-color: coral;
 
   width: 45%;
-  justify-content: space-between;
-  @media only screen and (max-width: 1000px){
+  //justify-content: space-between;
+  @media only screen and (max-width: 768px){
     justify-content: space-evenly;
     width: 100%;
     margin-bottom: 8px;
@@ -43,7 +44,7 @@ const ButtonContainer = styled('div')`
 
 const ActionButton = styled(Button)`
   background-color: #5c6bc0;
-  box-shadow: 5px 5px 5px -5px rgba(61, 73, 82, 0.6);
+  box-shadow: 2px 2px 5px 0 rgba(61, 73, 82, 0.3);
   color: white;
   text-transform: none;
   border-radius: 45px;
@@ -51,7 +52,12 @@ const ActionButton = styled(Button)`
   min-width: 5.5rem;
   transition: all 0.3s ease 0s;
   letter-spacing: 2px;
-  
+  margin-right: 1rem;
+  margin-left: 0;
+  &:disabled{
+    background-color: #e3e3e3;
+    box-shadow: none;
+  }
   :hover {
     background-color: #8e99f3;
     transform: translateY(-5px);
@@ -68,13 +74,16 @@ const ActionButton = styled(Button)`
     :active{
       background-color: #8e99f3;
     }
+    @media only screen and (max-width: 768px){
+      margin: auto;
+    }
   }
   
 `
 
 const RemoveButton = styled(Button)`
   background-color: crimson;
-  box-shadow: 5px 5px 5px -5px rgba(61, 73, 82, 0.6);
+  box-shadow: 2px 2px 5px 0 rgba(61, 73, 82, 0.3);
   color: white;
   text-transform: none;
   border-radius: 45px;
@@ -82,6 +91,7 @@ const RemoveButton = styled(Button)`
   min-width: 5.5rem;
   transition: all 0.3s ease 0s;
   letter-spacing: 2px;
+
   :hover {
     background-color: red;
     transform: translateY(-5px);
@@ -120,13 +130,16 @@ const FavoriteActive = styled(StarRoundedIcon)`
 `
 const RemoveContainer = styled('div')`
   display: flex;
-  width: 45%;
+  
   justify-content: flex-end;
   
-  @media only screen and (max-width: 1000px){
+  margin-right: 0;
+  margin-left: auto;
+  
+  @media only screen and (max-width: 768px){
     justify-content: center;
     margin: 0 auto 0 auto;
-    //margin: auto;
+   
   }
 
 `
@@ -135,6 +148,7 @@ const RemoveSign = styled(DeleteOutlineOutlinedIcon)`
   color: white;
   margin: 0 3px 0 3px;
 `
+
 
 export {ActionContainer, ActionButton, ButtonContainer, LikeActive, LikeInactive, CommentSign, FavoriteInactive, FavoriteActive,
     RemoveContainer, RemoveButton, RemoveSign}

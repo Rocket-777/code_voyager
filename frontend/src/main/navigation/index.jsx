@@ -9,10 +9,11 @@ const NavigateTop = (props) => {
     const [scrollPos, setScrollPos] = useState(0);
 
     useEffect(() => {
-        const scrollAble = document.getElementById(props.elemId)
-        scrollAble.addEventListener('scroll', () => setScrollPos(scrollAble.scrollTop));
+        const scrollAble = document.getElementById(props.elemId);
+        const listener = () => setScrollPos(scrollAble.scrollTop);
+        scrollAble.addEventListener('scroll', listener);
         return () => {
-            scrollAble.removeEventListener('scroll', () => setScrollPos(scrollAble.scrollTop));
+            scrollAble.removeEventListener('scroll', listener);
         }
     }, [])
 

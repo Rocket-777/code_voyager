@@ -1,4 +1,13 @@
-import {ButtonBlock, StyledCard, StyledText, UserInfo, UserName} from "./styles";
+import {
+    ButtonBlock,
+    SkeletonAvatar,
+    SkeletonContent,
+    SkeletonUser,
+    StyledCard,
+    StyledText,
+    UserInfo,
+    UserName
+} from "./styles";
 import {Avatar} from "@mui/material";
 import {Comments} from "../../placesTape/comments";
 import {SendComment} from "../../placesTape/comments/sendComment";
@@ -7,6 +16,8 @@ import {ActionButtons} from "../../actionButtons";
 import {useEffect, useState} from "react";
 import {getComments} from "../../placesTape/comments/scripts";
 import {setPostById, postLikeAction} from "./scripts/postCardScripts";
+import {SkeletonContainer} from "../../placesTape/placeCard/styles";
+
 
 const PostCard = (props) => {
 
@@ -28,7 +39,7 @@ const PostCard = (props) => {
     }
 
     const usrImg = props.userImg ? props.userImg : null;
-    return (
+    if(!props.skeleton) return (
 
         <StyledCard>
 
@@ -51,6 +62,18 @@ const PostCard = (props) => {
             </div> : null }
 
 
+        </StyledCard>
+    );
+    if(props.skeleton) return(
+        <StyledCard>
+            <UserInfo>
+                <SkeletonAvatar variant='circular' animation='wave'/>
+                <SkeletonUser animation='wave'/>
+            </UserInfo>
+            <SkeletonContent animation='wave' />
+            <SkeletonContent animation='wave'/>
+            <SkeletonContent animation='wave'/>
+            <ActionButtons inactive={true} commentVisible={true} />
         </StyledCard>
     );
 }
