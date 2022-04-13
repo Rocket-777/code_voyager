@@ -92,7 +92,8 @@ const NoImage = styled('div')`
   //border: solid 2px #d4d4d4;
   //overflow-wrap: anywhere;
   @media only screen and (max-width: 1000px) {
-    width: 60%;
+    //width: 60%;
+    height: 30vh;
     //font-size: 3vh;
     //overflow-wrap: anywhere;
 

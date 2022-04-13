@@ -75,7 +75,7 @@ const PlaceCard = (props) => {
                     {props.cardData.image ? <img src={props.cardData.image} alt=':(' onLoad={e => setImgLoading(false)}
                                                  hidden={imgLoading}/> :
                         <NoImage>
-                            <Logo width={300}/>
+                            <Logo height='50%'/>
                         </NoImage>}
                 </ImageContainer>
                 <StyledHeader variant='h4'>

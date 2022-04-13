@@ -54,14 +54,16 @@ const PlacesTape = (props) => {
                                   onClick={e => {
                                       e.preventDefault();
                                       setDisplayPlaces('approved');
+                                      setIsLoading(true);
                                   }}>Подтвержденные</StyledButton>
                     <StyledButton sx={displayPlaces === 'proposed' ? {backgroundColor: '#bec9eb'} : null}
                                   onClick={e => {
                                       e.preventDefault();
                                       setDisplayPlaces('proposed');
+                                      setIsLoading(true);
                                   }}>Предложения пользователей</StyledButton>
                 </ButtonContainer> : null}
-
+            <PlaceCard skeleton={true}/>
             {places ? places.map(item =>
 
                 <StyledLink to={'/places/' + item._id} key={item._id} onClick={e => handleTransition()}>
@@ -82,6 +84,24 @@ const PlacesTape = (props) => {
     if(isLoading) return(
         <PlacesTapeContainer id='placeTape'>
             <NavigateTop elemId='placeTape'/>
+            {props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}
+                                          isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}
+
+            {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'  ?
+                <ButtonContainer>
+                    <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#bec9eb'} : null}
+                                  onClick={e => {
+                                      e.preventDefault();
+                                      setDisplayPlaces('approved');
+                                      setIsLoading(true);
+                                  }}>Подтвержденные</StyledButton>
+                    <StyledButton sx={displayPlaces === 'proposed' ? {backgroundColor: '#bec9eb'} : null}
+                                  onClick={e => {
+                                      e.preventDefault();
+                                      setDisplayPlaces('proposed');
+                                      setIsLoading(true);
+                                  }}>Предложения пользователей</StyledButton>
+                </ButtonContainer> : null}
             <PlaceCard skeleton={true}/>
             <PlaceCard skeleton={true}/>
             <PlaceCard skeleton={true}/>
