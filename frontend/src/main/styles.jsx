@@ -13,6 +13,7 @@ const MainLayout = styled('div')`
 const ScrollContainer = styled('div')`
   display: flex;
   flex-direction: column;
+  
   margin: 0 0 0 0;
   padding: 0;
   position: absolute;
