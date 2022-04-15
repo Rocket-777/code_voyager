@@ -72,6 +72,7 @@ const PostBody = styled('div')`
 
 const SkeletonContent = styled(Skeleton)`
   transform: none;
+  height: 1rem;
   margin: 1.5vh 1vw 0 1vw;
 `
 
@@ -86,6 +87,10 @@ const SkeletonUser = styled(Skeleton)`
   height: 1.3rem;
   width: 14vw;
   margin-left: 0.7vw;
+  @media only screen and (max-width: 768px){
+    width: 10rem;
+
+  }
 
 `
 

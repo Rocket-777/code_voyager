@@ -22,7 +22,7 @@ const Header = (props) => {
             </StyledButton>
             <StyledButton>
                 <Link to='/news' style={linkstyle}>
-                    Новости
+                    Лента
                 </Link>
             </StyledButton>
             <StyledUserButton>

@@ -7,7 +7,7 @@ import CommentRoundedIcon from '@mui/icons-material/CommentRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import StarOutlineRoundedIcon from '@mui/icons-material/StarOutlineRounded';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import {Skeleton} from "@mui/material";
+import {CircularProgress} from "@mui/material";
 
 const ActionContainer = styled('div')`
   display: flex;
@@ -96,7 +96,16 @@ const RemoveButton = styled(Button)`
     background-color: red;
     transform: translateY(-5px);
   }
-  
+  @media only screen and (max-width: 1000px){
+    :hover {
+      background-color: crimson;
+      transform: none;
+    }
+    :active{
+      background-color: red;
+    }
+
+  }
 `
 
 const LikeInactive = styled(FavoriteBorderRoundedIcon)`
@@ -148,7 +157,10 @@ const RemoveSign = styled(DeleteOutlineOutlinedIcon)`
   color: white;
   margin: 0 3px 0 3px;
 `
+const Loader = styled(CircularProgress)`
+  color: white;
 
+`
 
 export {ActionContainer, ActionButton, ButtonContainer, LikeActive, LikeInactive, CommentSign, FavoriteInactive, FavoriteActive,
-    RemoveContainer, RemoveButton, RemoveSign}
+    RemoveContainer, RemoveButton, RemoveSign, Loader}
