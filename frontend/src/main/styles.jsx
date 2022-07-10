@@ -4,16 +4,16 @@ import { styled } from '@mui/material/styles';
 const MainLayout = styled('div')`
   display: flex;
   flex-direction: column;
-  padding: 0;
+  //padding: 0;
   height: 100%;
-  background-color: #e8ebff;
-  //padding-bottom: 5rem;
+  //background-color: #e8ebff;
+  padding-bottom: 5rem;
 
 `;
 const ScrollContainer = styled('div')`
+  
   display: flex;
   flex-direction: column;
-  
   margin: 0 0 0 0;
   padding: 0;
   position: absolute;

@@ -10,7 +10,8 @@ import {
     RemoveButton,
     RemoveContainer,
     RemoveSign,
-    Loader
+    Loader,
+
 } from "./styles";
 import {Fade, Tooltip} from "@mui/material";
 import {useState} from "react";
@@ -62,7 +63,7 @@ const ActionButtons = ({
                              enterNextDelay={500} disableInteractive={true}>
                         <ActionButton onClick={e => {
                             setFavoriteLoading(true);
-                            favoriteAction().then(res => setFavoriteLoading(false));
+                            favoriteAction().then(res => {setFavoriteLoading(false)});
                         }}>
                             {favoriteLoading ? <Loader size={30}/> : activityFavorite()}
                         </ActionButton>

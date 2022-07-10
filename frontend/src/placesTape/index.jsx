@@ -5,7 +5,6 @@ import React, {useEffect, useState} from "react";
 import {getPlaces} from "./scripts/placesUtils";
 import {NavigateTop} from "../main/navigation";
 import {Footer} from "../main/footer";
-import {Loader} from "../main/loading";
 
 const PlacesTape = (props) => {
 
@@ -40,15 +39,16 @@ const PlacesTape = (props) => {
         sessionStorage.setItem('scrollPosition', scrollPos);
     }
 
-    if(!isLoading) return (
+    if (!isLoading) return (
 
         <PlacesTapeContainer id='placeTape'>
             <NavigateTop elemId='placeTape'/>
 
             {props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}
-                                                        isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}
+                                          isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}
 
-            {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'  ?
+
+            {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?
                 <ButtonContainer>
                     <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#bec9eb'} : null}
                                   onClick={e => {
@@ -74,20 +74,18 @@ const PlacesTape = (props) => {
                 </StyledLink>
             ) : null}
 
-
-
             <Footer/>
 
 
         </PlacesTapeContainer>
     );
-    if(isLoading) return(
+    if (isLoading) return (
         <PlacesTapeContainer id='placeTape'>
             <NavigateTop elemId='placeTape'/>
             {props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}
                                           isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}
 
-            {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'  ?
+            {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?
                 <ButtonContainer>
                     <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#bec9eb'} : null}
                                   onClick={e => {

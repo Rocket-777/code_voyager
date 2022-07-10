@@ -7,7 +7,7 @@ const StyledCard = styled(Card)`
   flex-direction: column;
 
   width: 100%;
-
+  box-shadow: none;
   :hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -21,10 +21,12 @@ const StyledCard = styled(Card)`
 
 const StyledHeader = styled(Typography)`
   padding: 1rem 3rem 0.5rem 3rem;
+  //margin: auto;
   //padding-left: 3rem;
   //padding-right: 3rem;
   //margin-top: 1rem;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  
   //border-bottom: 3px solid #1a237e;
   //color: #1a237e;
   //background-color: #5c6bc0;
@@ -32,7 +34,11 @@ const StyledHeader = styled(Typography)`
   //background-color: #f5f5f5;
   //border-bottom: 2px solid #5c6bc0;
   //color: #5c6bc0;
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+    font-size: 1.5rem;
 
+  }
 `;
 const ImageContainer = styled('div')`
   display: flex;

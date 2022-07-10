@@ -26,7 +26,7 @@ import {PlaceCard} from "../placesTape/placeCard";
 import {FavoriteActive} from "../actionButtons/styles";
 import {Footer} from "../main/footer";
 import {NavigateTop} from "../main/navigation";
-import {Loader} from "../main/loading";
+import {UserProfile} from "./userInfo";
 
 const UsrProfile = (props) => {
 
@@ -58,7 +58,7 @@ const UsrProfile = (props) => {
     function handleFile(event) {
 
         if (event.target.files && event.target.files[0]) {
-
+            handleRemoveImg();
             let reader = new FileReader();
             reader.onload = (ev) => {
                 setThumbnail(ev.target.result);
@@ -68,6 +68,7 @@ const UsrProfile = (props) => {
             const reqData = new FormData();
             reqData.append('image', event.target.files[0]);
             sendUserImage(reqData, props.auth).catch(e => console.log(e));
+
         }
     }
 
@@ -77,59 +78,10 @@ const UsrProfile = (props) => {
 
     return (
         <Container id='userProfile'>
-            {isLoading ? <Loader/> : null}
             <NavigateTop elemId='userProfile'/>
-            {!isLoading ? <StyledCard>
-                <StyledHeader variant="h4">
-                    Профиль пользователя
-                </StyledHeader>
-                <StyledRow>
-                    <StyledSemiRow variant="h5">
-                        Имя пользователя
-                    </StyledSemiRow>
-                    <StyledTypography>
-                        {props.usrData.username}
-                    </StyledTypography>
-                </StyledRow>
-                <StyledRow>
-                    <StyledSemiRow variant="h5">
-                        Статус
-                    </StyledSemiRow>
-                    <StyledTypography>
-                        {props.usrData.status}
-                    </StyledTypography>
-                </StyledRow>
-                <StyledImageOps>
-                    <Avatar src={props.usrData.image} alt=':C' sx={{width: 300, height: 300}}/>
+            <UserProfile userName={props.usrData.username} status={props.usrData.status} avatar={props.usrData.image}
+            handleImage={handleFile} logoutAction={() => logOutAction(props.auth, navigate, props.setUsrData)}/>
 
-                    {props.usrData.image ?
-                        <UploadButtonContainer>
-                            <UploadButton color="secondary" variant="contained" onClick={e => handleRemoveImg()}
-                                          sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}>
-                                <DeleteOutlineOutlinedIcon sx={{marginRight: '1vw'}}/>
-                                Удалить изображение
-                            </UploadButton>
-                        </UploadButtonContainer> :
-                        <UploadButtonContainer>
-                            <input id='imgInp'
-                                   style={{display: "none"}}
-                                   type="file"
-                                   accept="image/*"
-                                   onChange={e => handleFile(e)}
-                            />
-                            <UploadButton color="secondary" variant="contained" component="span">
-                                <FileUploadOutlinedIcon sx={{marginRight: '1vw'}}/>
-                                Загрузить изображение
-                            </UploadButton>
-                        </UploadButtonContainer>}
-
-                </StyledImageOps>
-
-                <StyledButton onClick={e => logOutAction(props.auth, navigate, props.setUsrData)}>
-                    <LogoutOutlinedIcon sx={{marginRight: '0.4vw'}}/>
-                    Выйти
-                </StyledButton>
-            </StyledCard> : null}
 
             {!isLoading ? <FavoriteContainer>
                 {favorites.length > 0  ? <FavoritesHeader>

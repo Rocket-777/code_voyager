@@ -136,12 +136,13 @@ const FavoritesHeader = styled(Typography)`
   display: flex;
   flex-direction: row;
   margin: 1rem auto 0 auto;
-  font-size: 1.7rem;
-
+  font-size: 1.4rem;
+  
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
   background-color: #5c6bc0;
   padding-left: 0.8rem;
   color: white;
-  width: 13rem;
+  width: 11rem;
   border-radius: 45px;
   align-items: center;
   justify-content: center;

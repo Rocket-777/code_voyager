@@ -8,8 +8,8 @@ const StyledCard = styled(Card)`
   height: fit-content;
   width: 60%;
   margin-bottom: 4vh;
-  margin-top: 1rem;
-  
+  margin-top: 0 ;
+  box-shadow: none;
   
   @media only screen and (max-width: 1000px){
     width: 90%

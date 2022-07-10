@@ -54,7 +54,5 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   width: 60%;
   
-
-  
 `
 export {PlacesTapeContainer, ButtonContainer, StyledButton, StyledLink}

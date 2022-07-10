@@ -29,7 +29,7 @@ const StyledUserButton = styled(Button)`
   
   color: white;
   border-radius: 0;
-  padding: 0;
+  padding: 0 1rem 0 1rem;
   font-size: 18px;
   line-height: 3rem; //height of header
   @media only screen and (max-width: 768px){
@@ -41,11 +41,12 @@ const StyledUserButton = styled(Button)`
 
 
 const StyledHeader = styled(Paper) `
-  
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  z-index: 5;
+  z-index: 10;
+  //box-shadow: 10px 5px 5px red;;
   background-color: #5c6bc0;
   align-items: center;
   border-radius: 0;

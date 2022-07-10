@@ -1,4 +1,5 @@
 import express from 'express';
+import * as fs from 'fs'
 import cors from 'cors';
 import * as Mongo from 'mongodb';
 import * as Utils from './dbUtils/mongoUtils.js'
@@ -19,6 +20,8 @@ import {addPost, sendPosts, deletePost, sendPostById, postLikeAction} from "./po
 import {fileURLToPath} from 'url';
 import path from "path";
 
+
+
 const app = express(); // Application variable
 const port = 3003; // Server listening port
 
@@ -26,6 +29,10 @@ const port = 3003; // Server listening port
 const mongoUri = "mongodb://root:root123@localhost:27015/?authSource=admin";
 const {MongoClient} = Mongo;
 const dbClient = new MongoClient(mongoUri);
+
+if(!fs.existsSync('../uploads')){
+    fs.mkdirSync('../uploads');
+}
 
 const uploadPath =  path.dirname(fileURLToPath(import.meta.url)) + '/../uploads/'; //UPLOAD RELATIVE PATH
 const storage = multer.diskStorage({

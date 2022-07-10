@@ -44,9 +44,11 @@ const ButtonContainer = styled('div')`
 
 const ActionButton = styled(Button)`
   background-color: #5c6bc0;
-  box-shadow: 2px 2px 5px 0 rgba(61, 73, 82, 0.3);
+  //box-shadow: 2px 2px 5px 0 rgba(61, 73, 82, 0.3);
   color: white;
   text-transform: none;
+  
+
   border-radius: 45px;
   height: 2.5rem;
   min-width: 5.5rem;

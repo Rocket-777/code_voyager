@@ -74,7 +74,7 @@ const PlaceCreator = (props) => {
                 <StyledSemiRow variant='h5'>
                     Описание:
                 </StyledSemiRow>
-                <StyledTextInpDescription size='small' multiline={true} minRows='10' placeholder='Описание'
+                <StyledTextInpDescription size='small' multiline={true} minRows='3' placeholder='Описание'
                                           onChange={e => setPlaceDesc(e.target.value)} value={placeDesc}/>
             </StyledColumn>
 
