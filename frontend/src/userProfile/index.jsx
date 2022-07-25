@@ -43,16 +43,16 @@ const UsrProfile = (props) => {
     },[]);
 
     const handleScrollPos = () => {
-        const scrollPos = sessionStorage.getItem('scrollPosition');
+        const scrollPos = sessionStorage.getItem('scrollPositionFav');
         if(scrollPos){
             document.getElementById('userProfile').scrollTo(0, parseInt(scrollPos));
-            sessionStorage.removeItem('scrollPosition');
+            sessionStorage.removeItem('scrollPositionFav');
         }
     }
 
     const handleTransition = () => {
         const scrollPos = document.getElementById('userProfile').scrollTop.toString();
-        sessionStorage.setItem('scrollPosition', scrollPos);
+        sessionStorage.setItem('scrollPositionFav', scrollPos);
     }
 
     function handleFile(event) {

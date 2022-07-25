@@ -41,6 +41,7 @@ const StyledHeader = styled(Typography)`
   }
 `;
 const ImageContainer = styled('div')`
+  position: relative;
   display: flex;
   flex-direction: column;
   //margin-top: 2rem;

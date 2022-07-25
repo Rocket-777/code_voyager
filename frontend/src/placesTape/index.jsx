@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import {getPlaces} from "./scripts/placesUtils";
 import {NavigateTop} from "../main/navigation";
 import {Footer} from "../main/footer";
+import {Link} from "react-router-dom";
 
 const PlacesTape = (props) => {
 
@@ -43,9 +44,15 @@ const PlacesTape = (props) => {
 
         <PlacesTapeContainer id='placeTape'>
             <NavigateTop elemId='placeTape'/>
+            <button style={{width: "80%", margin: "auto"}}>
+                <Link to='/proposal'>
+                    Предложить
+                </Link>
+            </button>
 
-            {props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}
-                                          isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}
+
+            {/*{props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}*/}
+            {/*                              isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}*/}
 
 
             {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?

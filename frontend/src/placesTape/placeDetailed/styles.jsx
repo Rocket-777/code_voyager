@@ -6,16 +6,17 @@ const Container = styled('div')`
   display: flex;
   flex-direction: column;
   margin: 0 auto 0 auto;
+  
   width: 100%;
   min-height: 100%;
   flex-flow: row wrap;
-  overflow-y: scroll;
+  overflow-y: auto;
   
 `
 const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
-  
+  box-shadow: none;
   width: 60%;
   margin: 1rem auto 0.5rem auto;
   @media only screen and (max-width: 1000px){
@@ -129,8 +130,9 @@ const ActionButtonContainer = styled('div')`
 `
 
 const MapContainer = styled('div')`
-    margin: 1rem auto 1rem auto;
-  width: 80%;
+  position: relative;
+  margin: 1rem auto auto auto;
+  width: 100%;
 
 `
 

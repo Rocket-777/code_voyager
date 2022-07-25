@@ -11,6 +11,7 @@ import {PlacesTape} from "../placesTape";
 import {PostTape} from "../postTape";
 import {PlaceDetailed} from "../placesTape/placeDetailed";
 import {Home} from "../home";
+import {EditPlace} from "../placesTape/detailedEdit";
 
 
 const Main = () => {
@@ -44,6 +45,7 @@ const Main = () => {
                                             element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized}
                                                                  usrData={usrData} setUsrData={setUsrData}/>}/>
                     <Route path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
+                    <Route path="/proposal" element={<EditPlace type='blank'/>}/>
                     <Route path='*' element={<h1>404_NOT_FOUND</h1>}/>
                 </Routes>
             </ScrollContainer>

@@ -21,7 +21,7 @@ import {getComments} from "../comments/scripts";
 import {PrettyDivider} from "./divider";
 import {ActionButtons} from "../../actionButtons";
 import {favoriteAction, likeAction} from "../placeCard/scripst/placeCardScripts";
-import {Loader} from "../../main/loading";
+
 
 import {Map, Placemark, YMaps} from "react-yandex-maps";
 
@@ -54,7 +54,7 @@ const PlaceDetailed = (props) => {
     }, [])
 
 
-    if (!placeData.error && !isLoading) {
+    if (!placeData.error && !isLoading ) {
         return (
             <Container id='detailedPlace'>
                 <NavigateTop elemId='detailedPlace'/>
@@ -114,13 +114,12 @@ const PlaceDetailed = (props) => {
         return (
             <h1>{placeData.error}</h1>
         );
-    } else if (isLoading) {
-        return (
-            <Container>
-                <Loader/>
-                <Footer/>
-            </Container>
-        );
+    }
+    else{
+        return(
+            <div>asd</div>
+        )
+
     }
 
 }
