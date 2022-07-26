@@ -2,6 +2,7 @@
 import { styled } from '@mui/material/styles';
 
 const MainLayout = styled('div')`
+  
   display: flex;
   flex-direction: column;
   //padding: 0;
@@ -11,7 +12,7 @@ const MainLayout = styled('div')`
 
 `;
 const ScrollContainer = styled('div')`
-  
+  z-index: 1;
   display: flex;
   flex-direction: column;
   margin: 0 0 0 0;

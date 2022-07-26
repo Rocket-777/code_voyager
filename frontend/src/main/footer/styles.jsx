@@ -13,7 +13,8 @@ const StyledFooter = styled('div')`
   margin: auto 0 0 0;
   background-color: #5c6bc0;
   color: white;
-  box-shadow: 0 10px 10px 10px #888;
+  //box-shadow: 0 10px 10px 10px #888;
+  box-shadow: none;
   
 `
 

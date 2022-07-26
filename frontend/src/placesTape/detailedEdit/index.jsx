@@ -60,10 +60,10 @@ const EditPlace = ({type}) => {
                     Новое место
                 </StyledHeader>
                 <TextInput label='Название'  autoComplete="off" size='small' required={true} />
-                <TextInput label='Рецензия' autoComplete="off" size='small' required={true}/>
-                <TextInput label='Полное описание' autoComplete="off" size='small' required={true}/>
-                <TextInput label='Адрес' autoComplete="off" size='small' required={true}/>
-                <TextInput label='Контакты' autoComplete="off" size='small' required={true}/>
+                <TextInput label='Рецензия' autoComplete="off" size='small' required={true} multiline={true} minRows={3}/>
+                <TextInput label='Полное описание' autoComplete="off" size='small' required={true} multiline={true} minRows={3}/>
+                <TextInput label='Адрес' autoComplete="off" size='small' required={true} multiline={true}/>
+                <TextInput label='Контакты' autoComplete="off" size='small' required={true} multiline={true}/>
                 <MapContainer>
                     <YMaps>
                         <Map defaultState={{center: markerPos, zoom: 14, controls: [] }} width='100%' height='45rem' options={{suppressMapOpenBlock: true}} >

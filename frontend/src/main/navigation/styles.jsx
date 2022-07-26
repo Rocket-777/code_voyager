@@ -4,13 +4,13 @@ import { styled } from '@mui/material/styles';
 const StyledFabUpwards = styled(Fab)`
   z-index: 1;
   position: absolute;
-  //border: solid white 1px;
+  border: solid 2px #8e99f3;
   right: 12%;
   bottom: 12vh;
   background-color: #5c6bc0;
   height: 5rem;
   width: 5rem;
-  
+  box-shadow: none;
   animation: 0.3s ease-out 0s 1 appearUp;
   
   @keyframes appearUp{
@@ -49,7 +49,8 @@ const StyledFabBack = styled(Fab)`
   height: 5rem;
   width: 5rem;
   animation: 0.5s ease 0s 1 appear;
-
+  box-shadow: none;
+  border: solid 2px #8e99f3;
   @keyframes appear{
     0%{
       transform: translateY(10vh);

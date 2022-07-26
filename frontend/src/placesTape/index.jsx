@@ -44,11 +44,11 @@ const PlacesTape = (props) => {
 
         <PlacesTapeContainer id='placeTape'>
             <NavigateTop elemId='placeTape'/>
-            <button style={{width: "80%", margin: "auto"}}>
-                <Link to='/proposal'>
+            <Link to='/proposal' style={{width: "60%", margin: "auto", marginTop: "1rem"}}>
+                <button style={{width: "100%"}}>
                     Предложить
-                </Link>
-            </button>
+                </button>
+            </Link>
 
 
             {/*{props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}*/}
@@ -88,9 +88,9 @@ const PlacesTape = (props) => {
     );
     if (isLoading) return (
         <PlacesTapeContainer id='placeTape'>
-            <NavigateTop elemId='placeTape'/>
-            {props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}
-                                          isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}
+            {/*<NavigateTop elemId='placeTape'/>*/}
+            {/*{props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}*/}
+            {/*                              isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}*/}
 
             {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?
                 <ButtonContainer>
