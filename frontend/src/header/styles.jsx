@@ -1,19 +1,21 @@
 import { styled } from '@mui/material/styles';
 import {Button, Paper} from "@mui/material";
 
-const StyledButton = styled(Button)`
+const StyledButton = styled('div')`
   //font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-family: 'Open Sans', sans-serif;
   text-transform: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color cubic-bezier(.58,.68,.86,.28) 200ms 0ms;
   height: 100%;
   width: 100%;
   color: white;
   border-radius: 0;
   padding: 0;
-  font-size: 1.3rem;
-  vertical-align: middle;
+  font-size: 1.2rem;
   line-height: 3rem;
-  
-
   @media only screen and (max-width: 768px){
     font-size: 0.8rem;
   }
@@ -22,9 +24,13 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const StyledUserButton = styled(Button)`
+const StyledUserButton = styled('div')`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-transform: none;
   margin-left: auto;
+  font-family: 'Open Sans', sans-serif;
   height: 100%;
   width: 100%;
   color: white;
@@ -33,6 +39,7 @@ const StyledUserButton = styled(Button)`
   padding: 0;
   font-size: 18px;
   line-height: 3rem; //height of header
+  transition: background-color cubic-bezier(.58,.68,.86,.28) 200ms 0ms;
   @media only screen and (max-width: 768px){
     font-size: 0.8rem;
   }

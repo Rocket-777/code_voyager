@@ -17,7 +17,7 @@ const Header = (props) => {
 
 
             <Link to='/places' style={linkstyle}>
-                <StyledButton  >
+                <StyledButton >
                     Главная
                 </StyledButton>
             </Link>

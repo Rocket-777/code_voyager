@@ -4,6 +4,7 @@ html, body{
     background-color: #dfe2f5;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 .MuiButton-root, .MuiTypography-root, .MuiOutlinedInput-root, .MuiTextField-root{
     font-family: 'Open Sans', sans-serif !important;

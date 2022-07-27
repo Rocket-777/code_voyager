@@ -50,7 +50,6 @@ const PlacesTape = (props) => {
                 </button>
             </Link>
 
-
             {/*{props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}*/}
             {/*                              isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}*/}
 
