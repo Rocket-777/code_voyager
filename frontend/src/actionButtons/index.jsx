@@ -35,9 +35,9 @@ const ActionButtons = ({
     if (!inactive) return (
         <ActionContainer onClick={e => e.preventDefault()}>
             <ButtonContainer>
-                <Tooltip title={isLiked ? 'Не нравится' : 'Нравится'} enterDelay={500} leaveDelay={0}
+                <Tooltip title={isLiked ? 'Не нравится' : 'Нравится'} enterDelay={1000} leaveDelay={0} followCursor={true}
                          TransitionComponent={Fade}
-                         enterNextDelay={500} disableInteractive={true}>
+                         enterNextDelay={1000} disableInteractive={true}>
                     <ActionButton onClick={e => {
                         setLikeLoading(true);
                         likeAction().then(res => setLikeLoading(false));
@@ -49,8 +49,8 @@ const ActionButtons = ({
 
 
                 {commentVisible ?
-                    <Tooltip title='Комментарии' enterDelay={500} leaveDelay={0} TransitionComponent={Fade}
-                             enterNextDelay={500} disableInteractive={true}>
+                    <Tooltip title='Комментарии' enterDelay={1000} leaveDelay={0} TransitionComponent={Fade} followCursor={true}
+                             enterNextDelay={1000} disableInteractive={true}>
                         <ActionButton onClick={e => commentAction()} id='comment-button'>
                             <CommentSign/>
                             {commentCount !== 0 ? commentCount : null}
@@ -58,9 +58,9 @@ const ActionButtons = ({
                     </Tooltip> : null}
 
                 {favoriteVisible ?
-                    <Tooltip title={isFavorite ? 'Убрать из избранного' : 'В избранное'} enterDelay={500}
+                    <Tooltip title={isFavorite ? 'Убрать из избранного' : 'В избранное'} enterDelay={1000} followCursor={true}
                              leaveDelay={0} TransitionComponent={Fade}
-                             enterNextDelay={500} disableInteractive={true}>
+                             enterNextDelay={1000} disableInteractive={true}>
                         <ActionButton onClick={e => {
                             setFavoriteLoading(true);
                             favoriteAction().then(res => {setFavoriteLoading(false)});
@@ -71,7 +71,7 @@ const ActionButtons = ({
             </ButtonContainer>
             {
                 removeVisible ? <RemoveContainer>
-                    <Tooltip title='Удалить' enterDelay={500} leaveDelay={0} TransitionComponent={Fade}
+                    <Tooltip title='Удалить' enterDelay={0} leaveDelay={0} TransitionComponent={Fade}
                              enterNextDelay={500} disableInteractive={true}>
                         <RemoveButton onClick={e => removeAction()}>
                             <RemoveSign/>

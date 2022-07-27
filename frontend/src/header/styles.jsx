@@ -2,8 +2,7 @@ import { styled } from '@mui/material/styles';
 import {Button, Paper} from "@mui/material";
 
 const StyledButton = styled(Button)`
-
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  //font-family: "Roboto","Helvetica","Arial",sans-serif;
   text-transform: none;
   height: 100%;
   width: 100%;
@@ -44,18 +43,20 @@ const StyledUserButton = styled(Button)`
 
 const StyledHeader = styled("div") `
   position: relative;
+  z-index: 2;
+  box-shadow: 0px 1px 2px rgb(0 0 0 / 80%);
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  box-shadow: none;
+  //box-shadow: none;
   background-color: #5c6bc0;
   align-items: center;
   border-radius: 0;
   padding: 0;
   margin: 0;
-  //border-bottom: 1px solid #7D89CD;
-  border-bottom: 1px solid #8e99f3;
+  -webkit-backface-visibility: hidden; //text flicker fix
+  //border-bottom: 1px solid #8e99f3;
 `;
 
 // const linkstyle = {
@@ -77,7 +78,7 @@ const linkstyle = {
     textDecoration: "none",
     justifyItems: "center",
     height: "100%",
-    minWidth: "15%"
+    minWidth: "10%"
 }
 
 export {StyledHeader, StyledButton, linkstyle, StyledUserButton}

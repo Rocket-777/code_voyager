@@ -70,17 +70,7 @@ const PlacesTape = (props) => {
                                       setIsLoading(true);
                                   }}>Предложения пользователей</StyledButton>
                 </ButtonContainer> : null}
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
+
             {places ? places.map(item =>
 
                 <StyledLink to={'/places/' + item._id} key={item._id} onClick={e => handleTransition()}>
@@ -90,7 +80,17 @@ const PlacesTape = (props) => {
                                displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
                 </StyledLink>
             ) : null}
-
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
             <Footer/>
 
 

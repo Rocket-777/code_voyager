@@ -122,6 +122,7 @@ const EditPlace = ({type}) => {
                 </MapContainer>
 
             </StyledCard>
+            <div style={{minHeight: "10rem", width: "100%"}}/>
             <Footer/>
         </Container>
     )

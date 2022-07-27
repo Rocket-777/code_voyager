@@ -11,8 +11,9 @@ const StyledFooter = styled('div')`
   align-items: center;
   height: 10rem;
   margin: auto 0 0 0;
-  background-color: #5c6bc0;
-  color: white;
+  //background-color: #5c6bc0;
+  background-color: #c8cbdc;
+  //color: white;
   //box-shadow: 0 10px 10px 10px #888;
   box-shadow: none;
   
@@ -65,7 +66,8 @@ const Info = styled('div')`
 const Text = styled(Typography)`
   text-align: justify;
   text-justify: inter-word;
-  color: #344086;
+  //color: #344086;
+  color: #DFE2F5;
   font-size: 0.9rem;
   line-height: 1rem;
   font-weight: bold;
@@ -79,7 +81,8 @@ const Text = styled(Typography)`
 const LogoText = styled(Typography)`
   text-align: justify;
   text-justify: inter-word;
-  color: #344086;
+  //color: #344086;
+  color: #9c9eab;
   font-size: 0.9rem;
   line-height: 1rem;
   font-weight: bold;

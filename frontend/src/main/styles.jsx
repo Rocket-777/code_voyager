@@ -9,9 +9,10 @@ const MainLayout = styled('div')`
   height: 100%;
   //background-color: #e8ebff;
   padding-bottom: 5rem;
-
+  font-family: 'Open Sans', sans-serif;
 `;
 const ScrollContainer = styled('div')`
+  
   z-index: 1;
   display: flex;
   flex-direction: column;

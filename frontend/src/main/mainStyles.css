@@ -3,7 +3,16 @@ html, body{
     /*background: repeating-linear-gradient(-45deg, #e8ebff, #e8ebff 8px, #dfe2f5 8px, #dfe2f5 16px) fixed;*/
     background-color: #dfe2f5;
     overflow: hidden;
-
+    -webkit-font-smoothing: antialiased;
 }
+.MuiButton-root, .MuiTypography-root, .MuiOutlinedInput-root, .MuiTextField-root{
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.MuiTextField-root label{
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+
 
 

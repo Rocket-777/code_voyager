@@ -6,7 +6,7 @@ const StyledFabUpwards = styled(Fab)`
   position: absolute;
   right: 12%;
   bottom: 12vh;
-  background-color: #6c79c6;
+  background-color: #5c6bc0;
   height: 5rem;
   width: 5rem;
   box-shadow: none;
@@ -26,7 +26,7 @@ const StyledFabUpwards = styled(Fab)`
   }
   
   :hover{
-    background-color: #7C88CC;
+    background-color: #8e99f3;
   }
   @media only screen and (max-width: 768px){
     top: 3%;
@@ -44,7 +44,7 @@ const StyledFabBack = styled(Fab)`
   //border: solid white 1px;
   left: 12%;
   top: 4%;
-  background-color: #6c79c6;
+  background-color: #5c6bc0;
   height: 5rem;
   width: 5rem;
   animation: 0.5s ease 0s 1 appear;
@@ -59,7 +59,7 @@ const StyledFabBack = styled(Fab)`
     }
   }
   :hover{
-    background-color: #7C88CC;
+    background-color: #8e99f3;
   }
   @media only screen and (max-width: 768px){
     top: 3%;
