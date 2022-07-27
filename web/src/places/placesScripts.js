@@ -12,12 +12,14 @@ async function addNewPlace(req, res, db) {
     if (req.signedCookies.moderator || req.signedCookies.admin) {
         await db.collection('places').insertOne({
             place_name: req.body.placeName, place_description: req.body.placeDescription,
-            usersLiked: [], comments: 0, likes: 0, image: pathToImage, favoriteCount: 0, approved: true
+            usersLiked: [], comments: 0, likes: 0, image: pathToImage, favoriteCount: 0, approved: true,
+            place_description_full: req.body.placeFullDesc, place_address: req.body.address, contact_info: req.body.contact, geo: req.body.geo
         }).then(res => console.log(res));
     } else if (req.signedCookies.user) {
         await db.collection('places').insertOne({
             place_name: req.body.placeName, place_description: req.body.placeDescription,
-            usersLiked: [], comments: 0, likes: 0, image: pathToImage, favoriteCount: 0, approved: false
+            usersLiked: [], comments: 0, likes: 0, image: pathToImage, favoriteCount: 0, approved: false,
+            place_description_full: req.body.placeFullDesc, place_address: req.body.address, contact_info: req.body.contact, geo: req.body.geo
         }).then(res => console.log(res));
     }
     res.end();

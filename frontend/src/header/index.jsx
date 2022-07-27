@@ -11,24 +11,35 @@ const Header = (props) => {
 
     return (
 
-
-        <StyledHeader elevation={3} square={true}>
+        <StyledHeader  >
             {/*<img src="/logoHeader.png" alt='logo' width={39} style={{marginLeft: '1vw', marginRight: '1vw'}}/>*/}
             <Logo height={35} style={{marginLeft: '1rem', marginRight: '1rem'}} />
-            <StyledButton>
-                <Link to='/places' style={linkstyle}>
+
+
+            <Link to='/places' style={linkstyle}>
+                <StyledButton  >
                     Главная
-                </Link>
-            </StyledButton>
-            <StyledButton>
-                <Link to='/news' style={linkstyle}>
+                </StyledButton>
+            </Link>
+
+            <Link to='/news' style={linkstyle}>
+            <StyledButton >
                     Лента
-                </Link>
             </StyledButton>
-            <StyledUserButton>
-                {props.isAuth ? <Link to='/profile' style={linkstyle}> <Avatar src={usrImage} sx={{marginRight: "1vw", width: 35, height: 35}}/> {props.usrData.username}</Link>
-                    : <Link to='/log-in' style={linkstyle}>Войти/Зарегистрироваться</Link>}
-            </StyledUserButton>
+            </Link>
+
+                {props.isAuth ? <Link to='/profile' style={{...linkstyle, marginLeft: "auto"}}>
+                    <StyledUserButton>
+                        <Avatar src={usrImage} sx={{marginRight: "1vw", width: 35, height: 35}}/>
+                        {props.usrData.username}
+                    </StyledUserButton>
+                </Link>
+                    : <Link to='/log-in' style={linkstyle}>
+                        <StyledUserButton>
+                        Войти/Зарегистрироваться
+                        </StyledUserButton>
+                    </Link>}
+
 
         </StyledHeader>
     );

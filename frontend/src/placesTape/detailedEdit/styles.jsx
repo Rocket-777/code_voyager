@@ -1,5 +1,5 @@
 import {styled} from "@mui/material/styles";
-import {Button, TextField} from "@mui/material"
+import {Button, TextField, CircularProgress} from "@mui/material"
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ImageNotSupportedRoundedIcon from '@mui/icons-material/ImageNotSupportedRounded';
@@ -69,6 +69,8 @@ const RemImgIcon = styled(ImageNotSupportedRoundedIcon)`
 
 const SendButton = styled(Button)`
   position: absolute;
+  padding: 0;
+  height: 35px;
   bottom: 3%; 
   left: 1%;
   right: 1%;
@@ -82,12 +84,22 @@ const SendButton = styled(Button)`
   :hover{
     background-color: #8e99f3;
   }
-  
+  &.Mui-disabled{
+    opacity: 0.9;
+    background-color: lightgray;
+    color: #bebebe;
+  }
 `
+
+const ButtonLoader = styled(CircularProgress)`
+  color: gray;
+  opacity: 0.9;
+`
+
 const ButtonIcon = styled(CheckCircleOutlineRoundedIcon)`
   margin-right: 0.5rem;
   height: 1.7rem;
   width: 1.7rem;
 `
 
-export {TextInput, SendButton, ButtonIcon, AddImgButton, ImgIcon, UploadImgContainer, RemoveImgButton, RemImgIcon}
+export {TextInput, SendButton, ButtonIcon, AddImgButton, ImgIcon, UploadImgContainer, RemoveImgButton, RemImgIcon, ButtonLoader}

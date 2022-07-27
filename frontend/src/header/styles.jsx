@@ -2,17 +2,19 @@ import { styled } from '@mui/material/styles';
 import {Button, Paper} from "@mui/material";
 
 const StyledButton = styled(Button)`
+
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
   text-transform: none;
   height: 100%;
-  width: 10%;
+  width: 100%;
   color: white;
   border-radius: 0;
   padding: 0;
   font-size: 1.3rem;
   vertical-align: middle;
   line-height: 3rem;
-  font-weight: 300;
   
+
   @media only screen and (max-width: 768px){
     font-size: 0.8rem;
   }
@@ -25,7 +27,7 @@ const StyledUserButton = styled(Button)`
   text-transform: none;
   margin-left: auto;
   height: 100%;
-  min-width: 15%;
+  width: 100%;
   color: white;
   border-radius: 0;
   //padding: 0 1rem 0 1rem;
@@ -40,14 +42,12 @@ const StyledUserButton = styled(Button)`
   }`
 
 
-const StyledHeader = styled(Paper) `
-  position: absolute;
-  left: 0;
-  right: 0;
+const StyledHeader = styled("div") `
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  z-index: 3;
   box-shadow: none;
   background-color: #5c6bc0;
   align-items: center;
@@ -57,6 +57,18 @@ const StyledHeader = styled(Paper) `
   //border-bottom: 1px solid #7D89CD;
   border-bottom: 1px solid #8e99f3;
 `;
+
+// const linkstyle = {
+//     display: "flex",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     color: "white",
+//     textDecoration: "none",
+//     justifyItems: "center",
+//     width: "100%",
+//     height: "100%"
+// }
+
 const linkstyle = {
     display: "flex",
     justifyContent: "center",
@@ -64,9 +76,8 @@ const linkstyle = {
     color: "white",
     textDecoration: "none",
     justifyItems: "center",
-    width: "100%",
-    height: "100%"
-
+    height: "100%",
+    minWidth: "15%"
 }
 
 export {StyledHeader, StyledButton, linkstyle, StyledUserButton}

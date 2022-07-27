@@ -15,7 +15,7 @@ const ScrollContainer = styled('div')`
   z-index: 1;
   display: flex;
   flex-direction: column;
-  margin: 0 0 0 0;
+  margin: 1px 0 0 0;
   padding: 0;
   position: absolute;
   top: 3rem;

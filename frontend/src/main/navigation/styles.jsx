@@ -2,12 +2,11 @@ import {Fab} from "@mui/material";
 import { styled } from '@mui/material/styles';
 
 const StyledFabUpwards = styled(Fab)`
-  z-index: 1;
+  z-index: 5;
   position: absolute;
-  border: solid 2px #8e99f3;
   right: 12%;
   bottom: 12vh;
-  background-color: #5c6bc0;
+  background-color: #6c79c6;
   height: 5rem;
   width: 5rem;
   box-shadow: none;
@@ -27,7 +26,7 @@ const StyledFabUpwards = styled(Fab)`
   }
   
   :hover{
-    background-color: #8e99f3;
+    background-color: #7C88CC;
   }
   @media only screen and (max-width: 768px){
     top: 3%;
@@ -40,17 +39,17 @@ const StyledFabUpwards = styled(Fab)`
 `
 
 const StyledFabBack = styled(Fab)`
-  z-index: 1;
+  z-index: 5;
   position: absolute;
   //border: solid white 1px;
   left: 12%;
   top: 4%;
-  background-color: #5c6bc0;
+  background-color: #6c79c6;
   height: 5rem;
   width: 5rem;
   animation: 0.5s ease 0s 1 appear;
   box-shadow: none;
-  border: solid 2px #8e99f3;
+  
   @keyframes appear{
     0%{
       transform: translateY(10vh);
@@ -60,7 +59,7 @@ const StyledFabBack = styled(Fab)`
     }
   }
   :hover{
-    background-color: #8e99f3;
+    background-color: #7C88CC;
   }
   @media only screen and (max-width: 768px){
     top: 3%;

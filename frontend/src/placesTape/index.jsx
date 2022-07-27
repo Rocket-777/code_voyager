@@ -71,6 +71,16 @@ const PlacesTape = (props) => {
                                   }}>Предложения пользователей</StyledButton>
                 </ButtonContainer> : null}
             <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
+            <PlaceCard skeleton={true}/>
             {places ? places.map(item =>
 
                 <StyledLink to={'/places/' + item._id} key={item._id} onClick={e => handleTransition()}>
