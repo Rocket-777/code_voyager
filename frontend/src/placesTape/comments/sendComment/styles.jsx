@@ -20,11 +20,18 @@ const StyledCard = styled(Card)`
 
 const StyledTextInp = styled(TextField)`
   //margin-left: 10px;
-  
   width: 100%;
-  
   background-color: #e8ebff;
   border-radius: 4px;
+  .MuiOutlinedInput-root {
+
+    &:hover fieldset{
+      border-color: #5c6bc0;
+    }
+    &.Mui-focused fieldset{
+      border-color: #8e99f3;
+    }
+  }
 `;
 
 const SendFab = styled(Fab)`

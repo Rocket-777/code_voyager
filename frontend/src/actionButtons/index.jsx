@@ -42,7 +42,7 @@ const ActionButtons = ({
                         setLikeLoading(true);
                         likeAction().then(res => setLikeLoading(false));
                     }}>
-                        {likeLoading ? <Loader size={30}/> : activityLike()}
+                        {likeLoading ? <Loader size={25}/> : activityLike()}
                         {likeCount !== 0 && !likeLoading ? likeCount : null}
                     </ActionButton>
                 </Tooltip>
@@ -65,7 +65,7 @@ const ActionButtons = ({
                             setFavoriteLoading(true);
                             favoriteAction().then(res => {setFavoriteLoading(false)});
                         }}>
-                            {favoriteLoading ? <Loader size={30}/> : activityFavorite()}
+                            {favoriteLoading ? <Loader size={25}/> : activityFavorite()}
                         </ActionButton>
                     </Tooltip> : null}
             </ButtonContainer>

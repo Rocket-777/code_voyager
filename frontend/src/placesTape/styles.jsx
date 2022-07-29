@@ -1,6 +1,5 @@
 import {styled} from "@mui/material/styles";
 import {Button} from "@mui/material";
-import {Link} from "react-router-dom";
 
 const PlacesTapeContainer = styled('div')`
   display: flex;
@@ -45,7 +44,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const StyledLink = styled(Link)`
+const StyledContainer = styled('div')`
   margin: 1rem auto 2rem auto;
   @media only screen and (max-width: 1000px){
     width: 90%
@@ -55,4 +54,4 @@ const StyledLink = styled(Link)`
   width: 60%;
   
 `
-export {PlacesTapeContainer, ButtonContainer, StyledButton, StyledLink}
+export {PlacesTapeContainer, ButtonContainer, StyledButton, StyledContainer}

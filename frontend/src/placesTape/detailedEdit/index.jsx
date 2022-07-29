@@ -3,15 +3,15 @@ import {ImageContainer, NoImage, StyledHeader} from "../placeCard/styles";
 import {Footer} from "../../main/footer";
 import {ReactComponent as Logo} from "../../assets/newLogo.svg";
 import {NavigateBack} from "../../main/navigation";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Map, Placemark, YMaps, ZoomControl} from "react-yandex-maps";
 import {TextInput, SendButton, ButtonIcon, AddImgButton, ImgIcon, UploadImgContainer, RemoveImgButton, RemImgIcon,
-ButtonLoader} from "./styles";
+ButtonLoader, RemoveImgBtnContainer} from "./styles";
 import {postRequestWithFile} from "../../httpUtils/httpRequests";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
-const EditPlace = ({type}) => {
+const EditPlace = ({type, editableData, toggleEdit, snack, renewData}) => {
     const [placeData, setPlaceData] = useState({markerPos: [54.514, 36.26], placeName: '', placeDesc: '',
     placeFullDesc: '', address: '', contact: ''})
     const [thumbnail, setThumbnail] = useState(null);
@@ -20,6 +20,22 @@ const EditPlace = ({type}) => {
     const fillRequired = placeData.placeName && placeData.placeDesc && placeData.placeFullDesc && placeData.address && placeData.contact
     const [snackOpen, setSnackOpen] = useState(false);
     const [mapLoading, setMapLoading] = useState(true);
+    const submitButtonLabel = type === 'edit' ? 'Сохранить изменения' : 'Отправить';
+    useEffect(() => {
+        if(type === "edit"){
+            setPlaceData({
+                markerPos: editableData.geo,
+                placeName: editableData.place_name,
+                placeDesc: editableData.place_description,
+                placeFullDesc: editableData.place_description_full,
+                address: editableData.place_address,
+                contact: editableData.contact_info
+            });
+            setThumbnail(editableData.image);
+            setImage(editableData.image);
+        }
+    }, []);
+
     function handleFile(event) {
         if (event.target.files && event.target.files[0]) {
             setImage(event.target.files[0]);
@@ -46,30 +62,55 @@ const EditPlace = ({type}) => {
         reqData.append('contact', placeData.contact);
         reqData.append('geo', placeData.markerPos);
         reqData.append('image', image)
-        await postRequestWithFile('http://localhost:3003/places/new', reqData).catch(e => console.log(e));
-        handleFileRemove();
-        setPlaceData({markerPos: [54.514, 36.26], placeName: '', placeDesc: '',
-            placeFullDesc: '', address: '', contact: ''});
-        setLoading(false);
-        setSnackOpen(true);
-        document.getElementById('newPlaceContainer').scrollTo(0,0);
-    }
 
-    if(type === 'blank')
+        if(type === 'blank'){
+            await postRequestWithFile('http://localhost:3003/places/new', reqData).catch(e => console.log(e));
+            handleFileRemove();
+            setPlaceData({markerPos: [54.514, 36.26], placeName: '', placeDesc: '',
+                placeFullDesc: '', address: '', contact: ''});
+            setLoading(false);
+            setSnackOpen(true);
+            document.getElementById('newPlaceContainer').scrollTo(0,0);
+        }
+        else if(type === 'edit'){
+
+            setLoading(false);
+            snack();
+            renewData();
+            toggleEdit();
+            document.getElementById('detailedPlace').scrollTo(0,0);
+        }
+    }
     return(
         <Container id='newPlaceContainer'>
             <Snackbar open={snackOpen} autoHideDuration={7000} onClose={e => setSnackOpen(false)}>
-                <Alert  severity="success" sx={{ width: '100%' }}>
-                    Ваше предложение отправлено модератору!
-                </Alert>
+                   <Alert  severity="success" sx={{ width: '100%' }}>
+                        Ваше предложение отправлено модератору!
+                    </Alert>
             </Snackbar>
-            <NavigateBack/>
+            { type === 'blank' ? <NavigateBack/> : null}
             <StyledCard>
                 <ImageContainer>
-                    {thumbnail ? <RemoveImgButton onClick={e => handleFileRemove()} >
-                        <RemImgIcon/>
-                        Убрать изображение
-                    </RemoveImgButton> : null}
+                    {thumbnail ?
+                        <RemoveImgBtnContainer>
+                            <RemoveImgButton onClick={e => handleFileRemove()} >
+                                <RemImgIcon/>
+                                Убрать изображение
+                            </RemoveImgButton>
+                            { type === "edit" ? <UploadImgContainer>
+                                <input id='imgInp'
+                                       style={{display: "none"}}
+                                       type="file"
+                                       accept="image/*"
+                                       onChange={e => {handleFileRemove(); handleFile(e)}}
+                                />
+                                <RemoveImgButton component='span'>
+                                    <ImgIcon/>
+                                    Заменить изображение
+                                </RemoveImgButton>
+                            </UploadImgContainer> : null}
+                        </RemoveImgBtnContainer>
+                     : null}
 
                     { thumbnail ? <img src={thumbnail} alt='unlucky :('/> : <NoImage>
                         <Logo height='50%'/>
@@ -117,22 +158,16 @@ const EditPlace = ({type}) => {
                     <SendButton disabled={!fillRequired || loading} onClick={e => handleSubmit()} >
                         { loading ? null : <ButtonIcon/>}
                         { loading ? <ButtonLoader size={25}/>
-                        : 'Отправить'}
+                        : submitButtonLabel}
                     </SendButton>
                 </MapContainer>
 
             </StyledCard>
-            <div style={{minHeight: "10rem", width: "100%"}}/>
+            <div style={{minHeight: "6rem", width: "100%"}}/>
             <Footer/>
         </Container>
-    )
-    else if(type === 'edit'){
-        return(
-            <div>
-                edit
-            </div>
-        )
-    }
+    );
+
 }
 
 export {EditPlace}

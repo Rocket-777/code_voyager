@@ -14,7 +14,7 @@ const CommentText = styled(Typography)`
   margin: 1rem auto 2rem auto;
   width: 82%;
 
-  background-color: #ededed;
+  background-color: #f2f2f2;
   //flex-basis: 5rem;
   min-height: 2rem;
   max-height: 9rem;

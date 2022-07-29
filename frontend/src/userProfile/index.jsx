@@ -21,7 +21,7 @@ import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import {getFavorites} from "../placesTape/scripts/placesUtils";
-import {StyledLink} from "../placesTape/styles";
+import {StyledContainer} from "../placesTape/styles";
 import {PlaceCard} from "../placesTape/placeCard";
 import {FavoriteActive} from "../actionButtons/styles";
 import {Footer} from "../main/footer";
@@ -89,12 +89,12 @@ const UsrProfile = (props) => {
                     <FavoriteActive/>
                 </FavoritesHeader> : null}
                 {favorites ? favorites.map(item =>
-                    <StyledLink to={'/places/' + item._id} key={item._id}  onClick={e => handleTransition()} >
+                    <StyledContainer >
 
                         <PlaceCard  isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setFavorites} placesState={'approved'}
-                                    updateFavorites={() => getFavorites(setFavorites, ac)}
+                                    updateFavorites={() => getFavorites(setFavorites, ac)} handleTransition={handleTransition}
                                     displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
-                    </StyledLink>) : null}
+                    </StyledContainer>) : null}
 
             </FavoriteContainer> : null}
             <Footer/>

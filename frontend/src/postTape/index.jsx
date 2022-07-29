@@ -30,31 +30,6 @@ const PostTape = (props) => {
             <NavigateTop elemId='postTape'/>
             {props.isAuth ? <CreatePost loading={isLoading} setPosts={setPosts} handleSubmit={handleSubmit} /> : null}
             <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
-            <PostCard skeleton={true}/>
             {posts ? posts.map(item => {
                 return <PostCard key={item._id} id={item._id} username={item.username} text={item.text} ac={ac}
                                  setPosts={setPosts} userImg={item.usrImage} isPriveleged={item.isPrivileged} postData={item}/>

@@ -1,13 +1,19 @@
 import {DividerTypography, StyledDivider} from "../styles";
+import {CommentSign} from "../../comments/styles";
 
 const PrettyDivider = (props) => {
 
-    return(
+    if(props.textVal || props.sign)
+        return(
         <StyledDivider>
             <DividerTypography>
+                {props.sign ? <CommentSign/> : null}
                 {props.textVal}
             </DividerTypography>
         </StyledDivider>
+    );
+    else return(
+      <StyledDivider/>
     );
 
 }

@@ -11,7 +11,8 @@ import {
     SkeletonLogo,
     StyledCard,
     StyledDescription,
-    StyledHeader
+    StyledHeader,
+    StyledLink
 } from "./styles";
 
 import {Skeleton} from "@mui/material";
@@ -24,6 +25,7 @@ import {useEffect, useState} from "react";
 import {getComments, updatePlaceData} from "../comments/scripts";
 import {ActionButtons} from "../../actionButtons";
 import {ReactComponent as Logo} from "../../assets/newLogo.svg"
+
 
 const PlaceCard = (props) => {
 
@@ -65,22 +67,24 @@ const PlaceCard = (props) => {
         return (
             <StyledCard>
 
+                <StyledLink to={'/places/' + props.cardData._id} onClick={e => props.handleTransition()} key={props.cardData._id}>
+                    <ImageContainer>
+                        {imgLoading ? <Skeleton width='100%' height='50vh' variant='rectangular' animation='wave'>
+                            <SkeletonImgCont animation='wave' variant='rectangular'>
+                                <SkeletonLogo/>
+                            </SkeletonImgCont>
+                        </Skeleton> : null}
+                        {props.cardData.image ? <img src={props.cardData.image} alt=':(' onLoad={e => setImgLoading(false)}
+                                                     hidden={imgLoading}/> :
+                            <NoImage>
+                                <Logo height='50%'/>
+                            </NoImage>}
+                    </ImageContainer>
+                    <StyledHeader variant='h4'>
+                        {props.cardData.place_name ? props.cardData.place_name : "SAMLE_TEXT"}
+                    </StyledHeader>
+                </StyledLink>
 
-                <ImageContainer>
-                    {imgLoading ? <Skeleton width='100%' height='50vh' variant='rectangular' animation='wave'>
-                        <SkeletonImgCont animation='wave' variant='rectangular'>
-                            <SkeletonLogo/>
-                        </SkeletonImgCont>
-                    </Skeleton> : null}
-                    {props.cardData.image ? <img src={props.cardData.image} alt=':(' onLoad={e => setImgLoading(false)}
-                                                 hidden={imgLoading}/> :
-                        <NoImage>
-                            <Logo height='50%'/>
-                        </NoImage>}
-                </ImageContainer>
-                <StyledHeader variant='h4'>
-                    {props.cardData.place_name ? props.cardData.place_name : "SAMLE_TEXT"}
-                </StyledHeader>
                 <StyledDescription>
                     {props.cardData.place_description ? props.cardData.place_description : "SAMPLE_TEXT"}
                 </StyledDescription>
@@ -113,7 +117,7 @@ const PlaceCard = (props) => {
                                favoriteAction={() => handleFavorite()} isFavorite={placeData.isFavorite}/>
 
                 {
-                    showComments ? <div onClick={e => e.preventDefault()}>
+                    showComments ? <div onClick={e => {e.preventDefault();}} >
                         <Comments data={commentsData}/>
                         <SendComment ac={ac} updateComments={setCommentsData} id={props.cardData._id}
                                      updateData={() => updatePlaceData(placeData._id, setPlaceData, ac)}

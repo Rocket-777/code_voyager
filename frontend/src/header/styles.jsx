@@ -1,14 +1,14 @@
 import { styled } from '@mui/material/styles';
 import {Button, Paper} from "@mui/material";
 
-const StyledButton = styled('div')`
+const StyledButton = styled(Button)`
   //font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-family: 'Open Sans', sans-serif;
   text-transform: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color cubic-bezier(.58,.68,.86,.28) 200ms 0ms;
+  //transition: background-color cubic-bezier(.58,.68,.86,.28) 200ms 0ms;
   height: 100%;
   width: 100%;
   color: white;
@@ -20,11 +20,11 @@ const StyledButton = styled('div')`
     font-size: 0.8rem;
   }
   :hover{
-    background-color: #8e99f3;
+    background-color: rgb(142, 153, 243, 0.99);
   }
 `;
 
-const StyledUserButton = styled('div')`
+const StyledUserButton = styled(Button)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,12 +39,12 @@ const StyledUserButton = styled('div')`
   padding: 0;
   font-size: 18px;
   line-height: 3rem; //height of header
-  transition: background-color cubic-bezier(.58,.68,.86,.28) 200ms 0ms;
+  //transition: background-color cubic-bezier(.58,.68,.86,.28) 200ms 0ms;
   @media only screen and (max-width: 768px){
     font-size: 0.8rem;
   }
   :hover{
-    background-color: #8e99f3;
+    background-color: rgb(142, 153, 243, 0.99);
   }`
 
 

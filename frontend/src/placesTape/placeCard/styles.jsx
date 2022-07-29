@@ -1,6 +1,15 @@
 import {styled} from "@mui/material/styles";
 import {Button, Card, Skeleton, Typography} from "@mui/material";
 import {ReactComponent as Logo} from '../../assets/newLogo.svg'
+import {Link} from "react-router-dom";
+
+const StyledLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: black;
+`
+
 
 const StyledCard = styled(Card)`
   display: flex;
@@ -71,7 +80,7 @@ const StyledDescription = styled(Typography)`
   display: block;
   margin: 1rem auto 0 auto;
   width: 82%;
-  background-color: #ededed;
+  background-color: #f2f2f2;
   //flex-basis: 5rem;
   min-height: 2rem;
   max-height: 9rem;
@@ -198,5 +207,6 @@ export {
     SkeletonHeader,
     SkeletonDesc,
     SkeletonImgCont,
-    SkeletonLogo
+    SkeletonLogo,
+    StyledLink
 }

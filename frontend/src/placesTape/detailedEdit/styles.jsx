@@ -3,12 +3,12 @@ import {Button, TextField, CircularProgress} from "@mui/material"
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ImageNotSupportedRoundedIcon from '@mui/icons-material/ImageNotSupportedRounded';
+
 const TextInput = styled(TextField)`
   width: 80%;
   margin: 1rem auto 1rem auto;
   
   .MuiOutlinedInput-root {
-    
     &:hover fieldset{
       border-color: #5c6bc0;
     }
@@ -35,10 +35,14 @@ const AddImgButton = styled(Button)`
   }
 `
 
-const RemoveImgButton = styled(Button)`
+const RemoveImgBtnContainer = styled('div')`
   position: absolute;
   left: 2%;
   bottom: 2%;
+`
+
+const RemoveImgButton = styled(Button)`
+  margin-right: 1rem;
   border-radius: 10px;
   background-color: rgb(211,211,211, 0.9);
   //border: 1px solid gray;
@@ -46,7 +50,7 @@ const RemoveImgButton = styled(Button)`
   font-size: 1rem;
   text-transform: none;
   :hover{
-    background-color: #bebebe;
+    background-color: #adadad;
   }
 `
 
@@ -85,7 +89,7 @@ const SendButton = styled(Button)`
     background-color: #8e99f3;
   }
   &.Mui-disabled{
-    opacity: 0.9;
+    opacity: 0.8;
     background-color: lightgray;
     color: #bebebe;
   }
@@ -102,4 +106,7 @@ const ButtonIcon = styled(CheckCircleOutlineRoundedIcon)`
   width: 1.7rem;
 `
 
-export {TextInput, SendButton, ButtonIcon, AddImgButton, ImgIcon, UploadImgContainer, RemoveImgButton, RemImgIcon, ButtonLoader}
+
+
+export {TextInput, SendButton, ButtonIcon, AddImgButton, ImgIcon, UploadImgContainer, RemoveImgButton, RemImgIcon, ButtonLoader,
+RemoveImgBtnContainer}

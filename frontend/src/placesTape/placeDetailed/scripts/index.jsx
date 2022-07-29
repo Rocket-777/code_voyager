@@ -6,7 +6,7 @@ async function getPlaceById(id, setPlaceData, ac){
     const data = await getPlacesRequest(uri, ac);
     if(data){
 
-        setPlaceData(data);
+        setPlaceData({...data, geo: data.geo.split(',')});
     }
     else if(!ac.signal.aborted){
         setPlaceData(data.error);

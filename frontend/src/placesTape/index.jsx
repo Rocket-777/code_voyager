@@ -1,6 +1,6 @@
-import {ButtonContainer, PlacesTapeContainer, StyledButton, StyledLink} from "./styles";
+import {ButtonContainer, PlacesTapeContainer, StyledButton, StyledContainer} from "./styles";
 import {PlaceCard} from "./placeCard";
-import {PlaceCreator} from "./createPlace";
+
 import React, {useEffect, useState} from "react";
 import {getPlaces} from "./scripts/placesUtils";
 import {NavigateTop} from "../main/navigation";
@@ -50,10 +50,6 @@ const PlacesTape = (props) => {
                 </button>
             </Link>
 
-            {/*{props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}*/}
-            {/*                              isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}*/}
-
-
             {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?
                 <ButtonContainer>
                     <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#bec9eb'} : null}
@@ -69,27 +65,17 @@ const PlacesTape = (props) => {
                                       setIsLoading(true);
                                   }}>Предложения пользователей</StyledButton>
                 </ButtonContainer> : null}
-
+            <PlaceCard skeleton={true}/>
             {places ? places.map(item =>
 
-                <StyledLink to={'/places/' + item._id} key={item._id} onClick={e => handleTransition()}>
+                <StyledContainer>
 
                     <PlaceCard isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setPlaces}
-                               placesState={displayPlaces}
+                               placesState={displayPlaces} handleTransition={handleTransition}
                                displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
-                </StyledLink>
+                </StyledContainer>
             ) : null}
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
-            <PlaceCard skeleton={true}/>
+
             <Footer/>
 
 
@@ -97,10 +83,6 @@ const PlacesTape = (props) => {
     );
     if (isLoading) return (
         <PlacesTapeContainer id='placeTape'>
-            {/*<NavigateTop elemId='placeTape'/>*/}
-            {/*{props.isAuth ? <PlaceCreator placeStatus={displayPlaces} setPlaces={setPlaces} ac={ac}*/}
-            {/*                              isPrivileged={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/> : null}*/}
-
             {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?
                 <ButtonContainer>
                     <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#bec9eb'} : null}
