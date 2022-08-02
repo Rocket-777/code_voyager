@@ -67,15 +67,17 @@ const PlaceCard = (props) => {
         return (
             <StyledCard>
 
-                <StyledLink to={'/places/' + props.cardData._id} onClick={e => props.handleTransition()} key={props.cardData._id}>
+                <StyledLink to={'/placesList/' + props.cardData._id} onClick={e => props.handleTransition()}
+                            key={props.cardData._id}>
                     <ImageContainer>
                         {imgLoading ? <Skeleton width='100%' height='50vh' variant='rectangular' animation='wave'>
                             <SkeletonImgCont animation='wave' variant='rectangular'>
                                 <SkeletonLogo/>
                             </SkeletonImgCont>
                         </Skeleton> : null}
-                        {props.cardData.image ? <img src={props.cardData.image} alt=':(' onLoad={e => setImgLoading(false)}
-                                                     hidden={imgLoading}/> :
+                        {props.cardData.image ?
+                            <img src={props.cardData.image} alt=':(' onLoad={e => setImgLoading(false)}
+                                 hidden={imgLoading}/> :
                             <NoImage>
                                 <Logo height='50%'/>
                             </NoImage>}
@@ -88,36 +90,16 @@ const PlaceCard = (props) => {
                 <StyledDescription>
                     {props.cardData.place_description ? props.cardData.place_description : "SAMPLE_TEXT"}
                 </StyledDescription>
-                {props.isAuth ? <ButtonBlockContainer>
-                    {props.cardData.approved ? null : <ButtonBlock>
-                        <BlockButton color='secondary' variant='contained'
-                                     onClick={e => {
-                                         e.preventDefault();
-                                         approvePlace(props.cardData._id, props.setPlaces, props.placesState, ac)
-                                     }}>
-                            <CheckOutlinedIcon sx={{marginRight: '0.4vw'}}/>
-                            Утвердить
-                        </BlockButton>
-                        <BlockButton variant='contained'
-                                     sx={{backgroundColor: "red", ":hover": {backgroundColor: "crimson"}}}
-                                     onClick={e => {
-                                         e.preventDefault();
-                                         removePlace(props.cardData._id, props.setPlaces, props.placesState, ac)
-                                     }}>
-                            <ClearOutlinedIcon sx={{marginRight: '0.4vw'}}/>
-                            Отказать
-                        </BlockButton>
-                    </ButtonBlock>}
-                </ButtonBlockContainer> : null}
                 <ActionButtons likeCount={placeData.likes} commentCount={placeData.comments} isLiked={placeData.isLiked}
                                likeAction={() => handleLike()} commentAction={() => setShowComments(!showComments)}
                                favoriteVisible={true}
-                               removeAction={() => removePlace(props.cardData._id, props.setPlaces, props.placesState, ac)}
-                               removeVisible={props.displayRemoveButton} commentVisible={true}
+                               commentVisible={true}
                                favoriteAction={() => handleFavorite()} isFavorite={placeData.isFavorite}/>
 
                 {
-                    showComments ? <div onClick={e => {e.preventDefault();}} >
+                    showComments ? <div onClick={e => {
+                        e.preventDefault();
+                    }}>
                         <Comments data={commentsData}/>
                         <SendComment ac={ac} updateComments={setCommentsData} id={props.cardData._id}
                                      updateData={() => updatePlaceData(placeData._id, setPlaceData, ac)}
@@ -132,7 +114,7 @@ const PlaceCard = (props) => {
         return (
             <SkeletonContainer>
                 <StyledCard>
-                    <SkeletonImgCont animation='wave' variant='rectangular' >
+                    <SkeletonImgCont animation='wave' variant='rectangular'>
                         <SkeletonLogo/>
                     </SkeletonImgCont>
                     <SkeletonHeader animation='wave'/>

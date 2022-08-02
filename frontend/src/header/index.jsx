@@ -12,17 +12,14 @@ const Header = (props) => {
     return (
 
         <StyledHeader  >
-            {/*<img src="/logoHeader.png" alt='logo' width={39} style={{marginLeft: '1vw', marginRight: '1vw'}}/>*/}
             <Logo height={35} style={{marginLeft: '1rem', marginRight: '1rem'}} />
-
-
-            <Link to='/places' style={linkstyle}>
+            <Link to='/placesList' style={linkstyle}>
                 <StyledButton >
                     Главная
                 </StyledButton>
             </Link>
 
-            <Link to='/news' style={linkstyle}>
+            <Link to='/feed' style={linkstyle}>
             <StyledButton >
                     Лента
             </StyledButton>
@@ -31,10 +28,10 @@ const Header = (props) => {
                 {props.isAuth ? <Link to='/profile' style={{...linkstyle, marginLeft: "auto"}}>
                     <StyledUserButton>
                         <Avatar src={usrImage} sx={{marginRight: "1vw", width: 35, height: 35}}/>
-                        {props.usrData.username}
+                        {props.usrData.username ? props.usrData.username : 'Loading...'}
                     </StyledUserButton>
                 </Link>
-                    : <Link to='/log-in' style={linkstyle}>
+                    : <Link to='/log-in' style={{...linkstyle, marginLeft: "auto"}}>
                         <StyledUserButton>
                         Войти/Зарегистрироваться
                         </StyledUserButton>

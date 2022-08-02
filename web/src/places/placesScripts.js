@@ -2,24 +2,42 @@ import {ObjectId} from "mongodb";
 import * as fs from "fs";
 import path from "path";
 import {getUser} from "../utils/index.js";
-
+import {rootUrl} from "../root.js";
 
 async function addNewPlace(req, res, db) {
     let pathToImage = null;
     if (req.file) {
-        pathToImage = `http://localhost:3003/uploads/${req.file.filename}`;
+        pathToImage = `http://${rootUrl}/uploads/${req.file.filename}`;
     }
     if (req.signedCookies.moderator || req.signedCookies.admin) {
         await db.collection('places').insertOne({
-            place_name: req.body.placeName, place_description: req.body.placeDescription,
-            usersLiked: [], comments: 0, likes: 0, image: pathToImage, favoriteCount: 0, approved: true,
-            place_description_full: req.body.placeFullDesc, place_address: req.body.address, contact_info: req.body.contact, geo: req.body.geo
+            place_name: req.body.placeName,
+            place_description: req.body.placeDescription,
+            usersLiked: [],
+            comments: 0,
+            likes: 0,
+            image: pathToImage,
+            favoriteCount: 0,
+            approved: true,
+            place_description_full: req.body.placeFullDesc,
+            place_address: req.body.address,
+            contact_info: req.body.contact,
+            geo: req.body.geo
         }).then(res => console.log(res));
     } else if (req.signedCookies.user) {
         await db.collection('places').insertOne({
-            place_name: req.body.placeName, place_description: req.body.placeDescription,
-            usersLiked: [], comments: 0, likes: 0, image: pathToImage, favoriteCount: 0, approved: false,
-            place_description_full: req.body.placeFullDesc, place_address: req.body.address, contact_info: req.body.contact, geo: req.body.geo
+            place_name: req.body.placeName,
+            place_description: req.body.placeDescription,
+            usersLiked: [],
+            comments: 0,
+            likes: 0,
+            image: pathToImage,
+            favoriteCount: 0,
+            approved: false,
+            place_description_full: req.body.placeFullDesc,
+            place_address: req.body.address,
+            contact_info: req.body.contact,
+            geo: req.body.geo
         }).then(res => console.log(res));
     }
     res.end();
@@ -108,12 +126,12 @@ async function sendPlace(req, res, db) {
             });
         }
 
-        place.usersLiked.map(item => {
-            if (item === user) {
-                islkd = true;
-            }
-        })
         if (place) {
+            place.usersLiked.map(item => {
+                if (item === user) {
+                    islkd = true;
+                }
+            })
             res.send({...place, isLiked: islkd, isFavorite: isFavorite});
         } else {
             res.send({error: 'NOT_FOUND'});
@@ -139,10 +157,10 @@ async function removePlace(req, res, db, uplPath) {
         }
         const users = await db.collection('users').find({}).toArray();
 
-            users.map(item => {
+        users.map(item => {
             item.favorites.map(async it => {
 
-                if(it === req.body.key){
+                if (it === req.body.key) {
                     await db.collection('users').updateOne({_id: item._id}, {
                         $pull: {
                             favorites: req.body.key
@@ -248,4 +266,62 @@ async function favoriteAction(req, res, db) {
     res.end();
 }
 
-export {addNewPlace, sendPlaces, removePlace, approvePlace, sendPlace, likeAction, favoriteAction, sendFavorites}
+async function editPlace(req, res, db, uplPath) {
+
+    if (req.signedCookies.moderator || req.signedCookies.admin) {
+        if (req.body.action === "approval") {
+            approvePlace(req, res, db).catch(e => console.log(e));
+            res.send({message: 'Success'})
+            res.end();
+        } else if (req.body.action === "edit") {
+
+            const imageIsFile = typeof req.body.image !== 'string';
+            const imageVal = req.body.image === 'null' ? null : req.body.image
+            const imageURL = imageIsFile ? `http://${rootUrl}/uploads/${req.file.filename}` : imageVal;
+            const oldData = await db.collection('places').findOne({_id: ObjectId(req.params.id)});
+
+            if (imageIsFile && oldData.image) {
+                fs.unlink(path.resolve(uplPath + oldData.image.split('/').pop()), (err) => {
+                    if (err) {
+                        console.log(err)
+                    }
+                });
+            } else if (!imageVal && oldData.image) {
+                fs.unlink(path.resolve(uplPath + oldData.image.split('/').pop()), (err) => {
+                    if (err) {
+                        console.log(err)
+                    }
+                });
+            }
+
+            const update = {
+                $set: {
+                    place_name: req.body.placeName,
+                    place_description: req.body.placeDescription,
+                    place_description_full: req.body.placeFullDesc,
+                    place_address: req.body.address,
+                    contact_info: req.body.contact,
+                    geo: req.body.geo,
+                    image: imageURL
+                }
+            }
+            await db.collection('places').updateOne({_id: ObjectId(req.params.id)}, update);
+            res.send({message: 'Success'})
+            res.end();
+        }
+    } else {
+        res.status(401);
+    }
+}
+
+export {
+    addNewPlace,
+    sendPlaces,
+    removePlace,
+    approvePlace,
+    sendPlace,
+    likeAction,
+    favoriteAction,
+    sendFavorites,
+    editPlace
+}

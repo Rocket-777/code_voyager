@@ -5,7 +5,7 @@ const Home = () => {
     let navigate = useNavigate();
     //redirect
     useEffect(() => {
-        navigate('/places')
+        navigate('/placesList')
     }, []);
     //====
     return 0;

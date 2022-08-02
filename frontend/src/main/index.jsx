@@ -38,11 +38,11 @@ const Main = () => {
             <ScrollContainer id='scrollable' >
                 <Routes >
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/places/:id" element={<PlaceDetailed/>}/>
-                    <Route path="/places" element={<PlacesTape  usrData={usrData} isAuth={usrAuthorized}/>}/>
-                    <Route path="/news" element={<PostTape isAuth={usrAuthorized}/>}/>
+                    <Route path="/placesList/:id" element={<PlaceDetailed/>}/>
+                    <Route path="/placesList" element={<PlacesTape  usrData={usrData} isAuth={usrAuthorized}/>}/>
+                    <Route path="/feed" element={<PostTape isAuth={usrAuthorized}/>}/>
                     <Route exact path="/profile"
-                                            element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized}
+                                            element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} updateUsr={() => usrInit('http://localhost:3003/home', setUsrData)}
                                                                  usrData={usrData} setUsrData={setUsrData}/>}/>
                     <Route path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
                     <Route path="/proposal" element={<EditPlace type='blank'/>}/>

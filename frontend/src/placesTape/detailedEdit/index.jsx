@@ -7,7 +7,7 @@ import React, {useState, useEffect} from "react";
 import {Map, Placemark, YMaps, ZoomControl} from "react-yandex-maps";
 import {TextInput, SendButton, ButtonIcon, AddImgButton, ImgIcon, UploadImgContainer, RemoveImgButton, RemImgIcon,
 ButtonLoader, RemoveImgBtnContainer} from "./styles";
-import {postRequestWithFile} from "../../httpUtils/httpRequests";
+import {postRequestWithFile, putReqFrmData} from "../../httpUtils/httpRequests";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
@@ -73,7 +73,8 @@ const EditPlace = ({type, editableData, toggleEdit, snack, renewData}) => {
             document.getElementById('newPlaceContainer').scrollTo(0,0);
         }
         else if(type === 'edit'){
-
+            reqData.append('action', 'edit');
+            await putReqFrmData('http://localhost:3003/places/' + editableData._id, reqData);
             setLoading(false);
             snack();
             renewData();

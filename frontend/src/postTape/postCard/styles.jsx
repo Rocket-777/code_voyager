@@ -36,7 +36,7 @@ const StyledText = styled(Typography)`
   display: flex;
   margin: 1.5vh 1vw 1.5vh 1vw;
   height: fit-content;
-  background-color: #ededed;
+  background-color: #f2f2f2;
   flex-basis: 75%;
   
   padding: 1.7%;

@@ -12,7 +12,7 @@ import {cookieAuthorization} from "./authorization/index.js";
 import {sendUserData} from "./usrData/getUsrData.js";
 import {cookieDenie} from "./authorization/cookieUtils.js";
 import {addNewPlace, sendPlaces, removePlace, approvePlace,
-    sendPlace, likeAction, favoriteAction, sendFavorites} from "./places/placesScripts.js";
+    sendPlace, likeAction, favoriteAction, sendFavorites, editPlace} from "./places/placesScripts.js";
 import crypto from 'crypto';
 import multer from 'multer';
 import {setUserImage, removeUsrImage} from "./usrData/userScripts.js";
@@ -35,6 +35,9 @@ if(!fs.existsSync('../uploads')){
 }
 
 const uploadPath =  path.dirname(fileURLToPath(import.meta.url)) + '/../uploads/'; //UPLOAD RELATIVE PATH
+const publicPath = path.dirname(fileURLToPath(import.meta.url)) + '/../../frontend/build/';
+
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const error = (req.signedCookies.admin || req.signedCookies.user || req.signedCookies.moderator) ? null : new Error('unauthorized');
@@ -54,7 +57,7 @@ const upload = multer({storage: storage});
 app.use(cookie_parser('ass'));
 app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 app.use(express.json());
-
+app.use(express.static(path.resolve(publicPath)));
 
 
 
@@ -112,7 +115,7 @@ app.get('/comments/:placeId', (req, res, next) => {
 
 app.post('/places/new', upload.single('image') , (req, res, next) => {
     console.log('Got new place req!');
-    //console.log(req.body);
+    // console.log(req.body);
     addNewPlace(req, res, db).catch(e => console.log(e));
 });
 app.post('/comments', upload.single('image') , (req, res, next) => {
@@ -132,8 +135,8 @@ app.get('/places/id/:id', (req, res, next) => {
 app.delete('/places', (req, res, next) => {
     removePlace(req, res, db, uploadPath).catch(e => console.log(e));
 });
-app.put('/places/:id', (req, res, next) => {
-    approvePlace(req, res, db).catch(e => console.log(e));
+app.put('/places/:id', upload.single('image'), (req, res, next) => {
+    editPlace(req, res, db, uploadPath).catch(e => console.log(e));
 });
 app.put('/places/:id/like', (req, res, next) => {
     likeAction(req, res, db).catch(e => console.log(e));
@@ -151,7 +154,7 @@ app.get('/home', (req, res, next) => {
 app.post('/userImage', upload.single('image'), (req, res, next) => {
     setUserImage(req, res, db).catch(e => console.log(e));
 });
-app.delete('/userImage', upload.single('image'), (req, res, next) => {
+app.delete('/userImage', (req, res, next) => {
     removeUsrImage(req, res, db, uploadPath).catch(e => console.log(e));
 });
 app.listen(port, () => {
@@ -163,9 +166,12 @@ app.listen(port, () => {
 app.get('/uploads/:id', (req, res, next) => {
     //res.send(req.params.id);
     res.sendFile(path.resolve(`${uploadPath}` + `${req.params.id}`));
-
-
 });
+
+app.get('(/*)?', (req, res, next) => {
+    res.sendFile(path.resolve(publicPath + '/index.html'));
+});
+
 process.on("SIGINT", () => {
     dbClient.close();
     process.exit();

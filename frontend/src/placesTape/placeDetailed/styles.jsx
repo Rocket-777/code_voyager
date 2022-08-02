@@ -7,7 +7,7 @@ const Container = styled('div')`
   display: flex;
   flex-direction: column;
   margin: 0 auto 0 auto;
-  
+
   width: 100%;
   min-height: 100%;
   flex-flow: row wrap;
@@ -20,15 +20,15 @@ const StyledCard = styled(Card)`
   box-shadow: none;
   width: 60%;
   margin: 1rem auto 0.5rem auto;
-  @media only screen and (max-width: 1000px){
+  @media only screen and (max-width: 1000px) {
     width: 90%
   }
- 
+
 `;
 
 const StyledHeader = styled(Typography)`
   padding: 1rem 3rem 0.5rem 3rem;
-  
+
   overflow-wrap: break-word;
   //border-bottom: 3px solid #1a237e;
   //color: #1a237e;
@@ -50,7 +50,7 @@ const ShortDescription = styled(Typography)`
   word-wrap: anywhere;
   text-align: justify;
   overflow: auto;
-  
+
 `;
 
 const FullDescription = styled(Typography)`
@@ -68,7 +68,7 @@ const FullDescription = styled(Typography)`
   word-wrap: anywhere;
   text-align: justify;
   overflow: auto;
-  
+
 `;
 
 const Info = styled(Typography)`
@@ -84,20 +84,22 @@ const Info = styled(Typography)`
   word-wrap: anywhere;
   text-align: justify;
   overflow: auto;
-  
+
 `;
 
 const StyledDivider = styled(Divider)`
   padding: 0;
   margin: 1rem 0 auto 0;
-::before{
-  transform: translateY(14px);
-  top: 0;
-  //border-top: 2px solid #1a237e
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-  
-} 
-  ::after{
+
+  ::before {
+    transform: translateY(14px);
+    top: 0;
+    //border-top: 2px solid #1a237e
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+  }
+
+  ::after {
     transform: translateY(14px);
     top: 0;
     //border-top: 2px solid #1a237e;
@@ -119,22 +121,24 @@ const ActionButtonContainer = styled('div')`
   flex-direction: row;
   margin: auto;
   width: 82%;
+
   div {
     padding-left: 0;
     margin-left: 0;
     width: 50%;
-    @media only screen and (max-width: 1450px){
+    @media only screen and (max-width: 1450px) {
       width: 55%
     }
-    @media only screen and (max-width: 1000px){
+    @media only screen and (max-width: 1000px) {
       width: 100%
     }
   }
-  @media only screen and (max-width: 1000px){
+
+  @media only screen and (max-width: 1000px) {
     width: 90%
   }
-  
-  
+
+
 `
 
 const MapContainer = styled('div')`
@@ -151,21 +155,23 @@ const ActionWrap = styled('div')`
 `
 
 const ToggleEdit = styled(Switch)`
-  .Mui-checked + .MuiSwitch-track{
+  .Mui-checked + .MuiSwitch-track {
     background-color: limegreen !important;
     //opacity: 0.8;
   }
 
   .Mui-checked {
-    .MuiSwitch-thumb{
-      color: #8e99f3 ;
+    .MuiSwitch-thumb {
+      color: #8e99f3;
     }
-    
+
   }
-  .MuiSwitch-thumb{
+
+  .MuiSwitch-thumb {
     color: #f2f2f2;
   }
-  .MuiSwitch-track{
+
+  .MuiSwitch-track {
     background-color: #bebebe;
     transition: background-color 800ms;
   }
@@ -173,15 +179,16 @@ const ToggleEdit = styled(Switch)`
 `
 
 const AdminContainer = styled(Card)`
+
   display: flex;
   align-items: center;
   box-shadow: none;
-  height: 3rem;
+  min-height: 3rem;
   width: 60%;
   margin: 1rem auto auto auto
 `
 const AdminText = styled(Typography)`
- display: inline;
+  display: inline;
   margin-left: 1rem;
 `
 
@@ -192,7 +199,8 @@ const AdminModeration = styled(Button)`
   border-radius: 10px;
   color: #5c6bc0;
   border: 1px solid #5c6bc0;
-  :hover{
+
+  :hover {
     background-color: #e6e8f7;
   }
 `
@@ -204,12 +212,28 @@ const AdminRemove = styled(Button)`
   color: white;
   border-radius: 10px;
   padding: 0.3rem 0.7rem 0.3rem 0.7rem;
-  :hover{
+
+  :hover {
     opacity: 0.9;
     background-color: #ff6e63;
   }
 `
 
-export {Container, StyledCard, StyledHeader, ShortDescription,
-    FullDescription, Info, StyledDivider, DividerTypography, ActionButtonContainer, MapContainer, ActionWrap, ToggleEdit, AdminContainer, AdminText,
-AdminRemove, AdminModeration}
+export {
+    Container,
+    StyledCard,
+    StyledHeader,
+    ShortDescription,
+    FullDescription,
+    Info,
+    StyledDivider,
+    DividerTypography,
+    ActionButtonContainer,
+    MapContainer,
+    ActionWrap,
+    ToggleEdit,
+    AdminContainer,
+    AdminText,
+    AdminRemove,
+    AdminModeration
+}

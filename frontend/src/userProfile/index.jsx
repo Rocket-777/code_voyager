@@ -1,13 +1,4 @@
 import {
-    StyledButton,
-    StyledCard,
-    StyledHeader,
-    StyledImageOps,
-    StyledRow,
-    StyledSemiRow,
-    StyledTypography,
-    UploadButton,
-    UploadButtonContainer,
     Container,
     FavoriteContainer,
     FavoritesHeader
@@ -15,11 +6,7 @@ import {
 import {logOutAction} from "../logIn/scripts/logOutRequest";
 import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import {Avatar} from "@mui/material";
 import {removeUserImage, sendUserImage} from "./scripts/profileScripts";
-import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import {getFavorites} from "../placesTape/scripts/placesUtils";
 import {StyledContainer} from "../placesTape/styles";
 import {PlaceCard} from "../placesTape/placeCard";
@@ -55,7 +42,7 @@ const UsrProfile = (props) => {
         sessionStorage.setItem('scrollPositionFav', scrollPos);
     }
 
-    function handleFile(event) {
+    async function handleFile(event) {
 
         if (event.target.files && event.target.files[0]) {
             handleRemoveImg();
@@ -67,15 +54,13 @@ const UsrProfile = (props) => {
 
             const reqData = new FormData();
             reqData.append('image', event.target.files[0]);
-            sendUserImage(reqData, props.auth).catch(e => console.log(e));
-
+            await sendUserImage(reqData).catch(e => console.log(e));
+            props.updateUsr();
         }
     }
-
     function handleRemoveImg() {
-        removeUserImage(props.auth);
+        removeUserImage();
     }
-
     return (
         <Container id='userProfile'>
             <NavigateTop elemId='userProfile'/>
@@ -89,9 +74,9 @@ const UsrProfile = (props) => {
                     <FavoriteActive/>
                 </FavoritesHeader> : null}
                 {favorites ? favorites.map(item =>
-                    <StyledContainer >
+                    <StyledContainer key={item._id}>
 
-                        <PlaceCard  isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setFavorites} placesState={'approved'}
+                        <PlaceCard  isAuth={props.isAuth}  cardData={item} setPlaces={setFavorites} placesState={'approved'}
                                     updateFavorites={() => getFavorites(setFavorites, ac)} handleTransition={handleTransition}
                                     displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
                     </StyledContainer>) : null}

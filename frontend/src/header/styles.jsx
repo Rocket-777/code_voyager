@@ -85,7 +85,7 @@ const linkstyle = {
     textDecoration: "none",
     justifyItems: "center",
     height: "100%",
-    minWidth: "10%"
+    minWidth: "10%",
 }
 
 export {StyledHeader, StyledButton, linkstyle, StyledUserButton}

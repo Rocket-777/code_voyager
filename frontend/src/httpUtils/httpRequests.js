@@ -1,4 +1,4 @@
-async function postRequest(uri, body){
+async function postRequest(uri, body) {
 
     return await fetch(uri, {   // DO NOT FORGET THE AWAIT !!!!!!!!!
         method: 'POST',
@@ -14,7 +14,7 @@ async function postRequest(uri, body){
     }).then(res => res.json()).catch(e => console.log(e));
 }
 
-async function postRequestWithFile(uri, body){
+async function postRequestWithFile(uri, body) {
 
     await fetch(uri, {
         method: 'POST',
@@ -29,7 +29,8 @@ async function postRequestWithFile(uri, body){
         body: body
     }).then(res => res).catch(e => console.log(e));
 }
-async function getPlacesRequest(uri, ac){
+
+async function getPlacesRequest(uri, ac) {
     return await fetch(uri, {
         signal: ac.signal,
         method: 'GET',
@@ -47,7 +48,7 @@ async function getPlacesRequest(uri, ac){
 }
 
 
-async function getPosts(uri, ac){
+async function getPosts(uri, ac) {
     return await fetch(uri, {
         signal: ac.signal,
         method: 'GET',
@@ -64,7 +65,7 @@ async function getPosts(uri, ac){
 
 }
 
-async function deleteReq(uri, id){
+async function deleteReq(uri, id) {
     return await fetch(uri, {
         method: 'DELETE',
         mode: "cors",
@@ -78,7 +79,8 @@ async function deleteReq(uri, id){
         body: JSON.stringify({key: id})
     }).then(res => res).catch(e => console.log(e));
 }
-async function deleteReqUri(uri){
+
+async function deleteReqUri(uri) {
     return await fetch(uri, {
         method: 'DELETE',
         mode: "cors",
@@ -92,8 +94,8 @@ async function deleteReqUri(uri){
     }).then(res => res).catch(e => console.log(e));
 }
 
-async function putReq(uri, body){
-    if(body !== null){
+async function putReq(uri, body) {
+    if (body !== null) {
         return await fetch(uri, {
             method: 'PUT',
             mode: "cors",
@@ -106,8 +108,7 @@ async function putReq(uri, body){
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(body)
         }).then(res => res).catch(e => console.log(e));
-    }
-    else{
+    } else {
         return await fetch(uri, {
             method: 'PUT',
             mode: "cors",
@@ -123,4 +124,19 @@ async function putReq(uri, body){
     }
 
 }
-export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq, putReq, getPosts, deleteReqUri}
+
+async function putReqFrmData(uri, body){
+    await fetch(uri, {
+        method: 'PUT',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+
+        },
+        referrerPolicy: 'no-referrer',
+        body: body
+    }).then(res => res).catch(e => console.log(e));
+}
+
+export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq, putReq, getPosts, deleteReqUri, putReqFrmData}

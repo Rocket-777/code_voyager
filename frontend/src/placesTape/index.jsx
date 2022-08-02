@@ -68,9 +68,8 @@ const PlacesTape = (props) => {
             <PlaceCard skeleton={true}/>
             {places ? places.map(item =>
 
-                <StyledContainer>
-
-                    <PlaceCard isAuth={props.isAuth} key={item._id} cardData={item} setPlaces={setPlaces}
+                <StyledContainer key={item._id}>
+                    <PlaceCard isAuth={props.isAuth} cardData={item} setPlaces={setPlaces}
                                placesState={displayPlaces} handleTransition={handleTransition}
                                displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
                 </StyledContainer>
@@ -83,6 +82,11 @@ const PlacesTape = (props) => {
     );
     if (isLoading) return (
         <PlacesTapeContainer id='placeTape'>
+            <Link to='/proposal' style={{width: "60%", margin: "auto", marginTop: "1rem"}}>
+                <button style={{width: "100%"}} disabled={true}>
+                    Предложить
+                </button>
+            </Link>
             {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?
                 <ButtonContainer>
                     <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#bec9eb'} : null}
