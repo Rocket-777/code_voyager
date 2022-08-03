@@ -1,7 +1,7 @@
 import {Container, MapContainer, StyledCard} from "../placeDetailed/styles";
 import {ImageContainer, NoImage, StyledHeader} from "../placeCard/styles";
 import {Footer} from "../../main/footer";
-import {ReactComponent as Logo} from "../../assets/newLogo.svg";
+import Logo from "../../assets/newLogo.svg";
 import {NavigateBack} from "../../main/navigation";
 import React, {useState, useEffect} from "react";
 import {Map, Placemark, YMaps, ZoomControl} from "react-yandex-maps";
@@ -148,7 +148,7 @@ const EditPlace = ({type, editableData, toggleEdit, snack, renewData}) => {
                              options={{suppressMapOpenBlock: true}} onLoad={e => setMapLoading(false)} >
                             <Placemark id='placemark' geometry={placeData.markerPos} options={{draggable: true}}
                                        onDragEnd={e => {
-                                           console.log(e.get('target').geometry.getCoordinates());
+                                           //console.log(e.get('target').geometry.getCoordinates());
                                            setPlaceData({...placeData, markerPos: e.get('target').geometry.getCoordinates()});
                                        }}/>
                             <ZoomControl/>

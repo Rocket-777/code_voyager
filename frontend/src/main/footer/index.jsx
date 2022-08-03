@@ -1,7 +1,7 @@
 import {StyledFooter, Container, LogoInfo, Info, Text, TechLogos, LogoText} from "./styles";
-import {ReactComponent as Logo} from '../../assets/newLogo-blue.svg'
-import {ReactComponent as ReactLogo} from '../../assets/reactLogo.svg'
-import {ReactComponent as NodeLogo} from "../../assets/nodejsLogo.svg"
+import Logo from '../../assets/newLogo-blue.svg'
+import ReactLogo from '../../assets/reactLogo.svg'
+import NodeLogo from "../../assets/nodejsLogo.svg"
 
 const Footer = () => {
 

@@ -3,7 +3,7 @@ import {Header} from "../header";
 import {LogInCard} from "../logIn";
 import {Routes, Route} from "react-router-dom";
 import {UsrProfile} from "../userProfile";
-import React, {useState} from "react";
+import {useState} from "react";
 import {useEffect} from "react";
 import {getCookie} from "../cookieScr/cookieUtils";
 import {usrInit} from "../userProfile/scripts/usrInit";
@@ -53,4 +53,4 @@ const Main = () => {
         </MainLayout>
     );
 }
-export {Main}
+export {Main};

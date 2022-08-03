@@ -1,6 +1,6 @@
 import {styled} from "@mui/material/styles";
 import {Button, Card, Skeleton, Typography} from "@mui/material";
-import {ReactComponent as Logo} from '../../assets/newLogo.svg'
+import Logo from '../../assets/newLogo.svg'
 import {Link} from "react-router-dom";
 
 const StyledLink = styled(Link)`

@@ -1,10 +1,8 @@
 import {StyledHeader, StyledButton, StyledUserButton} from "./styles";
 import {Link} from "react-router-dom";
 import {linkstyle} from "./styles";
-import {useEffect, useState} from "react";
-import {usrInit} from "../userProfile/scripts/usrInit";
 import {Avatar} from "@mui/material";
-import {ReactComponent as Logo} from "../assets/newLogo.svg"
+import Logo from "../assets/newLogo.svg"
 
 const Header = (props) => {
     const usrImage = props.usrData.image ? props.usrData.image : null;

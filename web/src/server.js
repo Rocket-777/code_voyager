@@ -35,7 +35,8 @@ if(!fs.existsSync('../uploads')){
 }
 
 const uploadPath =  path.dirname(fileURLToPath(import.meta.url)) + '/../uploads/'; //UPLOAD RELATIVE PATH
-const publicPath = path.dirname(fileURLToPath(import.meta.url)) + '/../../frontend/build/';
+const publicPath = path.dirname(fileURLToPath(import.meta.url)) + '/../../frontend/dist/';
+// const bundlePath = path.dirname(fileURLToPath(import.meta.url)) + '/../../frontend/dist/';
 
 
 const storage = multer.diskStorage({
