@@ -6,13 +6,12 @@ import {UsrProfile} from "../userProfile";
 import {useState} from "react";
 import {useEffect} from "react";
 import {getCookie} from "../cookieScr/cookieUtils";
-import {usrInit} from "../userProfile/scripts/usrInit";
 import {PlacesTape} from "../placesTape";
 import {PostTape} from "../postTape";
 import {PlaceDetailed} from "../placesTape/placeDetailed";
 import {Home} from "../home";
 import {EditPlace} from "../placesTape/detailedEdit";
-
+import {initializeUser} from "./scripts";
 
 const Main = () => {
 
@@ -23,7 +22,7 @@ const Main = () => {
             if (!usrAuthorized) {
                 setAuthorized(true);
             } else {
-                usrInit('http://localhost:3003/home', setUsrData);
+                initializeUser(setUsrData).catch(e => console.log(e));
                 console.log(usrData.username);
             }
         }

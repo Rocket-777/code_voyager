@@ -271,8 +271,6 @@ async function editPlace(req, res, db, uplPath) {
     if (req.signedCookies.moderator || req.signedCookies.admin) {
         if (req.body.action === "approval") {
             approvePlace(req, res, db).catch(e => console.log(e));
-            res.send({message: 'Success'})
-            res.end();
         } else if (req.body.action === "edit") {
 
             const imageIsFile = typeof req.body.image !== 'string';

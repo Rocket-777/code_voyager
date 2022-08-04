@@ -1,8 +1,8 @@
 import {logOutRequest} from "../../httpUtils/wwwAuth";
-
+import {serverHost} from "../../httpUtils/envVals";
 
 async function logOutAction(setAuth, navigate, setUsrData){
-    await logOutRequest('http://localhost:3003/logout');
+    await logOutRequest(`${serverHost}/logout`);
     setAuth(false);
     setUsrData({username: '', status: ''});
     navigate("/log-in");

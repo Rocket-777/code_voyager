@@ -29,7 +29,7 @@ import {EditPlace} from "../detailedEdit";
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import {Map, Placemark, YMaps} from "react-yandex-maps";
-import {ReactComponent as Logo} from "../../assets/newLogo.svg";
+import Logo from "../../assets/newLogo.svg";
 
 
 const AdminBar = ({editable, setEditable, id, showDel, placeStatus, setStatus}) => {

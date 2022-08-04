@@ -1,12 +1,13 @@
 import {postRequestWithFile, deleteReq} from "../../httpUtils/httpRequests.js";
+import {serverHost} from "../../httpUtils/envVals";
 
-async function sendUserImage(image, setAuth){
-    await postRequestWithFile("http://localhost:3003/userImage", image);
+async function sendUserImage(image){
+    await postRequestWithFile(`${serverHost}/userImage`, image);
 
 }
 
 async function removeUserImage(){
-    await deleteReq("http://localhost:3003/userImage");
+    await deleteReq(`${serverHost}/userImage`);
 }
 
 export {sendUserImage, removeUserImage}

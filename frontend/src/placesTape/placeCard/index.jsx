@@ -16,15 +16,13 @@ import {
 } from "./styles";
 
 import {Skeleton} from "@mui/material";
-import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import {approvePlace, favoriteAction, likeAction, removePlace} from "./scripst/placeCardScripts";
+import {favoriteAction, likeAction} from "./scripst/placeCardScripts";
 import {Comments} from "../comments";
 import {SendComment} from "../comments/sendComment";
 import {useEffect, useState} from "react";
 import {getComments, updatePlaceData} from "../comments/scripts";
 import {ActionButtons} from "../../actionButtons";
-import {ReactComponent as Logo} from "../../assets/newLogo.svg"
+import Logo from "../../assets/newLogo.svg"
 
 
 const PlaceCard = (props) => {

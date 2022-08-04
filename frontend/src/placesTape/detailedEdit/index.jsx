@@ -7,7 +7,7 @@ import React, {useState, useEffect} from "react";
 import {Map, Placemark, YMaps, ZoomControl} from "react-yandex-maps";
 import {TextInput, SendButton, ButtonIcon, AddImgButton, ImgIcon, UploadImgContainer, RemoveImgButton, RemImgIcon,
 ButtonLoader, RemoveImgBtnContainer} from "./styles";
-import {postRequestWithFile, putReqFrmData} from "../../httpUtils/httpRequests";
+import {submitNewPlace, editPlace} from "./scripts";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
@@ -64,7 +64,7 @@ const EditPlace = ({type, editableData, toggleEdit, snack, renewData}) => {
         reqData.append('image', image)
 
         if(type === 'blank'){
-            await postRequestWithFile('http://localhost:3003/places/new', reqData).catch(e => console.log(e));
+            await submitNewPlace(reqData);
             handleFileRemove();
             setPlaceData({markerPos: [54.514, 36.26], placeName: '', placeDesc: '',
                 placeFullDesc: '', address: '', contact: ''});
@@ -74,7 +74,7 @@ const EditPlace = ({type, editableData, toggleEdit, snack, renewData}) => {
         }
         else if(type === 'edit'){
             reqData.append('action', 'edit');
-            await putReqFrmData('http://localhost:3003/places/' + editableData._id, reqData);
+            await editPlace(editableData._id, reqData);
             setLoading(false);
             snack();
             renewData();

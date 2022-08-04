@@ -1,13 +1,13 @@
 import {authRequest} from "../../httpUtils/wwwAuth.js";
 import {getCookie} from "../../cookieScr/cookieUtils.js";
-
+import {serverHost} from "../../httpUtils/envVals";
 
 function timeout(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function loginReq(username, password,authTrigger,setError, navigate){
-    const uri = 'http://localhost:3003/login';
+    const uri = `${serverHost}/login`;
     const body = {username: username, password: password};
 
     const message = await authRequest(uri, body).then(response =>{

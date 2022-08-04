@@ -1,4 +1,5 @@
 import {postRequest} from "../../../httpUtils/httpRequests.js";
+import {serverHost} from "../../../httpUtils/envVals";
 
 function timeout(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -6,7 +7,7 @@ function timeout(ms){
 
 async function submitNewUser(username, password, setDoneState, setUserName, setUserPassword, setAuthCont, setError){
     const body = {username: username, password: password};
-    const uri = 'http://localhost:3003/users';
+    const uri = `${serverHost}/users`;
 
     const reqState = await postRequest(uri, body).catch(e => console.log(e));
 

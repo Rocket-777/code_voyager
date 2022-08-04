@@ -1,8 +1,9 @@
 import {postRequest} from "../../../httpUtils/httpRequests.js";
 import {initPosts} from "../../scripts/postsScr";
+import {serverHost} from "../../../httpUtils/envVals";
 
 async function sendPost(text, setText, setPosts){
-    await postRequest('http://localhost:3003/news', {postBody: text});
+    await postRequest(`${serverHost}/news`, {postBody: text});
     setText('');
     await initPosts(setPosts);
 
