@@ -1,4 +1,4 @@
-async function submitNewUser(dbClient, name, password, status, res){ //TODO connect with frontend
+async function submitNewUser(dbClient, name, password, status, res){
     await dbClient.command({ ping: 1 });
     console.log("@@ Connected successfully");
     let userExists = 'success';
