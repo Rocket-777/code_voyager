@@ -84,8 +84,9 @@ const ActionButton = styled(Button)`
 `
 
 const RemoveButton = styled(Button)`
+  box-shadow: none;
   background-color: crimson;
-  box-shadow: 2px 2px 5px 0 rgba(61, 73, 82, 0.3);
+  //box-shadow: 2px 2px 5px 0 rgba(61, 73, 82, 0.3);
   color: white;
   text-transform: none;
   border-radius: 45px;
