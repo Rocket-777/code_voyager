@@ -1,4 +1,4 @@
-import {ButtonContainer, PlacesTapeContainer, StyledButton, StyledContainer} from "./styles";
+import {ButtonContainer, PlacesTapeContainer, StyledButton, StyledContainer, ProposeBtn, ProposeIcon} from "./styles";
 import {PlaceCard} from "./placeCard";
 
 import React, {useEffect, useState} from "react";
@@ -6,6 +6,7 @@ import {getPlaces} from "./scripts/placesUtils";
 import {NavigateTop} from "../main/navigation";
 import {Footer} from "../main/footer";
 import {Link} from "react-router-dom";
+import {TagList} from "./tagList";
 
 const PlacesTape = (props) => {
 
@@ -44,21 +45,22 @@ const PlacesTape = (props) => {
 
         <PlacesTapeContainer id='placeTape'>
             <NavigateTop elemId='placeTape'/>
-            <Link to='/proposal' style={{width: "60%", margin: "auto", marginTop: "1rem"}}>
-                <button style={{width: "100%"}}>
+            <Link to='/proposal' style={{width: "60%", margin: "auto", marginTop: "1rem", textDecoration: "none"}}>
+                <ProposeBtn style={{width: "100%"}}>
+                    <ProposeIcon/>
                     Предложить
-                </button>
+                </ProposeBtn>
             </Link>
-
+            <TagList/>
             {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?
                 <ButtonContainer>
-                    <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#bec9eb'} : null}
+                    <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#C6CCF9'} : null}
                                   onClick={e => {
                                       e.preventDefault();
                                       setDisplayPlaces('approved');
                                       setIsLoading(true);
                                   }}>Подтвержденные</StyledButton>
-                    <StyledButton sx={displayPlaces === 'proposed' ? {backgroundColor: '#bec9eb'} : null}
+                    <StyledButton sx={displayPlaces === 'proposed' ? {backgroundColor: '#C6CCF9'} : null}
                                   onClick={e => {
                                       e.preventDefault();
                                       setDisplayPlaces('proposed');

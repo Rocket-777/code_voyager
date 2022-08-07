@@ -21,6 +21,11 @@ module.exports = () =>{
         module: {
             rules: [
                 {
+                    test: /\.tsx?$/,
+                    exclude: /node_modules/,
+                    loader: 'ts-loader'
+                },
+                {
                     test: /\.jsx?$/,
                     exclude: /node_modules/,
                     loader: 'babel-loader'
@@ -49,10 +54,7 @@ module.exports = () =>{
                     {from: "public/static", to: "static"},
                 ],
             }),
-            // new webpack.EnvironmentPlugin({
-            //     NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
-            //     DEBUG: false,
-            // }),
+
             new Dotenv({
                 path: eFile,
                 defaults: '.env.defaults',
@@ -60,7 +62,7 @@ module.exports = () =>{
         ],
         devtool: 'source-map',
         resolve: {
-            extensions: ['.js', '.jsx']
+            extensions: ['.js', '.jsx', '.ts', '.tsx']
         }
     };
 }

@@ -1,5 +1,6 @@
 import {styled} from "@mui/material/styles";
 import {Button} from "@mui/material";
+import LoupeRoundedIcon from '@mui/icons-material/LoupeRounded';
 
 const PlacesTapeContainer = styled('div')`
   display: flex;
@@ -24,7 +25,8 @@ const ButtonContainer = styled('div')`
   flex-direction: row;
   width: 60%;
   height: 5vh;
-  margin: 4vh auto 0 auto;
+  margin: 1vh auto 0 auto;
+  
   @media only screen and (max-width: 1000px){
     width: 90%;
     height: 10vh;
@@ -33,14 +35,17 @@ const ButtonContainer = styled('div')`
 `;
 
 const StyledButton = styled(Button)`
-  width: 50%;
-  color: #1a237e;
-  background-color: #8e99f3;
-  font-size: 2vh;
+  width: 45%;
+  margin: auto;
+  //color: #1a237e;
+  color: #5260AC;
+  background-color: #AFB7F6;
+  font-size: 1.1rem;
   text-transform: none;
-  border-radius: 0;
+  border-radius: 10px;
+
   :hover{
-    background-color: #bec9eb;
+    background-color: #C6CCF9;
   }
 `;
 
@@ -54,4 +59,26 @@ const StyledContainer = styled('div')`
   width: 60%;
   
 `
-export {PlacesTapeContainer, ButtonContainer, StyledButton, StyledContainer}
+
+const ProposeBtn = styled(Button)`
+  height: 35px;
+  width: 100%;
+  text-transform: none;
+  background-color: #5c6bc0;
+  color: white;
+  border-radius: 10px;
+  font-size: 1.1rem;
+
+  :hover{
+    background-color: rgb(142, 153, 243, 0.99);
+  }
+`
+
+const ProposeIcon = styled(LoupeRoundedIcon)`
+  margin-right: 0.5rem;
+  height: 1.8rem;
+  width: 1.8rem;
+  
+`
+
+export {PlacesTapeContainer, ButtonContainer, StyledButton, StyledContainer, ProposeBtn, ProposeIcon}
