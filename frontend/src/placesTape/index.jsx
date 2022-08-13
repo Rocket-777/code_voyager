@@ -84,10 +84,10 @@ const PlacesTape = (props) => {
     );
     if (isLoading) return (
         <PlacesTapeContainer id='placeTape'>
-            <Link to='/proposal' style={{width: "60%", margin: "auto", marginTop: "1rem"}}>
-                <button style={{width: "100%"}} disabled={true}>
+            <Link to='/proposal' style={{width: "60%", margin: "auto", marginTop: "1rem", textDecoration: "none"}}>
+                <ProposeBtn style={{width: "100%"}} disabled={true}>
                     Предложить
-                </button>
+                </ProposeBtn>
             </Link>
             {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?
                 <ButtonContainer>

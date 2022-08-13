@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`card renders correctly 1`] = `
+<div
+  className="css-1qjughf"
+>
+  <div
+    className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-16tle6w-MuiPaper-root-MuiCard-root"
+  >
+    <a
+      className="css-39qhy4"
+      href="/placesList/62ec3d69ce859ef59ef718c1"
+      onClick={[Function]}
+    >
+      <div
+        className="css-14a4yid"
+      >
+        <span
+          className="MuiSkeleton-root MuiSkeleton-rectangular MuiSkeleton-wave MuiSkeleton-withChildren css-gjonrx-MuiSkeleton-root"
+          style={
+            Object {
+              "height": "50vh",
+              "width": "100%",
+            }
+          }
+        >
+          <span
+            className="MuiSkeleton-root MuiSkeleton-rectangular MuiSkeleton-wave MuiSkeleton-withChildren MuiSkeleton-fitContent MuiSkeleton-heightAuto css-yuw8g6-MuiSkeleton-root"
+            style={
+              Object {
+                "height": undefined,
+                "width": undefined,
+              }
+            }
+          >
+            <newLogo.svg
+              className="css-39mdx9"
+            />
+          </span>
+        </span>
+        <img
+          alt=":("
+          hidden={true}
+          onLoad={[Function]}
+          src="http://localhost:3003/uploads/e1d18ee3d720c1ad273f1659649385919.jpeg"
+        />
+      </div>
+      <h4
+        className="MuiTypography-root MuiTypography-h4 css-yj04i4-MuiTypography-root"
+      >
+        sdfg
+      </h4>
+    </a>
+    <p
+      className="MuiTypography-root MuiTypography-body1 css-1rpz4mh-MuiTypography-root"
+    >
+      sdfg
+    </p>
+    <div
+      className="css-uihljb"
+      onClick={[Function]}
+    >
+      <div
+        className="css-eqgv0w"
+      >
+        <button
+          aria-label="Нравится"
+          aria-labelledby={null}
+          className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1j53of7-MuiButtonBase-root-MuiButton-root"
+          data-mui-internal-clone-element={true}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseOver={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-3oy7ry-MuiSvgIcon-root"
+            data-testid="FavoriteBorderRoundedIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"
+            />
+          </svg>
+          1
+          <span
+            className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <button
+          aria-label="Комментарии"
+          aria-labelledby={null}
+          className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1j53of7-MuiButtonBase-root-MuiButton-root"
+          data-mui-internal-clone-element={true}
+          disabled={false}
+          id="comment-button"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseOver={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-3oy7ry-MuiSvgIcon-root"
+            data-testid="CommentRoundedIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM17 14H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1zm0-3H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1zm0-3H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1z"
+            />
+          </svg>
+          <span
+            className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <button
+          aria-label="В избранное"
+          aria-labelledby={null}
+          className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1j53of7-MuiButtonBase-root-MuiButton-root"
+          data-mui-internal-clone-element={true}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseOver={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-3oy7ry-MuiSvgIcon-root"
+            data-testid="StarOutlineRoundedIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="m19.65 9.04-4.84-.42-1.89-4.45c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5 4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.73 3.67-3.18c.67-.58.32-1.68-.56-1.75zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+            />
+          </svg>
+          <span
+            className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

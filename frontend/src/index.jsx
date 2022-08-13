@@ -8,9 +8,12 @@ import './main/mainStyles.css'
 
 
 ReactDOM.render(
-  <BrowserRouter>
-      <Main/>
-  </BrowserRouter>,
+    <React.StrictMode>
+        <BrowserRouter>
+            <Main/>
+        </BrowserRouter>
+    </React.StrictMode>
+,
   document.getElementById('root')
 );
 

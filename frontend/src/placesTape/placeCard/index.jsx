@@ -23,7 +23,7 @@ import {useEffect, useState} from "react";
 import {getComments, updatePlaceData} from "../comments/scripts";
 import {ActionButtons} from "../../actionButtons";
 import Logo from "../../assets/newLogo.svg"
-
+import React from "react";
 
 const PlaceCard = (props) => {
 
@@ -88,11 +88,14 @@ const PlaceCard = (props) => {
                 <StyledDescription>
                     {props.cardData.place_description ? props.cardData.place_description : "SAMPLE_TEXT"}
                 </StyledDescription>
-                <ActionButtons likeCount={placeData.likes} commentCount={placeData.comments} isLiked={placeData.isLiked}
-                               likeAction={() => handleLike()} commentAction={() => setShowComments(!showComments)}
-                               favoriteVisible={true}
-                               commentVisible={true}
-                               favoriteAction={() => handleFavorite()} isFavorite={placeData.isFavorite}/>
+
+                    <ActionButtons likeCount={placeData.likes} commentCount={placeData.comments} isLiked={placeData.isLiked}
+                                   likeAction={() => handleLike()} commentAction={() => setShowComments(!showComments)}
+                                   favoriteVisible={true}
+                                   commentVisible={true}
+                                   favoriteAction={() => handleFavorite()} isFavorite={placeData.isFavorite}/>
+
+
 
                 {
                     showComments ? <div onClick={e => {

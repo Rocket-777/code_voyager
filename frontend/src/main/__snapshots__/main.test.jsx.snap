@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="css-v71i4q"
+>
+  <div
+    className="css-9jywzg"
+  >
+    <newLogo.svg
+      height={35}
+      style={
+        Object {
+          "marginLeft": "1rem",
+          "marginRight": "1rem",
+        }
+      }
+    />
+    <a
+      href="/placesList"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "color": "white",
+          "display": "flex",
+          "height": "100%",
+          "justifyContent": "center",
+          "justifyItems": "center",
+          "minWidth": "10%",
+          "textDecoration": "none",
+        }
+      }
+    >
+      <button
+        className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root css-jvb4o8-MuiButtonBase-root-MuiButton-root"
+        disabled={false}
+        onBlur={[Function]}
+        onContextMenu={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        Главная
+      </button>
+    </a>
+    <a
+      href="/feed"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "color": "white",
+          "display": "flex",
+          "height": "100%",
+          "justifyContent": "center",
+          "justifyItems": "center",
+          "minWidth": "10%",
+          "textDecoration": "none",
+        }
+      }
+    >
+      <button
+        className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root css-jvb4o8-MuiButtonBase-root-MuiButton-root"
+        disabled={false}
+        onBlur={[Function]}
+        onContextMenu={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        Лента
+      </button>
+    </a>
+    <a
+      href="/log-in"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "color": "white",
+          "display": "flex",
+          "height": "100%",
+          "justifyContent": "center",
+          "justifyItems": "center",
+          "marginLeft": "auto",
+          "minWidth": "10%",
+          "textDecoration": "none",
+        }
+      }
+    >
+      <button
+        className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root css-atw8yy-MuiButtonBase-root-MuiButton-root"
+        disabled={false}
+        onBlur={[Function]}
+        onContextMenu={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        Войти/Зарегистрироваться
+      </button>
+    </a>
+  </div>
+  <div
+    className="css-b923mg"
+    id="scrollable"
+  >
+    0
+  </div>
+</div>
+`;

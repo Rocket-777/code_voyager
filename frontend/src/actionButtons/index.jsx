@@ -61,12 +61,14 @@ const ActionButtons = ({
                     <Tooltip title={isFavorite ? 'Убрать из избранного' : 'В избранное'} enterDelay={1000} followCursor={true}
                              leaveDelay={0} TransitionComponent={Fade}
                              enterNextDelay={1000} disableInteractive={true}>
+
                         <ActionButton onClick={e => {
                             setFavoriteLoading(true);
                             favoriteAction().then(res => {setFavoriteLoading(false)});
                         }}>
                             {favoriteLoading ? <Loader size={25}/> : activityFavorite()}
                         </ActionButton>
+
                     </Tooltip> : null}
             </ButtonContainer>
             {
