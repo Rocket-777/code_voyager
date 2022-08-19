@@ -12,6 +12,7 @@ const TagList = () => {
             <Tag text='TagDummy'/>
             <Tag text='TagDummy'/>
             <Tag text='TagDummy'/>
+            <Tag text='Tag'/>
         </Container>
     );
 }

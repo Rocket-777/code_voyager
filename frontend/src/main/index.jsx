@@ -12,7 +12,8 @@ import {PlaceDetailed} from "../placesTape/placeDetailed";
 import {Home} from "../home";
 import {EditPlace} from "../placesTape/detailedEdit";
 import {initializeUser} from "./scripts";
-
+import {usrInit} from "../userProfile/scripts/usrInit";
+import {serverHost} from "../httpUtils/envVals";
 const Main = () => {
 
     const [usrData, setUsrData] = useState({username: '', status: '', image: null});
@@ -41,7 +42,7 @@ const Main = () => {
                     <Route path="/placesList" element={<PlacesTape  usrData={usrData} isAuth={usrAuthorized}/>}/>
                     <Route path="/feed" element={<PostTape isAuth={usrAuthorized}/>}/>
                     <Route exact path="/profile"
-                                            element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} updateUsr={() => usrInit('http://localhost:3003/home', setUsrData)}
+                                            element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} updateUsr={() => usrInit(`${serverHost}/home`, setUsrData)}
                                                                  usrData={usrData} setUsrData={setUsrData}/>}/>
                     <Route path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
                     <Route path="/proposal" element={<EditPlace type='blank'/>}/>

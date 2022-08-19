@@ -1,3 +1,5 @@
+//file transformer for jest
+
 const path = require('path');
 
 module.exports = {

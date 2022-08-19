@@ -1,7 +1,7 @@
 
 ## Available Scripts
 
-In the 'web' directory, you can run:
+In the 'web/src' directory, you can run:
 
 ### `node server.js` to start http server
 
