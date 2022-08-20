@@ -6,12 +6,18 @@ import {Main} from "./main";
 import {BrowserRouter} from "react-router-dom";
 import './main/mainStyles.css'
 
+import store from './store'
+import {Provider} from "react-redux";
+
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Main/>
-        </BrowserRouter>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Main/>
+                </BrowserRouter>
+            </Provider>
+
     </React.StrictMode>
 ,
   document.getElementById('root')
