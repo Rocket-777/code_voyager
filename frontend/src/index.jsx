@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import reportWebVitals from './reportWebVitals';
-import {Main} from "./main";
+import {Main} from "./modules/main";
 import {BrowserRouter} from "react-router-dom";
-import './main/mainStyles.css'
-
-import store from './store'
+import './modules/main/mainStyles.css'
+import store from './reduxStore/store'
 import {Provider} from "react-redux";
 
 

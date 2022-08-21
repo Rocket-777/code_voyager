@@ -33,7 +33,7 @@ module.exports = () =>{
                 {
                     test: /\.css?$/,
                     include: [
-                        path.resolve(__dirname, 'src/main')
+                        path.resolve(__dirname, 'src/modules/main')
                     ],
                     use: ["style-loader", "css-loader"]
                 },
