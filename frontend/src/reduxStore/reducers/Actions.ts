@@ -3,6 +3,7 @@ import {userSlice} from "./userSlice";
 import {getCurrentUser, loginRequest} from "../../httpUtils/fetchScripts";
 import {IUserCredentials} from "../../models/IUser";
 
+// Defining a thunk
 export const fetchUser = () => async (dispatch: AppDispatch) => {
     try{
         dispatch(userSlice.actions.userFetching());

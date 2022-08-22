@@ -37,7 +37,7 @@ const PostTape = (props) => {
             <Footer/>
         </PostTapeContainer>
     );
-    if(isLoading) return(
+    else if(isLoading) return(
         <PostTapeContainer id='postTape'>
             <NavigateTop elemId='postTape'/>
             {props.isAuth ? <CreatePost loading={isLoading} setPosts={setPosts} handleSubmit={handleSubmit} /> : null}
@@ -52,6 +52,7 @@ const PostTape = (props) => {
             <Footer/>
         </PostTapeContainer>
     );
+    else return null;
 }
 
 

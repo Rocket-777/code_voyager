@@ -55,7 +55,7 @@ const UsrProfile = (props) => {
             const reqData = new FormData();
             reqData.append('image', event.target.files[0]);
             await sendUserImage(reqData).catch(e => console.log(e));
-            props.updateUsr();
+            //props.updateUsr();
         }
     }
     function handleRemoveImg() {
@@ -65,7 +65,7 @@ const UsrProfile = (props) => {
         <Container id='userProfile'>
             <NavigateTop elemId='userProfile'/>
             <UserProfile userName={props.usrData.username} status={props.usrData.status} avatar={props.usrData.image}
-            handleImage={handleFile} logoutAction={() => logOutAction(props.auth, navigate, props.setUsrData)}/>
+            handleImage={handleFile} logoutAction={() => logOutAction(navigate)}/>
 
 
             {!isLoading ? <FavoriteContainer>

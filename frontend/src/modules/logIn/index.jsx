@@ -27,13 +27,8 @@ const LogInCard = (props) => {
     const error = useAppSelector((state) => state.user.error);
 
     function handleLogIn() {
-        try{
-            dispatch(logInAction({username: userName, password: userPassword}, ()=> navigate('/profile')))
+        dispatch(logInAction({username: userName, password: userPassword}, () => navigate('/profile')))
 
-        }
-        catch(e){
-            console.log('AAAAAAAAAAAA');
-        }
     }
 
 //e => loginReq(userName, userPassword, props.auth, setError, navigate)

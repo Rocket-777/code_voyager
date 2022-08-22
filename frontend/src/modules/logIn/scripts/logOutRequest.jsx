@@ -1,13 +1,9 @@
 import {logOutRequest} from "../../../httpUtils/wwwAuth";
 
 
-async function logOutAction(setAuth, navigate, setUsrData){
+async function logOutAction(navigate){
     await logOutRequest(`/logout`);
-    setAuth(false);
-    setUsrData({username: '', status: ''});
-
     navigate("/log-in");
-
 }
 
 export {logOutAction}

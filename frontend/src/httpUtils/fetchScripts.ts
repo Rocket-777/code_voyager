@@ -24,5 +24,4 @@ export async function getCurrentUser(){
 export async function loginRequest(credentials: IUserCredentials){
     const url = '/login'
     return await authRequest(url, credentials);
-
 }

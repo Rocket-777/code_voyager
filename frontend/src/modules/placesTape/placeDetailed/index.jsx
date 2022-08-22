@@ -209,6 +209,8 @@ const PlaceDetailed = (props) => {
             </div>
 
         )
+    }else{
+        return null;
     }
 
 }

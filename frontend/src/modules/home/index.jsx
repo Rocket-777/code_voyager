@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
+
 const Home = () => {
     let navigate = useNavigate();
     //redirect
@@ -8,7 +9,7 @@ const Home = () => {
         navigate('/placesList')
     }, []);
     //====
-    return 0;
+    return null;
 }
 
 export {Home}

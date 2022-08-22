@@ -82,7 +82,7 @@ const PlacesTape = (props) => {
 
         </PlacesTapeContainer>
     );
-    if (isLoading) return (
+    else if (isLoading) return (
         <PlacesTapeContainer id='placeTape'>
             <Link to='/proposal' style={{width: "60%", margin: "auto", marginTop: "1rem", textDecoration: "none"}}>
                 <ProposeBtn style={{width: "100%"}} disabled={true}>
@@ -112,6 +112,7 @@ const PlacesTape = (props) => {
             <Footer/>
         </PlacesTapeContainer>
     );
+    else return null;
 }
 
 export {PlacesTape}
