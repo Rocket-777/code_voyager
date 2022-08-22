@@ -4,3 +4,8 @@ export interface IUser{
     status: string,
     image: string,
 }
+
+export interface IUserCredentials{
+    username: string,
+    password: string
+}

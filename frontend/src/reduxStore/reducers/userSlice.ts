@@ -36,8 +36,16 @@ export const userSlice = createSlice({
         userFetchingFailed(state, action: PayloadAction<string>){
             state.isLoading = false;
             state.error = action.payload;
+        },
+        setUserAuthorized(state){
+            state.authorized = true;
+        },
+        setUserUnauthorized(state){
+            state.authorized = false;
+        },
+        userLogOut(state){
+            state = initialState;
         }
-
     }
 });
 

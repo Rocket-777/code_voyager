@@ -1,7 +1,7 @@
 import {AppDispatch} from "../store";
 import {userSlice} from "./userSlice";
-import {getCurrentUser} from "../../httpUtils/fetchScripts";
-
+import {getCurrentUser, loginRequest} from "../../httpUtils/fetchScripts";
+import {IUserCredentials} from "../../models/IUser";
 
 export const fetchUser = () => async (dispatch: AppDispatch) => {
     try{
@@ -13,3 +13,21 @@ export const fetchUser = () => async (dispatch: AppDispatch) => {
         dispatch(userSlice.actions.userFetchingFailed(e.message));
     }
 }
+
+export const logInAction = (cred: IUserCredentials, navigateCall: Function) => async (dispatch: AppDispatch) => {
+    try{
+        await loginRequest(cred);
+        dispatch(fetchUser());
+        dispatch(userSlice.actions.setUserAuthorized());
+        navigateCall();
+    }
+    catch(e){
+        dispatch(userSlice.actions.userFetchingFailed(e.message));
+    }
+
+}
+
+export const logOutAction = () => async (dispatch: AppDispatch) => {
+
+}
+

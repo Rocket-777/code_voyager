@@ -1,6 +1,6 @@
-import base64 from 'base-64';
+import {IUserCredentials} from "../models/IUser";
 
-async function authRequest(uri, body){
+async function authRequest(uri: string, body: IUserCredentials) {
 
     return await fetch(uri, {
         method: 'GET',
@@ -8,26 +8,25 @@ async function authRequest(uri, body){
         cache: 'no-cache',
         credentials: 'include',
         headers: {
-            'Authorization' : 'Basic ' + base64.encode(body.username + ':' + body.password),
+            'Authorization': 'Basic ' + window.btoa(body.username + ':' + body.password),
 
         },
 
 
         referrerPolicy: 'no-referrer',
 
-    }).then(res => res).catch(e => console.log(e));
+    }).then(async res => res.ok ? res : Promise.reject(new Error(await res.text())))
+    ;
 
 }
 
-async function logOutRequest(uri){
+async function logOutRequest(uri: string) {
     return await fetch(uri, {
         method: 'GET',
         mode: "cors",
         cache: 'no-cache',
         credentials: 'include',
-        headers: {
-
-        },
+        headers: {},
 
         referrerPolicy: 'no-referrer',
 

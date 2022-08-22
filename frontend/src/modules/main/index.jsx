@@ -13,11 +13,11 @@ import {Home} from "../home";
 import {EditPlace} from "../placesTape/detailedEdit";
 import {initializeUser} from "./scripts";
 import {usrInit} from "../userProfile/scripts/usrInit";
-import {serverHost} from "../../httpUtils/envVals";
 
 import {useSelector, useDispatch} from "react-redux";
 import {useAppDispatch, useAppSelector} from "../../reduxStore/reduxHooks";
 import {fetchUser} from "../../reduxStore/reducers/Actions";
+import {userSlice} from "../../reduxStore/reducers/userSlice";
 
 const Main = () => {
 
@@ -25,25 +25,29 @@ const Main = () => {
     const [usrAuthorized, setAuthorized] = useState(false);
 
     const dispatch = useAppDispatch();
-    const user = useSelector((state) => state.user);
+    const user = useAppSelector((state) => state.user);
+    const {setUserAuthorized} = userSlice.actions;
 
     useEffect(() => {
-        dispatch(fetchUser());
+
         if (getCookie('user') || getCookie('admin') || getCookie('moderator')) {
             if (!usrAuthorized) {
                 setAuthorized(true);
+                dispatch(setUserAuthorized());
+
             } else {
+                dispatch(fetchUser());
                 initializeUser(setUsrData).catch(e => console.log(e));
                 console.log(usrData.username);
             }
         }
-    }, [usrAuthorized]);
+    }, [user.authorized]);
 
 
 
     return (
         <MainLayout>
-            <Header isAuth={usrAuthorized} usrData={usrData}/>
+            <Header isAuth={usrAuthorized} usrData={user.userData}/>
 
             <ScrollContainer id='scrollable' >
                 <div style={{wordWrap:"break-word"}}>
@@ -52,12 +56,12 @@ const Main = () => {
                 <Routes >
                     <Route path="/" element={<Home/>}/>
                     <Route path="/placesList/:id" element={<PlaceDetailed/>}/>
-                    <Route path="/placesList" element={<PlacesTape  usrData={usrData} isAuth={usrAuthorized}/>}/>
-                    <Route path="/feed" element={<PostTape isAuth={usrAuthorized}/>}/>
+                    <Route path="/placesList" element={<PlacesTape  usrData={user.userData} isAuth={user.authorized}/>}/>
+                    <Route path="/feed" element={<PostTape isAuth={user.authorized}/>}/>
                     <Route exact path="/profile"
-                                            element={<UsrProfile auth={setAuthorized} isAuth={usrAuthorized} updateUsr={() => usrInit(`${serverHost}/home`, setUsrData)}
+                                            element={<UsrProfile auth={setAuthorized} isAuth={user.authorized} updateUsr={() => usrInit(`/home`, setUsrData)}
                                                                  usrData={usrData} setUsrData={setUsrData}/>}/>
-                    <Route path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={usrAuthorized}/>}/>
+                    <Route path="/log-in" element={<LogInCard auth={setAuthorized} isAuth={user.authorized}/>}/>
                     <Route path="/proposal" element={<EditPlace type='blank'/>}/>
                     <Route path='*' element={<h1>404_NOT_FOUND</h1>}/>
                 </Routes>

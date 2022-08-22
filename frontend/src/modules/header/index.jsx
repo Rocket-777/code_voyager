@@ -4,8 +4,10 @@ import {linkstyle} from "./styles";
 import {Avatar} from "@mui/material";
 import Logo from "../../assets/newLogo.svg"
 import {serverHost} from "../../httpUtils/envVals";
+import {useAppSelector} from "../../reduxStore/reduxHooks";
 const Header = (props) => {
-    const usrImage = props.usrData.image ? props.usrData.image : null;
+    const user = useAppSelector((state) => state.user);
+    const usrImage = user.userData.image ? user.userData.image : null;
 
     return (
 
@@ -23,10 +25,10 @@ const Header = (props) => {
             </StyledButton>
             </Link>
 
-                {props.isAuth ? <Link to='/profile' style={{...linkstyle, marginLeft: "auto"}}>
+                {user.authorized ? <Link to='/profile' style={{...linkstyle, marginLeft: "auto"}}>
                     <StyledUserButton>
                         <Avatar src={serverHost ? serverHost + usrImage : usrImage} sx={{marginRight: "1vw", width: 35, height: 35}}/>
-                        {props.usrData.username ? props.usrData.username : 'Loading...'}
+                        {user.userData.username ? user.userData.username : 'Loading...'}
                     </StyledUserButton>
                 </Link>
                     : <Link to='/log-in' style={{...linkstyle, marginLeft: "auto"}}>

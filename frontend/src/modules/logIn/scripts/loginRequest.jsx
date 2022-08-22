@@ -1,13 +1,13 @@
-import {authRequest} from "../../../httpUtils/wwwAuth.js";
+import {authRequest} from "../../../httpUtils/wwwAuth.ts";
 import {getCookie} from "../../../cookieScr/cookieUtils.js";
-import {serverHost} from "../../../httpUtils/envVals";
+
 
 function timeout(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function loginReq(username, password,authTrigger,setError, navigate){
-    const uri = `${serverHost}/login`;
+    const uri = `/login`;
     const body = {username: username, password: password};
 
     const message = await authRequest(uri, body).then(response =>{
@@ -18,6 +18,7 @@ async function loginReq(username, password,authTrigger,setError, navigate){
                 if(getCookie('user') || getCookie('admin') || getCookie('moderator')){
                     console.log('Cookie there');
                     authTrigger(true);
+
                 }
             }
             else {
