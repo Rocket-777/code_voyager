@@ -46,7 +46,7 @@ const Main = () => {
             <Header isAuth={usrAuthorized} usrData={usrData}/>
 
             <ScrollContainer id='scrollable' >
-                <div>
+                <div style={{wordWrap:"break-word"}}>
                     {JSON.stringify(user)}
                 </div>
                 <Routes >

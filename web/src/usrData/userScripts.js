@@ -13,7 +13,7 @@ async function setUserImage(req, res, db) {
         user = req.signedCookies.user;
     }
     if (req.file) {
-        pathToImage = `http://localhost:3003/uploads/${req.file.filename}`;
+        pathToImage = `/uploads/${req.file.filename}`;
     }
     const update = {
         $set: {

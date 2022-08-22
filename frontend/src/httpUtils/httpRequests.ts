@@ -38,7 +38,7 @@ async function getPlacesRequest(uri: string, ac: AbortController) {
         cache: 'no-cache',
         credentials: 'include',
         headers: {
-            // 'Authorization' : 'Basic ' + base64.encode(body.username + ':' + body.password),
+
 
         },
         referrerPolicy: 'no-referrer',

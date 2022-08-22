@@ -31,6 +31,7 @@ const PlaceCard = (props) => {
     const [commentsData, setCommentsData] = useState('');
     const [placeData, setPlaceData] = useState(props.cardData);
     const [imgLoading, setImgLoading] = useState(true);
+
     let ac = new AbortController();
 
     useEffect(() => {

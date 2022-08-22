@@ -24,7 +24,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start-dev": "webpack-dev-server --mode development --node-env local",
+    "start-dev": "webpack-dev-server --mode development --node-env defaults ",
+    "start-localTest": "webpack-dev-server --mode development --node-env local ",
     "build-local": "webpack --config webpack.config.js --node-env local --mode development",
     "build-prod": "webpack --config webpack.config.js --node-env prod --mode production",
     "test": "jest"

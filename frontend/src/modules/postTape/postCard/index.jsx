@@ -18,7 +18,6 @@ import {getComments} from "../../placesTape/comments/scripts";
 import {setPostById, postLikeAction} from "./scripts/postCardScripts";
 import {SkeletonContainer} from "../../placesTape/placeCard/styles";
 
-
 const PostCard = (props) => {
 
     const [showComments, setShowComments] = useState(false);

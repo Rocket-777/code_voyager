@@ -1,11 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
-const Dotenv = require('dotenv-webpack')
+const DotenvPlugin = require('dotenv-webpack');
+const webpack = require('webpack');
+
+const eFile = `.env.${process.env.NODE_ENV}`;
+require('dotenv').config({
+    path:`./${eFile}`
+});
 
 module.exports = () =>{
-    const eFile = `.env.${process.env.NODE_ENV}`;
-    console.log('@@@@@@@@ ' + process.env.NODE_ENV);
+   const HOST = process.env.SERVER_HOST;
+        console.log('#HOST: ' + HOST);
+        console.log('@@_env_@@ ' + process.env.NODE_ENV);
     return {
         entry: './src/index.jsx',
         output: {
@@ -14,6 +21,12 @@ module.exports = () =>{
             publicPath: "/"
         },
         devServer: {
+            proxy:{
+                '*' : {
+                    target: HOST,
+                    secure: false,
+                }
+            },
             port: 3000,
             open: true,
             historyApiFallback: true,
@@ -55,10 +68,10 @@ module.exports = () =>{
                 ],
             }),
 
-            new Dotenv({
+            new DotenvPlugin({
                 path: eFile,
                 defaults: '.env.defaults',
-            })
+            }),
         ],
         devtool: 'source-map',
         resolve: {

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {linkstyle} from "./styles";
 import {Avatar} from "@mui/material";
 import Logo from "../../assets/newLogo.svg"
-
+import {serverHost} from "../../httpUtils/envVals";
 const Header = (props) => {
     const usrImage = props.usrData.image ? props.usrData.image : null;
 
@@ -25,7 +25,7 @@ const Header = (props) => {
 
                 {props.isAuth ? <Link to='/profile' style={{...linkstyle, marginLeft: "auto"}}>
                     <StyledUserButton>
-                        <Avatar src={usrImage} sx={{marginRight: "1vw", width: 35, height: 35}}/>
+                        <Avatar src={serverHost ? serverHost + usrImage : usrImage} sx={{marginRight: "1vw", width: 35, height: 35}}/>
                         {props.usrData.username ? props.usrData.username : 'Loading...'}
                     </StyledUserButton>
                 </Link>

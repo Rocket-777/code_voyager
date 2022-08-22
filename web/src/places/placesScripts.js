@@ -2,12 +2,11 @@ import {ObjectId} from "mongodb";
 import * as fs from "fs";
 import path from "path";
 import {getUser} from "../utils/index.js";
-import {rootUrl} from "../root.js";
 
 async function addNewPlace(req, res, db) {
     let pathToImage = null;
     if (req.file) {
-        pathToImage = `http://${rootUrl}/uploads/${req.file.filename}`;
+        pathToImage = `/uploads/${req.file.filename}`;
     }
     if (req.signedCookies.moderator || req.signedCookies.admin) {
         await db.collection('places').insertOne({
@@ -275,7 +274,7 @@ async function editPlace(req, res, db, uplPath) {
 
             const imageIsFile = typeof req.body.image !== 'string';
             const imageVal = req.body.image === 'null' ? null : req.body.image
-            const imageURL = imageIsFile ? `http://${rootUrl}/uploads/${req.file.filename}` : imageVal;
+            const imageURL = imageIsFile ? `/uploads/${req.file.filename}` : imageVal;
             const oldData = await db.collection('places').findOne({_id: ObjectId(req.params.id)});
 
             if (imageIsFile && oldData.image) {

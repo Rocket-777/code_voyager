@@ -2,7 +2,7 @@
 import { styled } from '@mui/material/styles';
 
 const MainLayout = styled('div')`
-  
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
   display: flex;
   flex-direction: column;
   //padding: 0;
