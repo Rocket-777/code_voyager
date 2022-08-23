@@ -1,4 +1,4 @@
-import {authRequest} from "./wwwAuth";
+import {authRequest, logOutQuarry} from "./wwwAuth";
 import {IUser, IUserCredentials} from "../models/IUser";
 export async function getCurrentUser(){
 
@@ -24,4 +24,7 @@ export async function getCurrentUser(){
 export async function loginRequest(credentials: IUserCredentials){
     const url = '/login'
     return await authRequest(url, credentials);
+}
+export async function logoutRequest(){
+    return await logOutQuarry('/logout')
 }

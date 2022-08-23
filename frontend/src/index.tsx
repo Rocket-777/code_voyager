@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import reportWebVitals from './reportWebVitals';
 import {Main} from "./modules/main";
 import {BrowserRouter} from "react-router-dom";
@@ -15,7 +15,6 @@ ReactDOM.render(
                     <Main/>
                 </BrowserRouter>
             </Provider>
-
     </React.StrictMode>
 ,
   document.getElementById('root')

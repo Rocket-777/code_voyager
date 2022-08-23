@@ -1,9 +1,9 @@
-import {logOutRequest} from "../../../httpUtils/wwwAuth";
+import {logOutQuarry} from "../../../httpUtils/wwwAuth";
 
 
-async function logOutAction(navigate){
-    await logOutRequest(`/logout`);
+async function logOutAct(navigate){
+    await logOutQuarry(`/logout`);
     navigate("/log-in");
 }
 
-export {logOutAction}
+export {logOutAct}

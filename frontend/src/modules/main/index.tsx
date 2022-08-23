@@ -34,7 +34,7 @@ const Main = () => {
     return (
         <MainLayout>
             <Header isAuth={user.authorized} usrData={user.userData}/>
-
+            {JSON.stringify(user)}
             <ScrollContainer id='scrollable'>
                 <Routes>
                     <Route path="/" element={<Home/>}/>

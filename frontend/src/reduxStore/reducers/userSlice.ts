@@ -43,8 +43,8 @@ export const userSlice = createSlice({
         setUserUnauthorized(state){
             state.authorized = false;
         },
-        userLogOut(state){
-            state = initialState;
+        userLogOut(){
+            return initialState;
         }
     }
 });

@@ -20,7 +20,7 @@ async function authRequest(uri: string, body: IUserCredentials) {
 
 }
 
-async function logOutRequest(uri: string) {
+async function logOutQuarry(uri: string) {
     return await fetch(uri, {
         method: 'GET',
         mode: "cors",
@@ -33,4 +33,4 @@ async function logOutRequest(uri: string) {
     }).then(res => res).catch(e => console.log(e));
 }
 
-export {authRequest, logOutRequest}
+export {authRequest, logOutQuarry}

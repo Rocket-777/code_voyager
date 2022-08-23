@@ -14,7 +14,7 @@ module.exports = () =>{
         console.log('#HOST: ' + HOST);
         console.log('@@_env_@@ ' + process.env.NODE_ENV);
     return {
-        entry: './src/index.jsx',
+        entry: './src/index.tsx',
         output: {
             filename: 'main.bundle.js',
             path: path.resolve(__dirname, 'dist'),

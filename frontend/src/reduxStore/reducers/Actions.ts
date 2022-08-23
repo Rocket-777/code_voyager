@@ -1,6 +1,6 @@
 import {AppDispatch} from "../store";
 import {userSlice} from "./userSlice";
-import {getCurrentUser, loginRequest} from "../../httpUtils/fetchScripts";
+import {getCurrentUser, loginRequest, logoutRequest} from "../../httpUtils/fetchScripts";
 import {IUserCredentials} from "../../models/IUser";
 
 // Defining a thunk
@@ -28,7 +28,14 @@ export const logInAction = (cred: IUserCredentials, navigateCall: Function) => a
 
 }
 
-export const logOutAction = () => async (dispatch: AppDispatch) => {
-
+export const logOutAction = (navigateCall: Function) => async (dispatch: AppDispatch) => {
+    try{
+        await logoutRequest();
+        dispatch(userSlice.actions.userLogOut());
+        navigateCall();
+    }
+    catch(e){
+        dispatch(userSlice.actions.userFetchingFailed(e.message));
+    }
 }
 

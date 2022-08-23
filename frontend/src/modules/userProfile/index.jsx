@@ -3,7 +3,7 @@ import {
     FavoriteContainer,
     FavoritesHeader
 } from "./styles";
-import {logOutAction} from "../logIn/scripts/logOutRequest";
+
 import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {removeUserImage, sendUserImage} from "./scripts/profileScripts";
@@ -14,20 +14,27 @@ import {FavoriteActive} from "../actionButtons/styles";
 import {Footer} from "../main/footer";
 import {NavigateTop} from "../main/navigation";
 import {UserProfile} from "./userInfo";
+import {useAppDispatch} from "../../reduxStore/reduxHooks";
+import {logOutAction} from "../../reduxStore/reducers/Actions";
 
 const UsrProfile = (props) => {
 
     const navigate = useNavigate();
-
+    const dispatch = useAppDispatch();
     const [thumbnail, setThumbnail] = useState("noImage.png")
     const [favorites, setFavorites] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     let ac = new AbortController();
+
     useEffect(()=>{
 
         getFavorites(setFavorites, ac).then(res => {if(!ac.signal.aborted){setIsLoading(false); handleScrollPos();}});
         return () => ac.abort();
     },[]);
+
+    function handleLogOut(){
+        dispatch(logOutAction(() => navigate('/log-in')));
+    }
 
     const handleScrollPos = () => {
         const scrollPos = sessionStorage.getItem('scrollPositionFav');
@@ -65,7 +72,7 @@ const UsrProfile = (props) => {
         <Container id='userProfile'>
             <NavigateTop elemId='userProfile'/>
             <UserProfile userName={props.usrData.username} status={props.usrData.status} avatar={props.usrData.image}
-            handleImage={handleFile} logoutAction={() => logOutAction(navigate)}/>
+            handleImage={handleFile} logoutAction={() => handleLogOut()}/>
 
 
             {!isLoading ? <FavoriteContainer>
