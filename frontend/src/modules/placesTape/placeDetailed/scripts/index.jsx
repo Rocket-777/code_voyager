@@ -1,9 +1,9 @@
-import {deleteReq, getPlacesRequest, putReq} from "../../../../httpUtils/httpRequests";
+import {deleteReq, getPlaces, putReq} from "../../../../httpUtils/httpRequests";
 import {serverHost} from "../../../../httpUtils/envVals";
 
 async function getPlaceById(id, setPlaceData, ac) {
     const uri = `${serverHost}/places/id/${id}`;
-    const data = await getPlacesRequest(uri, ac);
+    const data = await getPlaces(uri, ac);
     if (data && !data.error) {
 
         setPlaceData({...data, geo: data.geo.split(',')});

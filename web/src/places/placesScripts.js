@@ -77,7 +77,17 @@ async function sendPlaces(req, res, db) {
         searchParam = {approved: false};
     }
     if (searchParam) {
-        const data = await db.collection('places').find(searchParam).toArray().then(res => res).catch(e => console.log(e));
+        const data = await db.collection('places').find(searchParam,
+            {
+                projection: {
+                    place_name: 1,
+                    place_description: 1,
+                    image: 1,
+                    comments: 1,
+                    likes: 1,
+                    usersLiked: 1
+                }
+            }).toArray().then(res => res).catch(e => console.log(e));
         const result = data.map(item => {
             let isLiked = false;
             let isFavorite = false;
@@ -97,7 +107,7 @@ async function sendPlaces(req, res, db) {
             })
 
             item = {...item, isLiked: isLiked, isFavorite: isFavorite}
-
+            delete item.usersLiked;
             return item;
 
         });

@@ -1,4 +1,5 @@
 import {authRequest, logOutQuarry} from "./wwwAuth";
+import {getPlaces} from "./httpRequests";
 import {IUser, IUserCredentials} from "../models/IUser";
 export async function getCurrentUser(){
 
@@ -27,4 +28,11 @@ export async function loginRequest(credentials: IUserCredentials){
 }
 export async function logoutRequest(){
     return await logOutQuarry('/logout')
+}
+
+export async function getPlacesRequest(approval: string, ac: AbortController){
+    return getPlaces(`/places/${approval}`, ac)
+}
+export async function getFavoritesRequest(){
+
 }

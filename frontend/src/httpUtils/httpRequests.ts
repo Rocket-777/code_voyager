@@ -30,7 +30,7 @@ async function postRequestWithFile(uri: string, body: FormData) {
     }).then(res => res).catch(e => console.log(e));
 }
 
-async function getPlacesRequest(uri: string, ac: AbortController) {
+async function getPlaces(uri: string, ac: AbortController) {
     return await fetch(uri, {
         signal: ac.signal,
         method: 'GET',
@@ -139,4 +139,4 @@ async function putReqFrmData(uri: string, body: FormData){
     }).then(res => res).catch(e => console.log(e));
 }
 
-export {postRequest, postRequestWithFile, getPlacesRequest, deleteReq, putReq, getPosts, deleteReqUri, putReqFrmData}
+export {postRequest, postRequestWithFile, getPlaces, deleteReq, putReq, getPosts, deleteReqUri, putReqFrmData}

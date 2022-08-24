@@ -1,5 +1,7 @@
 import {AppDispatch} from "../store";
 import {userSlice} from "./userSlice";
+import {placesSlice} from "./placesSlice";
+import {getPlacesRequest} from "../../httpUtils/fetchScripts";
 import {getCurrentUser, loginRequest, logoutRequest} from "../../httpUtils/fetchScripts";
 import {IUserCredentials} from "../../models/IUser";
 
@@ -39,3 +41,14 @@ export const logOutAction = (navigateCall: Function) => async (dispatch: AppDisp
     }
 }
 
+export const fetchPlaces = (ac: AbortController, approval: string, scrollPosCall: Function) => async (dispatch: AppDispatch) => {
+    try{
+        dispatch(placesSlice.actions.placesFetching());
+        const response = await getPlacesRequest(approval, ac);
+        dispatch(placesSlice.actions.placesFetchingSuccess(response));
+        scrollPosCall();
+    }
+    catch(e){
+        dispatch(placesSlice.actions.placesFetchingFailed(e.message))
+    }
+}

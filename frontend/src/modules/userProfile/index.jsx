@@ -7,7 +7,7 @@ import {
 import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {removeUserImage, sendUserImage} from "./scripts/profileScripts";
-import {getFavorites} from "../placesTape/scripts/placesUtils";
+import {getFavoritesJS} from "../placesTape/scripts/placesUtils";
 import {StyledContainer} from "../placesTape/styles";
 import {PlaceCard} from "../placesTape/placeCard";
 import {FavoriteActive} from "../actionButtons/styles";
@@ -28,7 +28,7 @@ const UsrProfile = (props) => {
 
     useEffect(()=>{
 
-        getFavorites(setFavorites, ac).then(res => {if(!ac.signal.aborted){setIsLoading(false); handleScrollPos();}});
+        getFavoritesJS(setFavorites, ac).then(res => {if(!ac.signal.aborted){setIsLoading(false); handleScrollPos();}});
         return () => ac.abort();
     },[]);
 
@@ -84,7 +84,7 @@ const UsrProfile = (props) => {
                     <StyledContainer key={item._id}>
 
                         <PlaceCard  isAuth={props.isAuth}  cardData={item} setPlaces={setFavorites} placesState={'approved'}
-                                    updateFavorites={() => getFavorites(setFavorites, ac)} handleTransition={handleTransition}
+                                    updateFavorites={() => getFavoritesJS(setFavorites, ac)} handleTransition={handleTransition}
                                     displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
                     </StyledContainer>) : null}
 

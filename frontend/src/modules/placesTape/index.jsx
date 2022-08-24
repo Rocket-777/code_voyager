@@ -2,26 +2,26 @@ import {ButtonContainer, PlacesTapeContainer, StyledButton, StyledContainer, Pro
 import {PlaceCard} from "./placeCard";
 
 import React, {useEffect, useState} from "react";
-import {getPlaces} from "./scripts/placesUtils";
 import {NavigateTop} from "../main/navigation";
 import {Footer} from "../main/footer";
 import {Link} from "react-router-dom";
 import {TagList} from "./tagList";
 
+import {useAppDispatch, useAppSelector} from "../../reduxStore/reduxHooks";
+import {fetchPlaces} from "../../reduxStore/reducers/Actions";
+import {placesSlice} from "../../reduxStore/reducers/placesSlice";
+
 const PlacesTape = (props) => {
 
-    const [places, setPlaces] = useState(null);
-    const [displayPlaces, setDisplayPlaces] = useState('approved');
-    const [isLoading, setIsLoading] = useState(true);
-    let ac = new AbortController();
+    const dispatch = useAppDispatch();
+    const placesData = useAppSelector((state) => state.places);
+    const {setShowProposed, setShowApproved} = placesSlice.actions;
+    const ac = new AbortController();
     useEffect(() => {
-
-        getPlaces(setPlaces, displayPlaces, ac).then(res => {
-            if (!ac.signal.aborted) setIsLoading(false);
-            handleScrollPos();
-        });
+        dispatch(fetchPlaces(ac, placesData.showApproved, handleScrollPos));
+        //if (!ac.signal.aborted) setIsLoading(false);
         return () => ac.abort();
-    }, [displayPlaces])
+    }, [placesData.showApproved])
 
 
     const handleScrollPos = () => {
@@ -41,7 +41,7 @@ const PlacesTape = (props) => {
         sessionStorage.setItem('scrollPosition', scrollPos);
     }
 
-    if (!isLoading) return (
+    if (!placesData.isLoading) return (
 
         <PlacesTapeContainer id='placeTape'>
             <NavigateTop elemId='placeTape'/>
@@ -52,67 +52,45 @@ const PlacesTape = (props) => {
                 </ProposeBtn>
             </Link>
             <TagList/>
-            {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?
-                <ButtonContainer>
-                    <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#C6CCF9'} : null}
-                                  onClick={e => {
-                                      e.preventDefault();
-                                      setDisplayPlaces('approved');
-                                      setIsLoading(true);
-                                  }}>Подтвержденные</StyledButton>
-                    <StyledButton sx={displayPlaces === 'proposed' ? {backgroundColor: '#C6CCF9'} : null}
-                                  onClick={e => {
-                                      e.preventDefault();
-                                      setDisplayPlaces('proposed');
-                                      setIsLoading(true);
-                                  }}>Предложения пользователей</StyledButton>
-                </ButtonContainer> : null}
+            {props.usrData.status === 'Moder' || props.usrData.status === 'Администратор' ? <ButtonContainer>
+                <StyledButton sx={placesData.showApproved === 'approved' ? {backgroundColor: '#C6CCF9'} : null}
+                              onClick={e => {
+                                  e.preventDefault();
+                                  dispatch(setShowApproved());
+                              }}>Подтвержденные</StyledButton>
+                <StyledButton sx={placesData.showApproved === 'proposed' ? {backgroundColor: '#C6CCF9'} : null}
+                              onClick={e => {
+                                  e.preventDefault();
+                                  dispatch(setShowProposed());
+                              }}>Предложения пользователей</StyledButton>
+            </ButtonContainer> : null}
             <PlaceCard skeleton={true}/>
-            {places ? places.map(item =>
+            {placesData.data ? placesData.data.map(item =>
 
                 <StyledContainer key={item._id}>
-                    <PlaceCard isAuth={props.isAuth} cardData={item} setPlaces={setPlaces}
-                               placesState={displayPlaces} handleTransition={handleTransition}
-                               displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
-                </StyledContainer>
-            ) : null}
-
+                    <PlaceCard cardData={item} handleTransition={handleTransition}/>
+                </StyledContainer>) : null}
             <Footer/>
-
-
-        </PlacesTapeContainer>
-    );
-    else if (isLoading) return (
-        <PlacesTapeContainer id='placeTape'>
+        </PlacesTapeContainer>); else if (placesData.isLoading) return (<PlacesTapeContainer id='placeTape'>
             <Link to='/proposal' style={{width: "60%", margin: "auto", marginTop: "1rem", textDecoration: "none"}}>
-                <ProposeBtn style={{width: "100%"}} disabled={true}>
+                <ProposeBtn style={{width: "100%"}}>
+                    <ProposeIcon/>
                     Предложить
                 </ProposeBtn>
             </Link>
-            {props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор' ?
-                <ButtonContainer>
-                    <StyledButton sx={displayPlaces === 'approved' ? {backgroundColor: '#bec9eb'} : null}
-                                  onClick={e => {
-                                      e.preventDefault();
-                                      setDisplayPlaces('approved');
-                                      setIsLoading(true);
-                                  }}>Подтвержденные</StyledButton>
-                    <StyledButton sx={displayPlaces === 'proposed' ? {backgroundColor: '#bec9eb'} : null}
-                                  onClick={e => {
-                                      e.preventDefault();
-                                      setDisplayPlaces('proposed');
-                                      setIsLoading(true);
-                                  }}>Предложения пользователей</StyledButton>
-                </ButtonContainer> : null}
+            {props.usrData.status === 'Moder' || props.usrData.status === 'Администратор' ? <ButtonContainer>
+                <StyledButton sx={placesData.showApproved === 'approved' ? {backgroundColor: '#bec9eb'} : null}
+                >Подтвержденные</StyledButton>
+                <StyledButton sx={placesData.showApproved === 'proposed' ? {backgroundColor: '#bec9eb'} : null}
+                >Предложения пользователей</StyledButton>
+            </ButtonContainer> : null}
             <PlaceCard skeleton={true}/>
             <PlaceCard skeleton={true}/>
             <PlaceCard skeleton={true}/>
             <PlaceCard skeleton={true}/>
             <PlaceCard skeleton={true}/>
             <Footer/>
-        </PlacesTapeContainer>
-    );
-    else return null;
+        </PlacesTapeContainer>); else return null;
 }
 
 export {PlacesTape}

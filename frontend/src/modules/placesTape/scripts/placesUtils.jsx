@@ -1,8 +1,7 @@
-import {getPlacesRequest} from "../../../httpUtils/httpRequests";
-import {serverHost} from "../../../httpUtils/envVals";
+import {getPlaces} from "../../../httpUtils/httpRequests";
 
-async function getPlaces(setPlaces, param, ac) {
-    const data = await getPlacesRequest(`${serverHost}/places/${param}`, ac);
+async function getPlacesJS(setPlaces, param, ac) {
+    const data = await getPlaces(`/places/${param}`, ac);
 
     if(data){
         setPlaces(data.reverse());
@@ -12,8 +11,8 @@ async function getPlaces(setPlaces, param, ac) {
 
 }
 
-async function getFavorites(setPlaces, ac){
-    const data = await getPlacesRequest(`${serverHost}/places/favorites`, ac);
+async function getFavoritesJS(setPlaces, ac){
+    const data = await getPlaces(`/places/favorites`, ac);
     if(data){
         setPlaces(data);
     }
@@ -21,4 +20,4 @@ async function getFavorites(setPlaces, ac){
 
 }
 
-export {getPlaces, getFavorites}
+export {getPlacesJS, getFavoritesJS}

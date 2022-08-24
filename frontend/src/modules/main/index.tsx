@@ -11,8 +11,6 @@ import {PlaceDetailed} from "../placesTape/placeDetailed";
 import {Home} from "../home";
 import {EditPlace} from "../placesTape/detailedEdit"
 
-
-import {useSelector, useDispatch} from "react-redux";
 import {useAppDispatch, useAppSelector} from "../../reduxStore/reduxHooks";
 import {fetchUser} from "../../reduxStore/reducers/Actions";
 import {userSlice} from "../../reduxStore/reducers/userSlice";
@@ -28,13 +26,12 @@ const Main = () => {
             dispatch(setUserAuthorized());
             dispatch(fetchUser());
         }
-    }, [user.authorized]);
+    }, []);
 
 
     return (
         <MainLayout>
             <Header isAuth={user.authorized} usrData={user.userData}/>
-            {JSON.stringify(user)}
             <ScrollContainer id='scrollable'>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
