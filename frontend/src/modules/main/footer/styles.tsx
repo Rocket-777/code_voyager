@@ -48,7 +48,7 @@ const Info = styled('div')`
   display: flex;
   flex-direction: column;
   margin: auto auto auto 2%;
-  width: 12%;
+  width: 15%;
   @media only screen and (max-width: 1640px){
     width: 26%;
   }
@@ -66,11 +66,10 @@ const Info = styled('div')`
 const Text = styled(Typography)`
   text-align: justify;
   text-justify: inter-word;
-  //color: #344086;
-  color: #DFE2F5;
+  color: #9c9eab;
   font-size: 0.9rem;
   line-height: 1rem;
-  font-weight: bold;
+  
   margin-top: 0.7rem;
   @media only screen and (max-width: 420px){
     font-size: 0.7rem;

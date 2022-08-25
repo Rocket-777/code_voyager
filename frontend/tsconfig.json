@@ -7,5 +7,6 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "allowJs": true
-  }
+  },
+
 }

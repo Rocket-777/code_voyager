@@ -1,7 +1,7 @@
 import {ButtonContainer, PlacesTapeContainer, StyledButton, StyledContainer, ProposeBtn, ProposeIcon} from "./styles";
 import {PlaceCard} from "./placeCard";
 
-import React, {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {NavigateTop} from "../main/navigation";
 import {Footer} from "../main/footer";
 import {Link} from "react-router-dom";
@@ -15,6 +15,7 @@ const PlacesTape = (props) => {
 
     const dispatch = useAppDispatch();
     const placesData = useAppSelector((state) => state.places);
+    const userStatus = useAppSelector((state) => state.user.userData.status)
     const {setShowProposed, setShowApproved} = placesSlice.actions;
     const ac = new AbortController();
     useEffect(() => {
@@ -52,7 +53,7 @@ const PlacesTape = (props) => {
                 </ProposeBtn>
             </Link>
             <TagList/>
-            {props.usrData.status === 'Moder' || props.usrData.status === 'Администратор' ? <ButtonContainer>
+            {userStatus === 'Moderator' || userStatus === 'Admin' ? <ButtonContainer>
                 <StyledButton sx={placesData.showApproved === 'approved' ? {backgroundColor: '#C6CCF9'} : null}
                               onClick={e => {
                                   e.preventDefault();
@@ -78,7 +79,7 @@ const PlacesTape = (props) => {
                     Предложить
                 </ProposeBtn>
             </Link>
-            {props.usrData.status === 'Moder' || props.usrData.status === 'Администратор' ? <ButtonContainer>
+            {userStatus === 'Moder' || userStatus === 'Администратор' ? <ButtonContainer>
                 <StyledButton sx={placesData.showApproved === 'approved' ? {backgroundColor: '#bec9eb'} : null}
                 >Подтвержденные</StyledButton>
                 <StyledButton sx={placesData.showApproved === 'proposed' ? {backgroundColor: '#bec9eb'} : null}

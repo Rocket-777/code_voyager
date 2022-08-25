@@ -17,7 +17,7 @@ import {
 import {ImageContainer, NoImage} from "../placeCard/styles";
 import {MarginContainer} from "../comments/sendComment/styles";
 import {Footer} from "../../main/footer";
-import {getPlaceById, removePlace, approvePlace, disApprovePlace} from "./scripts";
+import { removePlace, approvePlace, disApprovePlace} from "./scripts";
 import React, {useEffect, useState} from "react";
 import {NavigateBack, NavigateTop} from "../../main/navigation";
 import {Comments} from "../comments";
@@ -31,18 +31,24 @@ import Snackbar from '@mui/material/Snackbar';
 import {Map, Placemark, YMaps} from "react-yandex-maps";
 import Logo from "../../../assets/newLogo.svg";
 
+import {useAppDispatch, useAppSelector} from "../../../reduxStore/reduxHooks";
+import {fetchPlace, renewPlaceDetailed} from "../../../reduxStore/reducers/Actions";
+import {detailedSlice} from "../../../reduxStore/reducers/placeInfoSlice";
 
-const AdminBar = ({editable, setEditable, id, showDel, placeStatus, setStatus}) => {
+
+const AdminBar = ({id, showDel, placeStatus, setStatus}) => {
     const [count, setCount] = useState(-1)
-
+    const editable = useAppSelector(state => state.detailed.editable);
+    const dispatch = useAppDispatch();
+    const {setEditable, setApproved} = detailedSlice.actions;
     function handleApprove(){
         approvePlace(id).catch(e => console.log(e));
-        setStatus();
+        dispatch(setApproved(!placeStatus));
     }
 
     function handleDisApprove(){
         disApprovePlace(id).catch(e => console.log(e));
-        setStatus();
+        dispatch(setApproved(!placeStatus));
     }
 
     function counterAction() {
@@ -67,7 +73,7 @@ const AdminBar = ({editable, setEditable, id, showDel, placeStatus, setStatus}) 
             <AdminText>
                 Редактировать
             </AdminText>
-            <ToggleEdit onChange={e => setEditable(!editable)} checked={editable}/>
+            <ToggleEdit onChange={e => dispatch(setEditable(!editable))} checked={editable}/>
             {placeStatus ? <AdminModeration onClick={e => handleDisApprove()} >
                     Отправить на модерацию
                 </AdminModeration> :
@@ -85,48 +91,47 @@ const AdminBar = ({editable, setEditable, id, showDel, placeStatus, setStatus}) 
 }
 
 
-const PlaceDetailed = (props) => {
+const PlaceDetailed = () => {
 
-    const [placeData, setPlaceData] = useState('');
+
     const [commentsData, setCommentsData] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [editable, setEditable] = useState(false);
+
+
     const [snackOpen, setSnackOpen] = useState(false);
     const [deleted, setDeleted] = useState(false);
     const params = useParams();
-    let ac = new AbortController();
+
+    const dispatch = useAppDispatch();
+    const placeData = useAppSelector(state => state.detailed);
+    const {placeRefreshing, setEditable} = detailedSlice.actions;
+    const ac = new AbortController();
 
     async function handleLike() {
-        await likeAction(placeData._id);
-        await getPlaceById(params.id, setPlaceData, ac);
+        dispatch(placeRefreshing());
+        await likeAction(placeData.data._id);
+        await dispatch(renewPlaceDetailed(params.id, ac));
     }
 
     async function handleFavorite() {
-        await favoriteAction(placeData._id);
-        await getPlaceById(params.id, setPlaceData, ac);
+        dispatch(placeRefreshing());
+        await favoriteAction(placeData.data._id);
+        await dispatch(renewPlaceDetailed(params.id, ac));
     }
 
     useEffect(() => {
-
-        getPlaceById(params.id, setPlaceData, ac).then(res => {
-            if (!ac.signal.aborted) setIsLoading(false);
-
-        });
+        dispatch(fetchPlace(params.id, ac));
         getComments(setCommentsData, params.id, ac);
-
-
         return () => ac.abort();
     }, [])
 
 
-    if (!placeData.error && !isLoading && !deleted) {
+    if (!placeData.error && !placeData.isLoading && !deleted) {
         return (
             <Container id='detailedPlace'>
-
-                <AdminBar editable={editable} setEditable={setEditable} id={placeData._id}
+                <AdminBar id={placeData.data._id}
                           showDel={() => {
                               setDeleted(true)
-                          }} placeStatus={placeData.approved} setStatus={() => setPlaceData({...placeData, approved: !placeData.approved})  }/>
+                          }} placeStatus={placeData.data.approved} />
 
                 <NavigateTop elemId='detailedPlace'/>
                 <Snackbar open={snackOpen} autoHideDuration={7000} onClose={e => setSnackOpen(false)}>
@@ -136,37 +141,37 @@ const PlaceDetailed = (props) => {
                 </Snackbar>
                 <NavigateBack/>
                 {
-                    !editable ?
+                    !placeData.editable ?
                         <div style={{width: "100%"}}>
                             <StyledCard>
                                 <ImageContainer>
-                                    {placeData.image ? <img src={placeData.image} alt='image'/> :
+                                    {placeData.data.image && !placeData.refreshing ? <img src={placeData.data.image} alt='image'/> :
                                         <NoImage>
                                             <Logo height='50%'/>
                                         </NoImage>}
                                     <ActionWrap>
                                         <ActionButtonContainer>
-                                            <ActionButtons favoriteVisible={true} isFavorite={placeData.isFavorite}
-                                                           isLiked={placeData.isLiked} removeVisible={false}
-                                                           likeCount={placeData.likes} likeAction={() => handleLike()}
+                                            <ActionButtons favoriteVisible={true} isFavorite={placeData.data.isFavorite}
+                                                           isLiked={placeData.data.isLiked} removeVisible={false}
+                                                           likeCount={placeData.data.likes} likeAction={() => handleLike()}
                                                            favoriteAction={() => handleFavorite()}/>
                                         </ActionButtonContainer>
                                     </ActionWrap>
                                 </ImageContainer>
-                                <StyledHeader variant='h4'>{placeData.place_name}</StyledHeader>
-                                <ShortDescription>{placeData.place_description}</ShortDescription>
-                                <FullDescription>{placeData.place_description_full}</FullDescription>
+                                <StyledHeader variant='h4'>{placeData.data.place_name}</StyledHeader>
+                                <ShortDescription>{placeData.data.place_description}</ShortDescription>
+                                <FullDescription>{placeData.data.place_description_full}</FullDescription>
                                 <MapContainer>
                                     <YMaps>
-                                        <Map defaultState={{center: placeData.geo, zoom: 14}} width='100%' height='60vh'
+                                        <Map defaultState={{center: placeData.data.geo.split(','), zoom: 14}} width='100%' height='60vh'
                                              options={{suppressMapOpenBlock: true}}>
-                                            <Placemark id='placemark' geometry={placeData.geo}
+                                            <Placemark id='placemark' geometry={placeData.data.geo.split(',')}
                                                        options={{draggable: false}}/>
                                         </Map>
                                     </YMaps>
                                 </MapContainer>
-                                <Info>{placeData.place_address}</Info>
-                                <Info>{placeData.contact_info}</Info>
+                                <Info>{placeData.data.place_address}</Info>
+                                <Info>{placeData.data.contact_info}</Info>
 
                                 <Comments data={commentsData} sign={true}/>
                                 <SendComment id={params.id} commentOf='places' updateComments={setCommentsData}
@@ -178,14 +183,11 @@ const PlaceDetailed = (props) => {
                         :
                         <div style={{width: "100%"}}>
                             <Container>
-                                <EditPlace type="edit" editableData={placeData}
-                                           toggleEdit={() => setEditable(!editable)}
-                                           snack={() => setSnackOpen(true)} renewData={() => {
-                                    getPlaceById(params.id, setPlaceData, ac).then(res => {
-                                        if (!ac.signal.aborted) setIsLoading(false)
-                                    });
-                                    getComments(setCommentsData, params.id, ac);
-                                    return () => ac.abort();
+                                <EditPlace type="edit" editableData={placeData.data}
+                                           toggleEdit={() => dispatch(setEditable(!placeData.editable))}
+                                           snack={() => setSnackOpen(true)} renewData={async () => {
+                                    await dispatch(renewPlaceDetailed(params.id, ac));
+                                    await getComments(setCommentsData, params.id, ac);
                                 }
                                 }/>
                             </Container>
@@ -197,7 +199,7 @@ const PlaceDetailed = (props) => {
         return (
             <h1>{placeData.error}</h1>
         );
-    } else if (isLoading) {
+    } else if (placeData.isLoading) {
         return (
             <h1>Loading...</h1>
         );

@@ -53,7 +53,9 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({storage: storage});
+const upload = multer({storage: storage, limits:{
+        fieldSize: 25 * 1024 * 1024
+    }});
 
 app.use(cookie_parser('ass'));
 app.use(cors({origin: ['http://localhost:3000', 'http://192.168.1.47:3000' ], credentials: true}));

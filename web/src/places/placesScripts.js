@@ -121,7 +121,21 @@ async function sendPlace(req, res, db) {
 
 
     if (req.params.id.length === 24) {
-        const place = await db.collection('places').findOne({_id: ObjectId(req.params.id)}).catch(e => console.log(e));
+        const place = await db.collection('places').findOne({_id: ObjectId(req.params.id)}, {
+            projection: {
+                place_name: 1,
+                place_description: 1,
+                image: 1,
+                comments: 1,
+                likes: 1,
+                usersLiked: 1,
+                place_description_full: 1,
+                place_address: 1,
+                geo: 1,
+                contact_info: 1,
+                approved: 1
+            }
+        }).catch(e => console.log(e));
         let islkd = false;
         let isFavorite = false;
         const user = getUser(req.signedCookies);
@@ -141,6 +155,7 @@ async function sendPlace(req, res, db) {
                     islkd = true;
                 }
             })
+            delete place.usersLiked;
             res.send({...place, isLiked: islkd, isFavorite: isFavorite});
         } else {
             res.send({error: 'NOT_FOUND'});

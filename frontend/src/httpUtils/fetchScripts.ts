@@ -13,7 +13,7 @@ export async function getCurrentUser(){
     }
 
     const response = await fetch(url, headers).then(res => res.json()).catch(e => console.log(e));
-    const userStatus: string = response ? (response.status === 0 ? 'Admin' : response.status === 1 ? 'Moder' : 'User') : 'err';
+    const userStatus: string = response ? (response.status === 0 ? 'Admin' : response.status === 1 ? 'Moderator' : 'User') : 'err';
     let data: IUser = {
         username: response.username ? response.username : '',
         status: userStatus,
@@ -35,4 +35,7 @@ export async function getPlacesRequest(approval: string, ac: AbortController){
 }
 export async function getFavoritesRequest(){
 
+}
+export async function getPlaceRequest(id: string, ac: AbortController){
+    return getPlaces(`/places/id/${id}`, ac);
 }

@@ -5,105 +5,110 @@ import Logo from "../../../assets/newLogo.svg";
 import {NavigateBack} from "../../main/navigation";
 import React, {useState, useEffect} from "react";
 import {Map, Placemark, YMaps, ZoomControl} from "react-yandex-maps";
-import {TextInput, SendButton, ButtonIcon, AddImgButton, ImgIcon, UploadImgContainer, RemoveImgButton, RemImgIcon,
-ButtonLoader, RemoveImgBtnContainer} from "./styles";
+import {
+    TextInput, SendButton, ButtonIcon, AddImgButton, ImgIcon, UploadImgContainer, RemoveImgButton, RemImgIcon,
+    ButtonLoader, RemoveImgBtnContainer
+} from "./styles";
 import {submitNewPlace, editPlace} from "./scripts";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
+import {useAppSelector, useAppDispatch} from "../../../reduxStore/reduxHooks";
+import {detailedSlice} from "../../../reduxStore/reducers/placeInfoSlice";
+
+
 const EditPlace = ({type, editableData, toggleEdit, snack, renewData}) => {
-    const [placeData, setPlaceData] = useState({markerPos: [54.514, 36.26], placeName: '', placeDesc: '',
-    placeFullDesc: '', address: '', contact: ''})
-    const [thumbnail, setThumbnail] = useState(null);
-    const [image, setImage] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const fillRequired = placeData.placeName && placeData.placeDesc && placeData.placeFullDesc && placeData.address && placeData.contact
+
+    const dispatch = useAppDispatch();
+    const {setEditData, startEdit, setPlaceRefresh, resetPlaceDetailed} = detailedSlice.actions;
+
+    const placeData = useAppSelector(state => state.detailed.dataToEdit);
+    const refresh = useAppSelector(state => state.detailed.refreshing);
+
+    const fillRequired = placeData.place_name && placeData.place_description && placeData.place_description_full
+        && placeData.place_address && placeData.contact_info;
     const [snackOpen, setSnackOpen] = useState(false);
     const [mapLoading, setMapLoading] = useState(true);
     const submitButtonLabel = type === 'edit' ? 'Сохранить изменения' : 'Отправить';
+    const [newImage, setNewImage] = useState(null);
+
     useEffect(() => {
-        if(type === "edit"){
-            setPlaceData({
-                markerPos: editableData.geo,
-                placeName: editableData.place_name,
-                placeDesc: editableData.place_description,
-                placeFullDesc: editableData.place_description_full,
-                address: editableData.place_address,
-                contact: editableData.contact_info
-            });
-            setThumbnail(editableData.image);
-            setImage(editableData.image);
-        }
+        dispatch(startEdit());
     }, []);
 
     function handleFile(event) {
         if (event.target.files && event.target.files[0]) {
-            setImage(event.target.files[0]);
+
+            setNewImage(event.target.files[0]);
             let reader = new FileReader();
             reader.onload = (ev) => {
-                setThumbnail(ev.target.result);
+
+                dispatch(setEditData({...placeData, image: ev.target.result}))
             }
             reader.readAsDataURL(event.target.files[0]);
         }
     }
 
     function handleFileRemove() {
-        setThumbnail(null)
-        setImage(null);
+        dispatch(setEditData({...placeData, image: ''}));
     }
 
     async function handleSubmit() {
-        setLoading(true);
-        const reqData = new FormData();
-        reqData.append('placeName', placeData.placeName);
-        reqData.append('placeDescription', placeData.placeDesc);
-        reqData.append('placeFullDesc', placeData.placeFullDesc);
-        reqData.append('address', placeData.address);
-        reqData.append('contact', placeData.contact);
-        reqData.append('geo', placeData.markerPos);
-        reqData.append('image', image)
 
-        if(type === 'blank'){
+        dispatch(setPlaceRefresh(true));
+        const reqData = new FormData();
+        reqData.append('placeName', placeData.place_name);
+        reqData.append('placeDescription', placeData.place_description);
+        reqData.append('placeFullDesc', placeData.place_description_full);
+        reqData.append('address', placeData.place_address);
+        reqData.append('contact', placeData.contact_info);
+        reqData.append('geo', placeData.geo);
+        reqData.append('image', newImage ?  newImage : placeData.image);
+
+        if (type === 'blank') {
             await submitNewPlace(reqData);
             handleFileRemove();
-            setPlaceData({markerPos: [54.514, 36.26], placeName: '', placeDesc: '',
-                placeFullDesc: '', address: '', contact: ''});
-            setLoading(false);
+            dispatch(resetPlaceDetailed());
+            dispatch(setPlaceRefresh(false));
             setSnackOpen(true);
-            document.getElementById('newPlaceContainer').scrollTo(0,0);
-        }
-        else if(type === 'edit'){
+            document.getElementById('newPlaceContainer').scrollTo(0, 0);
+        } else if (type === 'edit') {
             reqData.append('action', 'edit');
             await editPlace(editableData._id, reqData);
-            setLoading(false);
+            await renewData();
+            dispatch(setPlaceRefresh(false));
             snack();
-            renewData();
+
             toggleEdit();
-            document.getElementById('detailedPlace').scrollTo(0,0);
+            document.getElementById('detailedPlace').scrollTo(0, 0);
         }
     }
-    return(
+
+    return (
         <Container id='newPlaceContainer'>
             <Snackbar open={snackOpen} autoHideDuration={7000} onClose={e => setSnackOpen(false)}>
-                   <Alert  severity="success" sx={{ width: '100%' }}>
-                        Ваше предложение отправлено модератору!
-                    </Alert>
+                <Alert severity="success" sx={{width: '100%'}}>
+                    Ваше предложение отправлено модератору!
+                </Alert>
             </Snackbar>
-            { type === 'blank' ? <NavigateBack/> : null}
+            {type === 'blank' ? <NavigateBack/> : null}
             <StyledCard>
                 <ImageContainer>
-                    {thumbnail ?
+                    {placeData.image ?
                         <RemoveImgBtnContainer>
-                            <RemoveImgButton onClick={e => handleFileRemove()} >
+                            <RemoveImgButton onClick={e => handleFileRemove()}>
                                 <RemImgIcon/>
                                 Убрать изображение
                             </RemoveImgButton>
-                            { type === "edit" ? <UploadImgContainer>
+                            {type === "edit" ? <UploadImgContainer>
                                 <input id='imgInp'
                                        style={{display: "none"}}
                                        type="file"
                                        accept="image/*"
-                                       onChange={e => {handleFileRemove(); handleFile(e)}}
+                                       onChange={e => {
+                                           handleFileRemove();
+                                           handleFile(e)
+                                       }}
                                 />
                                 <RemoveImgButton component='span'>
                                     <ImgIcon/>
@@ -111,9 +116,9 @@ const EditPlace = ({type, editableData, toggleEdit, snack, renewData}) => {
                                 </RemoveImgButton>
                             </UploadImgContainer> : null}
                         </RemoveImgBtnContainer>
-                     : null}
+                        : null}
 
-                    { thumbnail ? <img src={thumbnail} alt='unlucky :('/> : <NoImage>
+                    {placeData.image ? <img src={placeData.image} alt='unlucky :('/> : <NoImage>
                         <Logo height='50%'/>
                         <UploadImgContainer>
                             <input id='imgInp'
@@ -130,36 +135,47 @@ const EditPlace = ({type, editableData, toggleEdit, snack, renewData}) => {
                     </NoImage>}
                 </ImageContainer>
                 <StyledHeader variant='h4'>
-                    {placeData.placeName ? placeData.placeName : 'Новое место'}
+                    {placeData.place_name ? placeData.place_name : 'Новое место'}
                 </StyledHeader>
-                <TextInput label='Название'  autoComplete="off" size='small' required={true}
-                           onChange={e => setPlaceData({...placeData, placeName: e.target.value})}  value={placeData.placeName} />
+                <TextInput label='Название' autoComplete="off" size='small' required={true}
+                           onChange={e => dispatch(setEditData({...placeData, place_name: e.target.value}))}
+                           value={placeData.place_name}/>
                 <TextInput label='Рецензия' autoComplete="off" size='small' required={true} multiline={true} minRows={3}
-                           onChange={e => setPlaceData({...placeData, placeDesc: e.target.value})}  value={placeData.placeDesc} />
-                <TextInput label='Полное описание' autoComplete="off" size='small' required={true} multiline={true} minRows={3}
-                           onChange={e => setPlaceData({...placeData, placeFullDesc: e.target.value})} value={placeData.placeFullDesc}/>
+                           onChange={e => dispatch(setEditData({...placeData, place_description: e.target.value}))}
+                           value={placeData.place_description}/>
+                <TextInput label='Полное описание' autoComplete="off" size='small' required={true} multiline={true}
+                           minRows={3}
+                           onChange={e => dispatch(setEditData({...placeData, place_description_full: e.target.value}))}
+                           value={placeData.place_description_full}/>
                 <TextInput label='Адрес' autoComplete="off" size='small' required={true} multiline={true}
-                           onChange={e => setPlaceData({...placeData, address: e.target.value})} value={placeData.address} />
+                           onChange={e => dispatch(setEditData({...placeData, place_address: e.target.value}))}
+                           value={placeData.place_address}/>
                 <TextInput label='Контакты' autoComplete="off" size='small' required={true} multiline={true}
-                           onChange={e => setPlaceData({...placeData, contact: e.target.value})} value={placeData.contact} />
+                           onChange={e => dispatch(setEditData({...placeData, contact_info: e.target.value}))}
+                           value={placeData.contact_info}/>
                 <MapContainer>
                     <YMaps>
-                        <Map defaultState={{center: placeData.markerPos, zoom: 14, controls: [] }} width='100%' height='45rem'
-                             options={{suppressMapOpenBlock: true}} onLoad={e => setMapLoading(false)} >
-                            <Placemark id='placemark' geometry={placeData.markerPos} options={{draggable: true}}
+                        <Map defaultState={{center: placeData.geo.split(','), zoom: 14, controls: []}} width='100%'
+                             height='45rem'
+                             options={{suppressMapOpenBlock: true}} onLoad={e => setMapLoading(false)}>
+                            <Placemark id='placemark' geometry={placeData.geo.split(',')} options={{draggable: true}}
                                        onDragEnd={e => {
-                                           //console.log(e.get('target').geometry.getCoordinates());
-                                           setPlaceData({...placeData, markerPos: e.get('target').geometry.getCoordinates()});
+                                           dispatch(setEditData({
+                                               ...placeData,
+                                               geo: e.get('target').geometry.getCoordinates().toString()
+                                           }));
                                        }}/>
                             <ZoomControl/>
                         </Map>
                     </YMaps>
-                    {mapLoading ? <div style={{width: "100%", height: "45rem", backgroundColor: "lightgray",
-                    color:"white"}}>Loading map...</div> : null } {/*TODO SKELETON LOADING*/}
-                    <SendButton disabled={!fillRequired || loading} onClick={e => handleSubmit()} >
-                        { loading ? null : <ButtonIcon/>}
-                        { loading ? <ButtonLoader size={25}/>
-                        : submitButtonLabel}
+                    {mapLoading ? <div style={{
+                        width: "100%", height: "45rem", backgroundColor: "lightgray",
+                        color: "white"
+                    }}>Loading map...</div> : null} {/*TODO SKELETON LOADING*/}
+                    <SendButton disabled={!fillRequired || refresh} onClick={e => handleSubmit()}>
+                        {refresh ? null : <ButtonIcon/>}
+                        {refresh ? <ButtonLoader size={25}/>
+                            : submitButtonLabel}
                     </SendButton>
                 </MapContainer>
 

@@ -9,7 +9,7 @@ const Footer = () => {
         <Container>
             <Info>
                 <Text>
-
+                    github.com/Rocket-777/code_voyager
                 </Text>
                 <Text>
 
