@@ -1,15 +1,14 @@
 import {deleteReqUri, getPlacesRequest, putReq} from "../../../../httpUtils/httpRequests.ts";
 import {initPosts} from "../../scripts/postsScr";
-import {serverHost} from "../../../../httpUtils/envVals";
 
 async function deletePost(param, setPosts, ac){
-    await deleteReqUri(`${serverHost}/news/${param}`);
+    await deleteReqUri(`/news/${param}`);
     await initPosts(ac).then(res => setPosts(res.reverse()));
 }
 
 
 async function setPostById(id, setPlaceData, ac){
-    const uri = `${serverHost}/news/${id}`;
+    const uri = `/news/${id}`;
     const data = await getPlacesRequest(uri, ac);
     if(data){
 
@@ -22,7 +21,7 @@ async function setPostById(id, setPlaceData, ac){
 }
 
 async function postLikeAction(id){
-    await putReq(`${serverHost}/news/${id}/like`, null);
+    await putReq(`/news/${id}/like`, null);
 
 }
 
