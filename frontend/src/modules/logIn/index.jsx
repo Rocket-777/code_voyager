@@ -2,7 +2,7 @@ import {
     StyledCard, StyledTextInp, StyledHeader, StyledRow, StyledSemiRow, StyledButton, StyledBookmark1, StyledBookmark2,
     Container, WrapContainer
 } from "./styles"
-import {loginReq} from "./scripts/loginRequest";
+
 import {useState} from "react";
 import {SignUpCon} from "./signUp";
 import {useNavigate} from "react-router-dom";
@@ -13,25 +13,24 @@ import {useAppDispatch, useAppSelector} from "../../reduxStore/reduxHooks";
 import {logInAction} from "../../reduxStore/reducers/Actions";
 
 const LogInCard = (props) => {
+    const error = useAppSelector((state) => state.user.error);
+
     const [authCon, setAuthCont] = useState(true);
 
     const [userName, setUserName] = useState('');
     const [userPassword, setUserPassword] = useState('');
-    const [err, setError] = useState('');
 
-    const errorUser = err === 'no such user';
-    const errorPassword = err === 'wrong password';
+    const errorUser = error === 'no such user';
+    const errorPassword = error === 'wrong password';
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
-    const error = useAppSelector((state) => state.user.error);
+
 
     function handleLogIn() {
         dispatch(logInAction({username: userName, password: userPassword}, () => navigate('/profile')))
 
     }
-
-//e => loginReq(userName, userPassword, props.auth, setError, navigate)
 
 
     return (

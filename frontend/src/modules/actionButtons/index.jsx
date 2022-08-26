@@ -14,7 +14,7 @@ import {
 
 } from "./styles";
 import {Fade, Tooltip} from "@mui/material";
-import {useState} from "react";
+import {useState, useRef, useEffect} from "react";
 
 
 const ActionButtons = ({
@@ -25,6 +25,13 @@ const ActionButtons = ({
 
     const [likeLoading, setLikeLoading] = useState(false);
     const [favoriteLoading, setFavoriteLoading] = useState(false);
+    const isMounted = useRef(false);
+    useEffect(() => {
+        isMounted.current = true;
+        return () => {
+            isMounted.current = false
+        };
+    },[])
 
     function activityLike(){
         return isLiked ? <LikeActive/> : <LikeInactive/>
@@ -64,7 +71,10 @@ const ActionButtons = ({
 
                         <ActionButton onClick={e => {
                             setFavoriteLoading(true);
-                            favoriteAction().then(res => {setFavoriteLoading(false)});
+                            favoriteAction().then(res => {
+                                if(isMounted.current)
+                                setFavoriteLoading(false)
+                            });
                         }}>
                             {favoriteLoading ? <Loader size={25}/> : activityFavorite()}
                         </ActionButton>

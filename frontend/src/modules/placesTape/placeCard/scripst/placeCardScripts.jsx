@@ -1,30 +1,12 @@
-import {deleteReq, putReq} from "../../../../httpUtils/httpRequests.ts";
-import {getPlacesJS} from "../../scripts/placesUtils";
-import {serverHost} from "../../../../httpUtils/envVals";
-
-async function removePlace(id, setPlaces, placeState, ac) {
-
-
-    await deleteReq(`${serverHost}/places`, id);
-
-    await getPlacesJS(setPlaces, placeState, ac);
-
-
-}
-
-
-async function approvePlace(id, setPlaces, placeState, ac) {
-    await putReq(`${serverHost}/places/${id}`, {approved: true})
-    await getPlacesJS(setPlaces, placeState, ac);
-}
+import {putReq} from "../../../../httpUtils/httpRequests.ts";
 
 async function likeAction(id) {
-    await putReq(`${serverHost}/places/${id}/like`, null);
+    await putReq(`/places/${id}/like`, null);
 
 }
 
 async function favoriteAction(id) {
-    await putReq(`${serverHost}/places/${id}/favorite`, null);
+    await putReq(`/places/${id}/favorite`, null);
 }
 
-export {removePlace, approvePlace, likeAction, favoriteAction}
+export { likeAction, favoriteAction}

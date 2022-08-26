@@ -31,11 +31,11 @@ export async function logoutRequest(){
 }
 
 export async function getPlacesRequest(approval: string, ac: AbortController){
-    return getPlaces(`/places/${approval}`, ac)
+    return await getPlaces(`/places/${approval}`, ac)
 }
-export async function getFavoritesRequest(){
-
+export async function getFavoritesRequest(ac: AbortController){
+    return  await getPlaces(`/places/favorites`, ac);
 }
 export async function getPlaceRequest(id: string, ac: AbortController){
-    return getPlaces(`/places/id/${id}`, ac);
+    return await getPlaces(`/places/id/${id}`, ac);
 }

@@ -3,22 +3,22 @@ import {
     FavoriteContainer,
     FavoritesHeader
 } from "./styles";
-
+import {fetchUser} from "../../reduxStore/reducers/Actions";
 import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {removeUserImage, sendUserImage} from "./scripts/profileScripts";
-import {getFavoritesJS} from "../placesTape/scripts/placesUtils";
 import {StyledContainer} from "../placesTape/styles";
 import {PlaceCard} from "../placesTape/placeCard";
 import {FavoriteActive} from "../actionButtons/styles";
 import {Footer} from "../main/footer";
 import {NavigateTop} from "../main/navigation";
 import {UserProfile} from "./userInfo";
-import {useAppDispatch} from "../../reduxStore/reduxHooks";
-import {logOutAction} from "../../reduxStore/reducers/Actions";
+import {useAppDispatch, useAppSelector} from "../../reduxStore/reduxHooks";
+import {logOutAction, fetchFavorites} from "../../reduxStore/reducers/Actions";
 
-const UsrProfile = (props) => {
-
+const UsrProfile = () => {
+    const user = useAppSelector(state => state.user);
+    const places = useAppSelector(state => state.places)
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [thumbnail, setThumbnail] = useState("noImage.png")
@@ -27,8 +27,8 @@ const UsrProfile = (props) => {
     let ac = new AbortController();
 
     useEffect(()=>{
-
-        getFavoritesJS(setFavorites, ac).then(res => {if(!ac.signal.aborted){setIsLoading(false); handleScrollPos();}});
+        dispatch(fetchFavorites(ac, handleScrollPos));
+        //getFavoritesJS(setFavorites, ac).then(res => {if(!ac.signal.aborted){setIsLoading(false); handleScrollPos();}});
         return () => ac.abort();
     },[]);
 
@@ -62,7 +62,7 @@ const UsrProfile = (props) => {
             const reqData = new FormData();
             reqData.append('image', event.target.files[0]);
             await sendUserImage(reqData).catch(e => console.log(e));
-            //props.updateUsr();
+            dispatch(fetchUser());
         }
     }
     function handleRemoveImg() {
@@ -71,21 +71,19 @@ const UsrProfile = (props) => {
     return (
         <Container id='userProfile'>
             <NavigateTop elemId='userProfile'/>
-            <UserProfile userName={props.usrData.username} status={props.usrData.status} avatar={props.usrData.image}
+            <UserProfile userName={user.userData.username} status={user.userData.status} avatar={user.userData.image}
             handleImage={handleFile} logoutAction={() => handleLogOut()}/>
 
-
-            {!isLoading ? <FavoriteContainer>
-                {favorites.length > 0  ? <FavoritesHeader>
+            {!places.isLoading ? <FavoriteContainer>
+                {places.data.length > 0  ? <FavoritesHeader>
                     Избранное
                     <FavoriteActive/>
                 </FavoritesHeader> : null}
-                {favorites ? favorites.map(item =>
+                {places.data ? places.data.map(item =>
                     <StyledContainer key={item._id}>
 
-                        <PlaceCard  isAuth={props.isAuth}  cardData={item} setPlaces={setFavorites} placesState={'approved'}
-                                    updateFavorites={() => getFavoritesJS(setFavorites, ac)} handleTransition={handleTransition}
-                                    displayRemoveButton={props.usrData.status === 'Модератор' || props.usrData.status === 'Администратор'}/>
+                        <PlaceCard  isAuth={user.authorized}  cardData={item}  placesState={'approved'}
+                                    updateFavorites={() => dispatch(fetchFavorites(ac, handleScrollPos))} handleTransition={handleTransition}/>
                     </StyledContainer>) : null}
 
             </FavoriteContainer> : null}

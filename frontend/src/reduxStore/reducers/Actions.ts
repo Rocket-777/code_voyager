@@ -7,7 +7,8 @@ import {
     loginRequest,
     logoutRequest,
     getPlaceRequest,
-    getPlacesRequest
+    getPlacesRequest,
+    getFavoritesRequest
 } from "../../httpUtils/fetchScripts";
 import {IUserCredentials} from "../../models/IUser";
 
@@ -48,6 +49,17 @@ export const fetchPlaces = (ac: AbortController, approval: string, scrollPosCall
     try {
         dispatch(placesSlice.actions.placesFetching());
         const response = await getPlacesRequest(approval, ac);
+        dispatch(placesSlice.actions.placesFetchingSuccess(response));
+        scrollPosCall();
+    } catch (e) {
+        dispatch(placesSlice.actions.placesFetchingFailed(e.message))
+    }
+}
+
+export const fetchFavorites = (ac: AbortController, scrollPosCall: Function) => async(dispatch: AppDispatch) =>{
+    try {
+        dispatch(placesSlice.actions.placesFetching());
+        const response = await getFavoritesRequest(ac);
         dispatch(placesSlice.actions.placesFetchingSuccess(response));
         scrollPosCall();
     } catch (e) {

@@ -3,12 +3,12 @@ import {useEffect} from "react";
 
 
 const Home = () => {
-    let navigate = useNavigate();
-    //redirect
+    const navigate = useNavigate();
+
     useEffect(() => {
         navigate('/placesList')
     }, []);
-    //====
+
     return null;
 }
 

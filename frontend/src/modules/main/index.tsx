@@ -36,9 +36,9 @@ const Main = () => {
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/placesList/:id" element={<PlaceDetailed/>}/>
-                    <Route path="/placesList" element={<PlacesTape usrData={user.userData} isAuth={user.authorized}/>}/>
+                    <Route path="/placesList" element={<PlacesTape/>}/>
                     <Route path="/feed" element={<PostTape isAuth={user.authorized}/>}/>
-                    <Route path="/profile" element={<UsrProfile isAuth={user.authorized} usrData={user.userData}/>}/>
+                    <Route path="/profile" element={<UsrProfile />}/>
                     <Route path="/log-in" element={<LogInCard/>}/>
                     <Route path="/proposal" element={<EditPlace type='blank' editableData={undefined}
                                                                 toggleEdit={undefined} snack={undefined}
