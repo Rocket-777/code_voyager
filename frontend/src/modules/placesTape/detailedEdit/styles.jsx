@@ -1,8 +1,8 @@
-import {styled} from "@mui/material/styles";
-import {Button, TextField, CircularProgress} from "@mui/material"
+import { Button, TextField, CircularProgress} from "@mui/material";
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ImageNotSupportedRoundedIcon from '@mui/icons-material/ImageNotSupportedRounded';
+import {styled} from "@mui/material/styles";
 
 const TextInput = styled(TextField)`
   width: 80%;

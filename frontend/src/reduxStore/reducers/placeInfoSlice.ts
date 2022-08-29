@@ -81,6 +81,9 @@ export const detailedSlice = createSlice({
         startEdit(state){
             state.dataToEdit = state.data;
         },
+        finishEdit(state){
+            state.dataToEdit = initialState.dataToEdit;
+        },
         setEditData(state, action: PayloadAction<IPlaceDetailed>){
             state.dataToEdit = action.payload;
         },

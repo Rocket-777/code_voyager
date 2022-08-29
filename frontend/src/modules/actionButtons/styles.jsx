@@ -1,4 +1,3 @@
-import {styled} from "@mui/material/styles";
 import {Button} from "@mui/material";
 
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
@@ -7,7 +6,8 @@ import CommentRoundedIcon from '@mui/icons-material/CommentRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import StarOutlineRoundedIcon from '@mui/icons-material/StarOutlineRounded';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import {CircularProgress} from "@mui/material";
+import { CircularProgress} from "@mui/material";
+import {styled} from "@mui/material/styles";
 
 const ActionContainer = styled('div')`
   display: flex;

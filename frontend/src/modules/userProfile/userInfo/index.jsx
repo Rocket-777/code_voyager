@@ -14,9 +14,9 @@ import {
     UserImage
 } from "./styles";
 import {FavoriteActive, LikeActive} from "../../actionButtons/styles";
+import React from "react"
 
-
-const UserProfile = ({userName, status, avatar, handleImage, logoutAction}) => {
+const UserProfile = React.memo(({userName, status, avatar, handleImage, logoutAction}) => {
     return (
         <ProfileCard>
             <Row>
@@ -58,7 +58,8 @@ const UserProfile = ({userName, status, avatar, handleImage, logoutAction}) => {
                 <Text>
                     Зарегистрирован: 20.01.20
                 </Text>
-                <LogoutButton onClick={(e) => logoutAction()}>
+                <LogoutButton onClick={(e) => logoutAction()}
+                >
                     <OutIcon/>
                     Выйти
                 </LogoutButton>
@@ -66,6 +67,6 @@ const UserProfile = ({userName, status, avatar, handleImage, logoutAction}) => {
 
         </ProfileCard>
     )
-}
+})
 
 export {UserProfile}

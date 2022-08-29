@@ -1,4 +1,4 @@
-import {styled} from "@mui/material/styles";
+import {styled} from '@mui/material/styles';
 
 const PostTapeContainer = styled('div')`
   display: flex;
@@ -12,9 +12,9 @@ const PostTapeContainer = styled('div')`
   overflow-y: auto;
   min-height: 100%;
 
-  
-  
-  
+
+
+
 
 `;
 

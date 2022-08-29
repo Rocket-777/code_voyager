@@ -1,6 +1,5 @@
+import { Card, Typography, Divider, Button, Switch } from "@mui/material";
 import {styled} from "@mui/material/styles";
-import {Card, Typography, Divider, Button} from "@mui/material";
-import Switch from "@mui/material/Switch";
 
 
 const Container = styled('div')`

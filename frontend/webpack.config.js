@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const DotenvPlugin = require('dotenv-webpack');
-const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const eFile = `.env.${process.env.NODE_ENV}`;
 require('dotenv').config({
@@ -34,12 +34,7 @@ module.exports = () =>{
         module: {
             rules: [
                 {
-                    test: /\.tsx?$/,
-                    exclude: /node_modules/,
-                    loader: 'ts-loader'
-                },
-                {
-                    test: /\.jsx?$/,
+                    test: /\.tsx?$|jsx/,
                     exclude: /node_modules/,
                     loader: 'babel-loader'
                 },
@@ -72,6 +67,8 @@ module.exports = () =>{
                 path: eFile,
                 defaults: '.env.defaults',
             }),
+            new BundleAnalyzerPlugin(),
+
         ],
         devtool: 'source-map',
         resolve: {

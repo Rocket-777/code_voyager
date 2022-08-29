@@ -1,5 +1,6 @@
+import { Typography} from "@mui/material";
 import {styled} from "@mui/material/styles";
-import {Typography} from "@mui/material";
+
 
 const Comment = styled('div')`
   display: flex;

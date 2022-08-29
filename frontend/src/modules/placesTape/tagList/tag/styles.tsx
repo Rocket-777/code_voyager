@@ -1,4 +1,4 @@
-import {styled} from "@mui/material";
+import {styled} from "@mui/material/styles";
 import CircleRoundedIcon from '@mui/icons-material/CircleRounded';
 
 const TagBase = styled('div')`

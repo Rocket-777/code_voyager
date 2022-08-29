@@ -48,7 +48,7 @@ async function sendPostById(req, res, db) {
             isLiked = true;
         }
     });
-
+    delete data.usersLiked;
     res.send({...data, usrImage: user.image, username: user.username, isLiked: isLiked});
     res.end();
 }
@@ -84,7 +84,7 @@ async function sendPosts(req, res, db) {
 
             }
         })
-
+        delete item.usersLiked;
         item = {...item, isLiked: isLiked}
         return item;
     }))

@@ -25,14 +25,16 @@ import {ActionButtons} from "../../actionButtons";
 import Logo from "../../../assets/newLogo.svg"
 import React from "react";
 
-const PlaceCard = (props) => {
+
+
+const PlaceCard =  (props) => {
 
     const [showComments, setShowComments] = useState(false);
     const [commentsData, setCommentsData] = useState('');
     const [placeData, setPlaceData] = useState(props.cardData);
     const [imgLoading, setImgLoading] = useState(true);
 
-    let ac = new AbortController();
+    const ac = new AbortController();
 
     useEffect(() => {
         if (!props.skeleton) {

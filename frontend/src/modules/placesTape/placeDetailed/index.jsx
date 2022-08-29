@@ -17,7 +17,7 @@ import {
 import {ImageContainer, NoImage} from "../placeCard/styles";
 import {MarginContainer} from "../comments/sendComment/styles";
 import {Footer} from "../../main/footer";
-import { removePlace, approvePlace, disApprovePlace} from "./scripts";
+import {removePlace, approvePlace, disApprovePlace} from "./scripts";
 import React, {useEffect, useState} from "react";
 import {NavigateBack, NavigateTop} from "../../main/navigation";
 import {Comments} from "../comments";
@@ -26,8 +26,6 @@ import {getComments} from "../comments/scripts";
 import {ActionButtons} from "../../actionButtons";
 import {favoriteAction, likeAction} from "../placeCard/scripst/placeCardScripts";
 import {EditPlace} from "../detailedEdit";
-import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
 import {Map, Placemark, YMaps} from "react-yandex-maps";
 import Logo from "../../../assets/newLogo.svg";
 
@@ -36,17 +34,21 @@ import {fetchPlace, renewPlaceDetailed} from "../../../reduxStore/reducers/Actio
 import {detailedSlice} from "../../../reduxStore/reducers/placeInfoSlice";
 
 
-const AdminBar = ({id, showDel, placeStatus, setStatus}) => {
+import { Alert, Snackbar } from '@mui/material';
+
+
+const AdminBar = ({id, showDel, placeStatus}) => {
     const [count, setCount] = useState(-1)
     const editable = useAppSelector(state => state.detailed.editable);
     const dispatch = useAppDispatch();
     const {setEditable, setApproved} = detailedSlice.actions;
-    function handleApprove(){
+
+    function handleApprove() {
         approvePlace(id).catch(e => console.log(e));
         dispatch(setApproved(!placeStatus));
     }
 
-    function handleDisApprove(){
+    function handleDisApprove() {
         disApprovePlace(id).catch(e => console.log(e));
         dispatch(setApproved(!placeStatus));
     }
@@ -74,10 +76,10 @@ const AdminBar = ({id, showDel, placeStatus, setStatus}) => {
                 Редактировать
             </AdminText>
             <ToggleEdit onChange={e => dispatch(setEditable(!editable))} checked={editable}/>
-            {placeStatus ? <AdminModeration onClick={e => handleDisApprove()} >
+            {placeStatus ? <AdminModeration onClick={e => handleDisApprove()}>
                     Отправить на модерацию
                 </AdminModeration> :
-                <AdminModeration onClick={e => handleApprove()} >
+                <AdminModeration onClick={e => handleApprove()}>
                     Принять
                 </AdminModeration>
             }
@@ -95,10 +97,9 @@ const PlaceDetailed = () => {
 
 
     const [commentsData, setCommentsData] = useState('');
-
-
     const [snackOpen, setSnackOpen] = useState(false);
     const [deleted, setDeleted] = useState(false);
+
     const params = useParams();
 
     const dispatch = useAppDispatch();
@@ -131,7 +132,7 @@ const PlaceDetailed = () => {
                 <AdminBar id={placeData.data._id}
                           showDel={() => {
                               setDeleted(true)
-                          }} placeStatus={placeData.data.approved} />
+                          }} placeStatus={placeData.data.approved}/>
 
                 <NavigateTop elemId='detailedPlace'/>
                 <Snackbar open={snackOpen} autoHideDuration={7000} onClose={e => setSnackOpen(false)}>
@@ -145,7 +146,7 @@ const PlaceDetailed = () => {
                         <div style={{width: "100%"}}>
                             <StyledCard>
                                 <ImageContainer>
-                                    {placeData.data.image && !placeData.refreshing ? <img src={placeData.data.image} alt='image'/> :
+                                    {placeData.data.image ? <img src={placeData.data.image} alt='image'/> :
                                         <NoImage>
                                             <Logo height='50%'/>
                                         </NoImage>}
@@ -153,7 +154,8 @@ const PlaceDetailed = () => {
                                         <ActionButtonContainer>
                                             <ActionButtons favoriteVisible={true} isFavorite={placeData.data.isFavorite}
                                                            isLiked={placeData.data.isLiked} removeVisible={false}
-                                                           likeCount={placeData.data.likes} likeAction={() => handleLike()}
+                                                           likeCount={placeData.data.likes}
+                                                           likeAction={() => handleLike()}
                                                            favoriteAction={() => handleFavorite()}/>
                                         </ActionButtonContainer>
                                     </ActionWrap>
@@ -163,7 +165,8 @@ const PlaceDetailed = () => {
                                 <FullDescription>{placeData.data.place_description_full}</FullDescription>
                                 <MapContainer>
                                     <YMaps>
-                                        <Map defaultState={{center: placeData.data.geo.split(','), zoom: 14}} width='100%' height='60vh'
+                                        <Map defaultState={{center: placeData.data.geo.split(','), zoom: 14}}
+                                             width='100%' height='60vh'
                                              options={{suppressMapOpenBlock: true}}>
                                             <Placemark id='placemark' geometry={placeData.data.geo.split(',')}
                                                        options={{draggable: false}}/>
@@ -211,7 +214,7 @@ const PlaceDetailed = () => {
             </div>
 
         )
-    }else{
+    } else {
         return null;
     }
 

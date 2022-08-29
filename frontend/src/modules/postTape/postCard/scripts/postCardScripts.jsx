@@ -1,4 +1,4 @@
-import {deleteReqUri, getPlacesRequest, putReq} from "../../../../httpUtils/httpRequests.ts";
+import {deleteReqUri, getPlaces, putReq} from "../../../../httpUtils/httpRequests.ts";
 import {initPosts} from "../../scripts/postsScr";
 
 async function deletePost(param, setPosts, ac){
@@ -9,7 +9,7 @@ async function deletePost(param, setPosts, ac){
 
 async function setPostById(id, setPlaceData, ac){
     const uri = `/news/${id}`;
-    const data = await getPlacesRequest(uri, ac);
+    const data = await getPlaces(uri, ac);
     if(data){
 
         setPlaceData(data);

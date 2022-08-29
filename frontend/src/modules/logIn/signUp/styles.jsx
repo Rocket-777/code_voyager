@@ -1,4 +1,4 @@
-import {Card, Typography, Button, TextField} from "@mui/material";
+import {Typography, Button, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 
 const StyledButton = styled(Button)`
@@ -9,6 +9,7 @@ const StyledButton = styled(Button)`
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   margin-top: auto;
+
   :hover {
     background-color: #1d357a;
   }
@@ -19,7 +20,7 @@ const StyledRow = styled('div')`
   justify-content: center;
   width: 100%;
   height: 15%;
-  
+
   align-items: center;
   margin-bottom: 1.5rem;
 
@@ -62,6 +63,6 @@ const StyledSignStatus = styled(Typography)`
   background-color: #43b56c;
   width: 25%;
   height: 13%;
-  
+
 `;
 export {StyledButton, StyledRow, StyledSemiRow, Container, StyledTextInp, StyledSignStatus}

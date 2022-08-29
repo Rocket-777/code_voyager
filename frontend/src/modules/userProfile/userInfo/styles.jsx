@@ -1,5 +1,5 @@
-import { styled } from '@mui/material/styles';
 import {Card, Avatar, Button} from "@mui/material";
+import {styled} from "@mui/material/styles";
 import {Typography} from "@mui/material";
 import {CommentSign} from "../../actionButtons/styles";
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
@@ -65,13 +65,13 @@ const UploadButton = styled(Button)`
   height: 100%;
   border-radius: 10px;
   //border-color: #26418f;
-  :hover{
+  :hover {
     background-color: #bebebe;
   }
 `;
 
 const ImageIcon = styled(PhotoCameraIcon)`
-    color: white;
+  color: white;
 `
 const OutIcon = styled(LogoutIcon)`
   margin-right: 0.3rem;
@@ -87,10 +87,13 @@ const LogoutButton = styled(Button)`
   width: 60%;
   height: 2.3rem;
   margin: 1rem auto auto auto;
-  :hover{
+
+  :hover {
     background-color: #e6e8f7;
   }
 `
 
-export {ProfileCard, UserImage, Col, Row, Text, Text2, Comments, Divider, UploadButtonContainer, UploadButton,
-    ImageIcon, LogoutButton, OutIcon}
+export {
+    ProfileCard, UserImage, Col, Row, Text, Text2, Comments, Divider, UploadButtonContainer, UploadButton,
+    ImageIcon, LogoutButton, OutIcon
+}

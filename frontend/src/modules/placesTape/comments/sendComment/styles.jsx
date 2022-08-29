@@ -1,21 +1,21 @@
-import {styled} from "@mui/material/styles";
 import {Card, TextField, Fab} from "@mui/material";
+import {styled} from "@mui/material/styles";
 
 const MarginContainer = styled('div')`
   width: 60%;
   margin: 0 auto 6vh auto;
-  @media only screen and (max-width: 1000px){
+  @media only screen and (max-width: 1000px) {
     width: 90%
   }
 `
 
 const StyledCard = styled(Card)`
-  
+
   display: flex;
   flex-direction: row;
   width: 100%;
   position: relative;
-  
+
 `
 
 const StyledTextInp = styled(TextField)`
@@ -23,12 +23,14 @@ const StyledTextInp = styled(TextField)`
   width: 100%;
   background-color: #e8ebff;
   border-radius: 4px;
+
   .MuiOutlinedInput-root {
 
-    &:hover fieldset{
+    &:hover fieldset {
       border-color: #5c6bc0;
     }
-    &.Mui-focused fieldset{
+
+    &.Mui-focused fieldset {
       border-color: #8e99f3;
     }
   }
@@ -42,8 +44,8 @@ const SendFab = styled(Fab)`
   height: 3rem;
   width: 3rem;
   background-color: #5c6bc0;
-  
-  :hover{
+
+  :hover {
     background-color: #8e99f3;
   }
 `
@@ -52,6 +54,6 @@ const InputContainer = styled('div')`
   position: relative;
   width: 96%;
   margin: 1rem auto 1rem auto;
-  
+
 `
 export {StyledCard, StyledTextInp, SendFab, InputContainer, MarginContainer}

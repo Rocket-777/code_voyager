@@ -1,5 +1,5 @@
-import {styled, Typography, Card, Skeleton} from "@mui/material";
-
+import {Typography, Card, Skeleton} from "@mui/material";
+import {styled} from "@mui/material/styles";
 
 
 const StyledCard = styled(Card)`
@@ -8,10 +8,10 @@ const StyledCard = styled(Card)`
   height: fit-content;
   width: 60%;
   margin-bottom: 4vh;
-  margin-top: 0 ;
+  margin-top: 0;
   box-shadow: none;
-  
-  @media only screen and (max-width: 1000px){
+
+  @media only screen and (max-width: 1000px) {
     width: 90%
   }
 
@@ -19,11 +19,11 @@ const StyledCard = styled(Card)`
 const UserInfo = styled('div')`
   display: flex;
   flex-direction: row;
-  
+
   align-items: center;
   margin: 1.5vh auto 0 1.5vw;
-  
-  
+
+
 `;
 const UserName = styled(Typography)`
   margin-left: 0.7vw;
@@ -38,7 +38,7 @@ const StyledText = styled(Typography)`
   height: fit-content;
   background-color: #f2f2f2;
   flex-basis: 75%;
-  
+
   padding: 1.7%;
   border-radius: 5px;
   word-wrap: anywhere;
@@ -51,14 +51,14 @@ const ButtonBlock = styled('div')`
   flex-direction: row;
   //margin: 0 auto 1vh auto;
   width: 100%;
-  
 
-  @media only screen and (max-width: 768px){
+
+  @media only screen and (max-width: 768px) {
     width: 100%;
     justify-content: center;
   }
-  
-  
+
+
 `;
 const PostBody = styled('div')`
   display: flex;
@@ -67,7 +67,7 @@ const PostBody = styled('div')`
   height: 100%;
   margin: 0;
   padding: 0;
-  
+
 `;
 
 const SkeletonContent = styled(Skeleton)`
@@ -79,7 +79,7 @@ const SkeletonContent = styled(Skeleton)`
 const SkeletonAvatar = styled(Skeleton)`
   width: 65px;
   height: 65px;
-  
+
 `
 
 const SkeletonUser = styled(Skeleton)`
@@ -87,11 +87,21 @@ const SkeletonUser = styled(Skeleton)`
   height: 1.3rem;
   width: 14vw;
   margin-left: 0.7vw;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 768px) {
     width: 10rem;
 
   }
 
 `
 
-export {StyledCard, StyledText, UserInfo, UserName, ButtonBlock, PostBody, SkeletonUser, SkeletonContent, SkeletonAvatar}
+export {
+    StyledCard,
+    StyledText,
+    UserInfo,
+    UserName,
+    ButtonBlock,
+    PostBody,
+    SkeletonUser,
+    SkeletonContent,
+    SkeletonAvatar
+}

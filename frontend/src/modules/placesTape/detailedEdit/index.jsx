@@ -10,17 +10,18 @@ import {
     ButtonLoader, RemoveImgBtnContainer
 } from "./styles";
 import {submitNewPlace, editPlace} from "./scripts";
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 
 import {useAppSelector, useAppDispatch} from "../../../reduxStore/reduxHooks";
 import {detailedSlice} from "../../../reduxStore/reducers/placeInfoSlice";
 
 
+import { Snackbar, Alert } from '@mui/material';
+
+
 const EditPlace = ({type, editableData, toggleEdit, snack, renewData}) => {
 
     const dispatch = useAppDispatch();
-    const {setEditData, startEdit, setPlaceRefresh, resetPlaceDetailed} = detailedSlice.actions;
+    const {setEditData, startEdit, setPlaceRefresh, resetPlaceDetailed, finishEdit} = detailedSlice.actions;
 
     const placeData = useAppSelector(state => state.detailed.dataToEdit);
     const refresh = useAppSelector(state => state.detailed.refreshing);
@@ -33,7 +34,11 @@ const EditPlace = ({type, editableData, toggleEdit, snack, renewData}) => {
     const [newImage, setNewImage] = useState(null);
 
     useEffect(() => {
+        if(type === 'edit')
         dispatch(startEdit());
+        return () => {
+            dispatch(finishEdit());
+        }
     }, []);
 
     function handleFile(event) {
