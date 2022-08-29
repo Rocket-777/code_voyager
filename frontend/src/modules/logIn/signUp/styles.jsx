@@ -5,30 +5,31 @@ const StyledButton = styled(Button)`
   background-color: #26418f;
   color: white;
   width: 100%;
-  padding-top: 1vh;
+  text-transform: none;
+  padding-top: 5px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   margin-top: auto;
-
+  height: 35px;
   :hover {
     background-color: #1d357a;
   }
 `;
 const StyledRow = styled('div')`
   display: flex;
+  margin: 20px auto auto auto;
   flex-direction: row;
-  justify-content: center;
   width: 100%;
   height: 15%;
-
   align-items: center;
-  margin-bottom: 1.5rem;
 
 `;
 
 const StyledSemiRow = styled(Typography)`
   display: flex;
-  margin-right: 10px;
+  width: 75px;
+  margin-right: 5%;
+  margin-left: auto;
   background-color: #bec9eb;
 `;
 
@@ -38,13 +39,16 @@ const Container = styled("div")`
   height: 100%;
   width: 100%;
   margin: 0;
-  padding: 2rem 0 0 0;
+  padding: 0;
   //padding-top: 2rem;
+  flex-flow: row wrap;
+  overflow-y: auto;
 `;
 
 const StyledTextInp = styled(TextField)`
-  margin-left: 10px;
-  width: 60%;
+  margin-right: auto;
+  //margin-left: 10px;
+  width: 50%;
   background-color: #e8ebff;
   border-radius: 4px;
 
@@ -52,7 +56,7 @@ const StyledTextInp = styled(TextField)`
 
 const StyledSignStatus = styled(Typography)`
   display: flex;
-  margin: 0 auto 1.2rem auto;
+  margin: 1rem auto 1.2rem auto;
   font-weight: bold;
   font-size: 1.2rem;
   color: white;

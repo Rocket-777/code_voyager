@@ -8,7 +8,7 @@ import {SignUpCon} from "./signUp";
 import {useNavigate} from "react-router-dom";
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import AppRegistrationOutlinedIcon from '@mui/icons-material/AppRegistrationOutlined';
-
+import {Footer} from "../main/footer";
 import {useAppDispatch, useAppSelector} from "../../reduxStore/reduxHooks";
 import {logInAction} from "../../reduxStore/reducers/Actions";
 
@@ -34,44 +34,48 @@ const LogInCard = (props) => {
 
 
     return (
-        <WrapContainer>
-            <StyledCard>
-                <StyledHeader>
-                    <StyledBookmark1 onClick={e => setAuthCont(true)}
-                                     sx={authCon ? {backgroundColor: '#bec9eb'} : null}>
-                        <LoginOutlinedIcon sx={{marginRight: '0.3vw'}}/>
-                        Войти
-                    </StyledBookmark1>
-                    <StyledBookmark2 onClick={e => setAuthCont(false)}
-                                     sx={authCon ? null : {backgroundColor: '#bec9eb'}}>
-                        <AppRegistrationOutlinedIcon sx={{marginRight: '0.3vw'}}/>
-                        Зарегистрироваться
-                    </StyledBookmark2>
-                </StyledHeader>
-                {
-                    authCon ? <Container>
-                        <StyledRow>
-                            <StyledSemiRow>Username:</StyledSemiRow>
-                            <StyledTextInp error={errorUser} helperText={errorUser ? 'No such user' : null} size="small"
-                                           onChange={e => setUserName(e.target.value)} value={userName}/>
-                        </StyledRow>
-                        <StyledRow>
-                            <StyledSemiRow>Password:</StyledSemiRow>
-                            <StyledTextInp error={errorPassword} helperText={errorPassword ? 'Wrong password' : null}
-                                           size="small" type="password" onChange={e => setUserPassword(e.target.value)}
-                                           value={userPassword}/>
-                        </StyledRow>
-                        <div>{error}</div>
-                        <StyledButton onClick={() => handleLogIn()}>
-                            <LoginOutlinedIcon sx={{marginRight: '0.4vw'}}/>
-                            Войти</StyledButton>
-                    </Container> : <SignUpCon contChoice={setAuthCont}/>
-                }
+        <Container>
+            <WrapContainer>
+                <StyledCard>
+                    <StyledHeader>
+                        <StyledBookmark1 onClick={e => setAuthCont(true)}
+                                         sx={authCon ? {backgroundColor: '#bec9eb'} : null}>
+                            <LoginOutlinedIcon sx={{marginRight: '0.3vw'}}/>
+                            Войти
+                        </StyledBookmark1>
+                        <StyledBookmark2 onClick={e => setAuthCont(false)}
+                                         sx={authCon ? null : {backgroundColor: '#bec9eb'}}>
+                            <AppRegistrationOutlinedIcon sx={{marginRight: '0.3vw'}}/>
+                            Зарегистрироваться
+                        </StyledBookmark2>
+                    </StyledHeader>
+                    {
+                        authCon ? <Container>
+                            <StyledRow>
+                                <StyledSemiRow>Username:</StyledSemiRow>
+                                <StyledTextInp error={errorUser} helperText={errorUser ? 'No such user' : null} size="small"
+                                               onChange={e => setUserName(e.target.value)} value={userName}/>
+                            </StyledRow>
+                            <StyledRow>
+                                <StyledSemiRow>Password:</StyledSemiRow>
+                                <StyledTextInp error={errorPassword} helperText={errorPassword ? 'Wrong password' : null}
+                                               size="small" type="password" onChange={e => setUserPassword(e.target.value)}
+                                               value={userPassword}/>
+                            </StyledRow>
+                            <div>{error}</div>
+                            <StyledButton onClick={() => handleLogIn()}>
+                                <LoginOutlinedIcon sx={{marginRight: '0.4vw'}}/>
+                                Войти</StyledButton>
+                        </Container> : <SignUpCon contChoice={setAuthCont}/>
+                    }
 
-            </StyledCard>
+                </StyledCard>
 
 
-        </WrapContainer>
+            </WrapContainer>
+            <Footer/>
+        </Container>
+
 
     );
 }

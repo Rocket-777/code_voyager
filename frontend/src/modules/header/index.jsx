@@ -32,7 +32,7 @@ const Header = (props) => {
                 </Link>
                     : <Link to='/log-in' style={{...linkstyle, marginLeft: "auto"}}>
                         <StyledUserButton>
-                        Войти/Зарегистрироваться
+                        Войти
                         </StyledUserButton>
                     </Link>}
 
