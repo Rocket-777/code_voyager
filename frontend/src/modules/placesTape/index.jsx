@@ -20,7 +20,6 @@ const PlacesTape = (props) => {
     const ac = new AbortController();
     useEffect(() => {
         dispatch(fetchPlaces(ac, placesData.showApproved, handleScrollPos));
-        //if (!ac.signal.aborted) setIsLoading(false);
         return () => ac.abort();
     }, [placesData.showApproved])
 
@@ -63,7 +62,7 @@ const PlacesTape = (props) => {
                               onClick={e => {
                                   e.preventDefault();
                                   dispatch(setShowProposed());
-                              }}>Предложения пользователей</StyledButton>
+                              }}>Модерация</StyledButton>
             </ButtonContainer> : null}
             <PlaceCard skeleton={true}/>
             {placesData.data ? placesData.data.map(item =>
@@ -79,6 +78,7 @@ const PlacesTape = (props) => {
                     Предложить
                 </ProposeBtn>
             </Link>
+            <TagList/>
             {userStatus === 'Moder' || userStatus === 'Администратор' ? <ButtonContainer>
                 <StyledButton sx={placesData.showApproved === 'approved' ? {backgroundColor: '#bec9eb'} : null}
                 >Подтвержденные</StyledButton>

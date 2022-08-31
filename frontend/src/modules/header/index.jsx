@@ -4,24 +4,43 @@ import {linkstyle} from "./styles";
 import {Avatar} from "@mui/material";
 import Logo from "../../assets/newLogo.svg"
 import {useAppSelector} from "../../reduxStore/reduxHooks";
-const Header = (props) => {
+import {useState} from "react";
+
+const Header = () => {
     const user = useAppSelector((state) => state.user);
     const usrImage = user.userData.image ? user.userData.image : null;
+    const [width, setWidth] = useState(window.innerWidth);
+    const uiTransform = width < 768;
+
+    window.onresize = (e) => {
+       setWidth(window.innerWidth);
+    }
+
 
     return (
 
         <StyledHeader  >
-            <Logo height={35} style={{marginLeft: '1rem', marginRight: '1rem'}} />
+            {uiTransform ? null : <Logo height={35} style={{marginLeft: '1rem', marginRight: '1rem'}} />}
+
             <Link to='/placesList' style={linkstyle}>
                 <StyledButton >
                     Главная
                 </StyledButton>
             </Link>
-
+            <Link to='/placesList' style={linkstyle}>
+                <StyledButton >
+                    Места
+                </StyledButton>
+            </Link>
             <Link to='/feed' style={linkstyle}>
             <StyledButton >
                     Лента
             </StyledButton>
+            </Link>
+            <Link to='/feed' style={linkstyle}>
+                <StyledButton >
+                    События
+                </StyledButton>
             </Link>
 
                 {user.authorized ? <Link to='/profile' style={{...linkstyle, marginLeft: "auto"}}>
