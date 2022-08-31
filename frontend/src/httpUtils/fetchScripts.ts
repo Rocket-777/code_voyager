@@ -1,5 +1,5 @@
 import {authRequest, logOutQuarry} from "./wwwAuth";
-import {getPlaces} from "./httpRequests";
+import {getPlaces, getPosts} from "./httpRequests";
 import {IUser, IUserCredentials} from "../models/IUser";
 export async function getCurrentUser(){
 
@@ -38,4 +38,7 @@ export async function getFavoritesRequest(ac: AbortController){
 }
 export async function getPlaceRequest(id: string, ac: AbortController){
     return await getPlaces(`/places/id/${id}`, ac);
+}
+export async function getPostsRequest(ac: AbortController){
+    return await getPosts('/news', ac);
 }

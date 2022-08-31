@@ -2,13 +2,15 @@ import {AppDispatch} from "../store";
 import {userSlice} from "./userSlice";
 import {placesSlice} from "./placesSlice";
 import {detailedSlice} from "./placeInfoSlice";
+import {postsSlice} from "./postsSlice";
 import {
     getCurrentUser,
     loginRequest,
     logoutRequest,
     getPlaceRequest,
     getPlacesRequest,
-    getFavoritesRequest
+    getFavoritesRequest,
+    getPostsRequest
 } from "../../httpUtils/fetchScripts";
 import {IUserCredentials} from "../../models/IUser";
 
@@ -84,5 +86,16 @@ export const renewPlaceDetailed = (id: string, ac: AbortController) => async (di
     }
     catch(e){
         dispatch(detailedSlice.actions.fetchPlaceFailed(e.message));
+    }
+}
+
+export const fetchPosts = (ac: AbortController) => async (dispatch: AppDispatch) => {
+    try{
+        dispatch(postsSlice.actions.fetchPosts())
+        const response = await getPostsRequest(ac);
+        dispatch(postsSlice.actions.fetchPostsSuccess(response));
+    }
+    catch(e){
+        dispatch(postsSlice.actions.fetchPostsFailed(e.message));
     }
 }

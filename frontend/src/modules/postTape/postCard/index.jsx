@@ -17,13 +17,17 @@ import {useEffect, useState} from "react";
 import {getComments} from "../../placesTape/comments/scripts";
 import {setPostById, postLikeAction} from "./scripts/postCardScripts";
 import {SkeletonContainer} from "../../placesTape/placeCard/styles";
+import {useAppDispatch} from "../../../reduxStore/reduxHooks";
+import {fetchPosts} from "../../../reduxStore/reducers/Actions";
 
 const PostCard = (props) => {
 
     const [showComments, setShowComments] = useState(false);
     const [commentsData, setCommentsData] = useState('');
     const [postData, setPostData] = useState(props.postData);
-    let ac = new AbortController();
+    const ac = new AbortController();
+    const dispatch = useAppDispatch();
+
     useEffect(()=>{
 
         if(showComments){
@@ -35,6 +39,12 @@ const PostCard = (props) => {
     async function handleLike(){
         await postLikeAction(postData._id)
         await setPostById(postData._id,setPostData, ac);
+    }
+
+    async function handleDelete(){
+
+        await deletePost(props.id);
+        dispatch(fetchPosts(props.parAc));
     }
 
     const usrImg = props.userImg ? props.userImg : null;
@@ -51,7 +61,7 @@ const PostCard = (props) => {
                 {props.text}
             </StyledText>
             <ButtonBlock>
-                <ActionButtons removeVisible={props.isPriveleged} removeAction={() => deletePost(props.id, props.setPosts, props.ac)}
+                <ActionButtons removeVisible={props.isPriveleged} removeAction={handleDelete}
                 likeCount={postData.likes} commentCount={postData.comments} isLiked={postData.isLiked} likeAction={() => handleLike()}
                                commentAction={() => setShowComments(!showComments)} commentVisible={true}/>
             </ButtonBlock>

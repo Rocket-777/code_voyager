@@ -1,26 +1,23 @@
 import {deleteReqUri, getPlaces, putReq} from "../../../../httpUtils/httpRequests.ts";
-import {initPosts} from "../../scripts/postsScr";
 
-async function deletePost(param, setPosts, ac){
+
+async function deletePost(param) {
     await deleteReqUri(`/news/${param}`);
-    await initPosts(ac).then(res => setPosts(res.reverse()));
 }
 
 
-async function setPostById(id, setPlaceData, ac){
+async function setPostById(id, setPostData, ac) {
     const uri = `/news/${id}`;
     const data = await getPlaces(uri, ac);
-    if(data){
-
-        setPlaceData(data);
-    }
-    else{
-        setPlaceData(data.error);
+    if (data) {
+        setPostData(data);
+    } else {
+        setPostData(data.error);
     }
 
 }
 
-async function postLikeAction(id){
+async function postLikeAction(id) {
     await putReq(`/news/${id}/like`, null);
 
 }

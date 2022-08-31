@@ -62,7 +62,6 @@ const LogInCard = (props) => {
                                                size="small" type="password" onChange={e => setUserPassword(e.target.value)}
                                                value={userPassword}/>
                             </StyledRow>
-                            <div>{error}</div>
                             <StyledButton onClick={() => handleLogIn()}>
                                 <LoginOutlinedIcon sx={{marginRight: '0.4vw'}}/>
                                 Войти</StyledButton>
