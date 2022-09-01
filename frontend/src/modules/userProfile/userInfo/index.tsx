@@ -14,9 +14,19 @@ import {
     UserImage
 } from "./styles";
 import {FavoriteActive, LikeActive} from "../../actionButtons/styles";
-import React from "react"
+import React from "react";
+import {FC} from "react";
 
-const UserProfile = React.memo(({userName, status, avatar, handleImage, logoutAction}) => {
+interface IUserProfile{
+    userName: string,
+    status: string,
+    avatar: string,
+    handleImage: Function,
+    logoutAction: Function
+}
+
+
+const UserProfile: FC<IUserProfile> = React.memo(({userName, status, avatar, handleImage, logoutAction}) => {
     return (
         <ProfileCard>
             <Row>

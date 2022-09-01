@@ -65,7 +65,7 @@ async function getPosts(uri: string, ac: AbortController) {
 
 }
 
-async function deleteReq(uri: string, id: string) {
+async function deleteReq(uri: string, id?: string) {
     return await fetch(uri, {
         method: 'DELETE',
         mode: "cors",

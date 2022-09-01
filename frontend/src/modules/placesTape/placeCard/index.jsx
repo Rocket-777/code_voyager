@@ -130,6 +130,7 @@ const PlaceCard =  (props) => {
                 </StyledCard>
             </SkeletonContainer>
         );
+    return null;
 }
 
 export {PlaceCard}

@@ -56,19 +56,37 @@ const UploadButtonContainer = styled('label')`
 
 `;
 
-const UploadButton = styled(Button)`
-  background-color: lightgrey;
-  color: white;
-  width: 100%;
-  text-transform: none;
-  margin: 0 auto 0 auto;
-  height: 100%;
-  border-radius: 10px;
-  //border-color: #26418f;
-  :hover {
-    background-color: #bebebe;
-  }
-`;
+
+const UploadButton = styled(Button)({
+    backgroundColor: "lightgrey",
+    color: "white",
+    width: "100%",
+    textTransform: "none",
+    margin: "0 auto 0 auto",
+    height: "100%",
+    borderRadius: "10px",
+// //border-color: #26418f;
+    ":hover" :{
+        backgroundColor: "#bebebe",
+    }
+
+}) as typeof Button
+
+
+//
+// const UploadButton = styled(Button)`
+//   background-color: lightgrey;
+//   color: white;
+//   width: 100%;
+//   text-transform: none;
+//   margin: 0 auto 0 auto;
+//   height: 100%;
+//   border-radius: 10px;
+//   //border-color: #26418f;
+//   :hover {
+//     background-color: #bebebe;
+//   }`
+// ;
 
 const ImageIcon = styled(PhotoCameraIcon)`
   color: white;

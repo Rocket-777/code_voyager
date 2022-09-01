@@ -5,7 +5,7 @@ import {
 } from "./styles";
 import {fetchUser} from "../../reduxStore/reducers/Actions";
 import {useNavigate} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import React, {BaseSyntheticEvent, SyntheticEvent, useEffect, useState} from "react";
 import {removeUserImage, sendUserImage} from "./scripts/profileScripts";
 import {StyledContainer} from "../placesTape/styles";
 import {PlaceCard} from "../placesTape/placeCard";
@@ -21,14 +21,13 @@ const UsrProfile = () => {
     const places = useAppSelector(state => state.places)
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const [thumbnail, setThumbnail] = useState("noImage.png")
-    const [favorites, setFavorites] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
+    //const [thumbnail, setThumbnail] = useState("noImage.png")
+
     let ac = new AbortController();
 
     useEffect(()=>{
         dispatch(fetchFavorites(ac, handleScrollPos));
-        //getFavoritesJS(setFavorites, ac).then(res => {if(!ac.signal.aborted){setIsLoading(false); handleScrollPos();}});
+
         return () => ac.abort();
     },[]);
 
@@ -39,23 +38,23 @@ const UsrProfile = () => {
     const handleScrollPos = () => {
         const scrollPos = sessionStorage.getItem('scrollPositionFav');
         if(scrollPos){
-            document.getElementById('userProfile').scrollTo(0, parseInt(scrollPos));
+            document.getElementById('userProfile')!.scrollTo(0, parseInt(scrollPos));
             sessionStorage.removeItem('scrollPositionFav');
         }
     }
 
     const handleTransition = () => {
-        const scrollPos = document.getElementById('userProfile').scrollTop.toString();
+        const scrollPos = document.getElementById('userProfile')!.scrollTop.toString();
         sessionStorage.setItem('scrollPositionFav', scrollPos);
     }
 
-    async function handleFile(event) {
+    async function handleFile(event: BaseSyntheticEvent) {
 
         if (event.target.files && event.target.files[0]) {
             handleRemoveImg();
             let reader = new FileReader();
             reader.onload = (ev) => {
-                setThumbnail(ev.target.result);
+                //setThumbnail(ev.target.result);
             }
             reader.readAsDataURL(event.target.files[0]);
 

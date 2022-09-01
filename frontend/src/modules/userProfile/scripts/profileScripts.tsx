@@ -1,6 +1,6 @@
-import {postRequestWithFile, deleteReq} from "../../../httpUtils/httpRequests.ts";
+import {postRequestWithFile, deleteReq} from "../../../httpUtils/httpRequests";
 
-async function sendUserImage(image){
+async function sendUserImage(image: FormData){
     await postRequestWithFile(`/userImage`, image);
 
 }
